@@ -20,6 +20,9 @@ NXTestCase = NX.extend(NX.test.unit.TestCase, {
     testIsString : function() {
 
 
+        this.assertOk(NX.isString('xFrameworkNX'));
+
+
 
 
 
