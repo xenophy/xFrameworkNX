@@ -1,0 +1,7 @@
+
+
+NXTestCase = NX.extend(Object, {
+
+
+});
+

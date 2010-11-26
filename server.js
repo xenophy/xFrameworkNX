@@ -1,5 +1,5 @@
 
-var http = require('./lib/NX/NX.js');
+require('./lib/NX/NX.js');
 
 /*
 var http = require('http');

@@ -8,8 +8,30 @@
 
 // {{{ requires
 
-require('./core/NX.js');
-require('./core/NX.msgs.js');
+require('../lib/NX/Test.js');
+
+// }}}
+// {{{ run unit tests
+
+NX.test.Unit.run({
+
+    // {{{ 実行パス設定
+
+    path: __dirname,
+
+    // }}}
+    // {{{ items
+
+    /**
+     * ユニットテストアイテム設定
+     */
+    items: [
+        'NX'
+    ]
+
+    // }}}
+
+});
 
 // }}}
 
