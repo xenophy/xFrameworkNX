@@ -193,7 +193,30 @@ NXTestCase = NX.extend(NX.test.unit.TestCase, {
         // 関数オブジェクトテスト
         me.assertOk(NX.isString((function(){})) === false);
 
-    }
+    },
+
+    // }}}
+    // {{{ testIsBoolean
+
+    /**
+     * NX.isIsBooleanテスト
+     */
+    testIsBoolean : function() {
+
+        var me = this;
+
+        me.assertOk(NX.isBoolean(undefined) === false);
+        me.assertOk(NX.isBoolean(null) == false);
+        me.assertOk(NX.isBoolean([]) === false);
+        me.assertOk(NX.isBoolean('') === false);
+        me.assertOk(NX.isBoolean('xFrameworkNX') === false);
+        me.assertOk(NX.isBoolean(8124) === false);
+        me.assertOk(NX.isBoolean({}) === false);
+        me.assertOk(NX.isBoolean(new Date()) === false);
+        me.assertOk(NX.isBoolean((function() {})) === false);
+        me.assertOk(NX.isBoolean(true));
+        me.assertOk(NX.isBoolean(false));
+    },
 
     // }}}
 
