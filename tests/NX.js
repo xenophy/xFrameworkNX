@@ -17,13 +17,35 @@ NXTestCase = NX.extend(NX.test.unit.TestCase, {
 
     // {{{ testIsString
 
+    /**
+     * NX.isSringテスト
+     */
     testIsString : function() {
 
+        var me = this;
 
-        this.assertOk(NX.isString('xFrameworkNX'));
+        // 正常系テスト
+        me.assertOk(NX.isString('xFrameworkNX'));
+
+        // 真偽値テスト
+        me.assertOk(NX.isString(true) === false);
+        me.assertOk(NX.isString(false) === false);
 
 
+    },
 
+    // }}}
+    // {{{ testIsNumber
+
+    /**
+     * NX.isNumberテスト
+     */
+    testIsNumber : function() {
+
+        var me = this;
+
+        // 正常系テスト
+        me.assertOk(NX.isString('xFrameworkNX'));
 
 
 
