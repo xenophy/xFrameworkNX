@@ -11,9 +11,9 @@
 require('./lib/NX/NX.js');
 
 // }}}
-// {{{ run http server
+// {{{ run websocket server
 
-NX.http({
+NX.socket({
 
 });
 
