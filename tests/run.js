@@ -26,7 +26,8 @@ NX.test.Unit.run({
      * ユニットテストアイテム設定
      */
     items: [
-        'NX'
+        'NX',
+        'NX.util.Observable'
     ]
 
     // }}}
