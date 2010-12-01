@@ -26,14 +26,12 @@ NX.util.ObservableTestCase = NX.extend(NX.test.unit.TestCase, {
 
         var o = new NX.util.Observable({
             listeners : {
-                'testEvent' : function() {
+                'testevent' : function() {
                 }
             }
         });
 
-        console.log(o);
-
-        me.assertOk(NX.isEmpty({}) === false);
+        me.assertStrictEqual(o.events.testevent.name, 'testevent');
     },
 
     // }}}
