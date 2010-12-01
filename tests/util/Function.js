@@ -48,6 +48,17 @@ NX.util.FunctionTestCase = NX.extend(NX.test.unit.TestCase, {
      */
     testCreateDelegate : function() {
 
+        var me = this;
+        var v;
+        var f = function(value){
+            v = value + ' called';
+        }
+
+        var fi = NX.util.Functions.createDelegate(f, me, ['Delegate']);
+
+        fi();
+
+        me.assertStrictEqual(v, 'Delegate called');
 
     },
 
@@ -59,6 +70,19 @@ NX.util.FunctionTestCase = NX.extend(NX.test.unit.TestCase, {
      */
     testCreateSequence : function() {
 
+        var me = this;
+        var v;
+        var f = function(value){
+            v = 'origFn';
+        }
+
+        var fi = NX.util.Functions.createSequence(f, function() {
+            v += ' newFn';
+        });
+
+        fi();
+
+        me.assertStrictEqual(v, 'origFn newFn');
 
     },
 
@@ -70,6 +94,15 @@ NX.util.FunctionTestCase = NX.extend(NX.test.unit.TestCase, {
      */
     testDefer : function() {
 
+        var me = this;
+        var v;
+        var f = function(value){
+            v = 'called';
+        }
+
+        NX.util.Functions.defer(f, 100);
+
+        me.assertStrictEqual(v, undefined);
 
     }
 
