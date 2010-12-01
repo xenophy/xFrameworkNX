@@ -228,6 +228,50 @@ NX.util.ObservableTestCase = NX.extend(NX.test.unit.TestCase, {
         o.fireEvent('testevent', false);
 
         me.assertOk(v);
+    },
+
+    // }}}
+    // {{{ testClearListeners
+
+    /**
+     * NX.util.Observable.clearListenersテスト
+     */
+    testClearListeners : function() {
+
+        var me = this;
+
+        var o = new NX.util.Observable();
+        var v;
+        var f = function(value) {
+            v = value;
+        }
+
+        o.on('event1', f);
+        o.on('event2', f);
+        o.on('event3', f);
+
+        o.fireEvent('event1', 'Event1');
+
+        me.assertStrictEqual(v, 'Event1');
+
+        o.fireEvent('event2', 'Event2');
+
+        me.assertStrictEqual(v, 'Event2');
+
+        o.fireEvent('event3', 'Event3');
+
+        me.assertStrictEqual(v, 'Event3');
+
+        o.clearListeners();
+
+        o.fireEvent('event1', 'Event1');
+        me.assertStrictEqual(v, 'Event3');
+
+        o.fireEvent('event2', 'Event1');
+        me.assertStrictEqual(v, 'Event3');
+
+        o.fireEvent('event3', 'Event1');
+        me.assertStrictEqual(v, 'Event3');
     }
 
     // }}}
