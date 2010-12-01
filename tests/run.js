@@ -27,6 +27,7 @@ NX.test.Unit.run({
      */
     items: [
         'NX',
+        'NX.util.DelayedTask',
         'NX.util.Observable'
     ]
 

@@ -24,6 +24,7 @@ NX.util.DelayedTaskTestCase = NX.extend(NX.test.unit.TestCase, {
 
         var me = this;
 
+        NX.sleep(2000);
 
         me.assertOk(NX.isEmpty({}) === false);
     },
