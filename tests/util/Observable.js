@@ -26,7 +26,6 @@ NX.util.ObservableTestCase = NX.extend(NX.test.unit.TestCase, {
 
         var o = new NX.util.Observable();
 
-        console.log(o);
 
         me.assertOk(NX.isEmpty({}) === false);
     },

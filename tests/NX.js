@@ -219,6 +219,58 @@ NXTestCase = NX.extend(NX.test.unit.TestCase, {
     },
 
     // }}}
+    // {{{ testStrpos
+
+    /**
+     * NX.strposテスト
+     */
+    testStrpos : function() {
+
+        var me = this;
+        var v;
+
+        me.assertStrictEqual(NX.strpos(v, '.'), false);
+
+        v = 'aaa.bbb.ccc';
+        me.assertStrictEqual(NX.strpos(v, '.'), 3);
+
+    },
+
+    // }}}
+    // {{{ testExplode
+
+    /**
+     * NX.explodeテスト
+     */
+    testExplode : function() {
+
+        var me = this;
+        var v = 'aaa.bbb.ccc';
+
+        var ret = NX.explode('.', v);
+
+        me.assertStrictEqual(ret[0], 'aaa');
+        me.assertStrictEqual(ret[1], 'bbb');
+        me.assertStrictEqual(ret[2], 'ccc');
+    },
+
+    // }}}
+    // {{{ testImplode
+
+    /**
+     * NX.implodeテスト
+     */
+    testImplode : function() {
+
+        var me = this;
+        var v = ['aaa','bbb','ccc'];
+
+        var ret = NX.implode('.', v);
+
+        me.assertStrictEqual(ret, 'aaa.bbb.ccc');
+    }
+
+    // }}}
 
 });
 
