@@ -262,11 +262,16 @@ NXTestCase = NX.extend(NX.test.unit.TestCase, {
      */
     testImplode : function() {
 
-        var me = this;
-        var v = ['aaa','bbb','ccc'];
+        var me = this,
+            v,
+            ret;
 
-        var ret = NX.implode('.', v);
+        v = ['aaa','bbb','ccc'];
+        ret = NX.implode('.', v);
+        me.assertStrictEqual(ret, 'aaa.bbb.ccc');
 
+        v = {0: 'aaa', 1: 'bbb', 2: 'ccc'};
+        ret = NX.implode('.', v);
         me.assertStrictEqual(ret, 'aaa.bbb.ccc');
     }
 
