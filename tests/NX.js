@@ -11,7 +11,7 @@
 /**
  * @class NXTestCase
  *
- * NXクラステストケース
+ * NX Class TestCase
  */
 NXTestCase = NX.extend(NX.test.unit.TestCase, {
 

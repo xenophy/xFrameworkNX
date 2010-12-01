@@ -11,7 +11,7 @@
 /**
  * @class NX.util.ObservableTestCase
  *
- * NXクラステストケース
+ * NX.util.Observable Class TestCase
  */
 NX.util.ObservableTestCase = NX.extend(NX.test.unit.TestCase, {
 

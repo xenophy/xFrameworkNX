@@ -27,7 +27,8 @@ NX.test.Unit.run({
      */
     items: [
         'NX',
-        'NX.util.Observable'
+        'NX.util.Observable',
+        'NX.util.Function'
     ]
 
     // }}}
