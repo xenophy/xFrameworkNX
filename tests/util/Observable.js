@@ -15,24 +15,124 @@
  */
 NX.util.ObservableTestCase = NX.extend(NX.test.unit.TestCase, {
 
-    // {{{ testConstractor
+    // {{{ testAddListener
 
     /**
-     * NX.util.Observable.constructorテスト
+     * NX.util.Observable.addListenerテスト
      */
-    testConstractor : function() {
+    testAddListener : function() {
 
-        var me = this;
+        var me = this,
+            t,
+            ret;
+
+        me.testValue = 'testValue';
 
         var o = new NX.util.Observable({
             listeners : {
                 'testevent' : function() {
+                    return this.events.testevent.name;
                 }
             }
         });
 
         me.assertStrictEqual(o.events.testevent.name, 'testevent');
+
+        t = o.events.testevent.listeners[0];
+        ret = t.fn.apply(t.scope);
+
+        me.assertStrictEqual(ret, 'testevent');
+
+
+        var o = new NX.util.Observable({
+            listeners : {
+                'testevent' : {
+                    fn : function() {
+                        return this.testValue;
+                    },
+                    scope: me
+                }
+            }
+        });
+
+        t = o.events.testevent.listeners[0];
+        ret = t.fn.apply(t.scope);
+
+        me.assertStrictEqual(ret, 'testValue');
+
     },
+
+    // }}}
+    // {{{ testOn
+
+    /**
+     * NX.util.Observable.onテスト
+     */
+    testOn : function() {
+
+        var me = this,
+            t,
+            ret;
+
+        me.testValue = 'testValue';
+
+        var o = new NX.util.Observable({
+            listeners : {
+                'testevent' : function() {
+                    return this.events.testevent.name;
+                }
+            }
+        });
+
+        me.assertStrictEqual(o.events.testevent.name, 'testevent');
+
+        t = o.events.testevent.listeners[0];
+        ret = t.fn.apply(t.scope);
+
+        me.assertStrictEqual(ret, 'testevent');
+
+
+        var o = new NX.util.Observable({
+            listeners : {
+                'testevent' : {
+                    fn : function() {
+                        return this.testValue;
+                    },
+                    scope: me
+                }
+            }
+        });
+
+        t = o.events.testevent.listeners[0];
+        ret = t.fn.apply(t.scope);
+
+        me.assertStrictEqual(ret, 'testValue');
+
+    },
+
+    // }}}
+    // {{{ testFireEvent
+
+    /**
+     * NX.util.Observable.fireEventテスト
+     */
+    testFireEvent : function() {
+
+        var me = this,
+            t,
+            testValue,
+            ret;
+
+        var o = new NX.util.Observable();
+
+        o.on('testevent', function() {
+            testValue = true;
+        });
+
+        o.fireEvent('testevent');
+
+        me.assertOk(testValue);
+    }
 
     // }}}
 
