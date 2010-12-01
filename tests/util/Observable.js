@@ -170,6 +170,64 @@ NX.util.ObservableTestCase = NX.extend(NX.test.unit.TestCase, {
         o.fireEvent('testevent');
 
         me.assertOk(testValue);
+    },
+
+    // }}}
+    // {{{ testRemoveListener
+
+    /**
+     * NX.util.Observable.removeListenerテスト
+     */
+    testRemoveListener : function() {
+
+        var me = this;
+
+        var o = new NX.util.Observable();
+        var v;
+        var f = function(value) {
+            v = value;
+        }
+
+        o.addListener('testevent', f);
+
+        o.fireEvent('testevent', true);
+
+        me.assertOk(v);
+
+        o.removeListener('testevent', f);
+
+        o.fireEvent('testevent', false);
+
+        me.assertOk(v);
+    },
+
+    // }}}
+    // {{{ testUn
+
+    /**
+     * NX.util.Observable.unテスト
+     */
+    testUn : function() {
+
+        var me = this;
+
+        var o = new NX.util.Observable();
+        var v;
+        var f = function(value) {
+            v = value;
+        }
+
+        o.on('testevent', f);
+
+        o.fireEvent('testevent', true);
+
+        me.assertOk(v);
+
+        o.un('testevent', f);
+
+        o.fireEvent('testevent', false);
+
+        me.assertOk(v);
     }
 
     // }}}
