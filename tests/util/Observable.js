@@ -15,17 +15,23 @@
  */
 NX.util.ObservableTestCase = NX.extend(NX.test.unit.TestCase, {
 
-    // {{{ testIsEmpty
+    // {{{ testConstractor
 
     /**
-     * NX.isEmptyテスト
+     * NX.util.Observable.constructorテスト
      */
-    testIsEmpty : function() {
+    testConstractor : function() {
 
         var me = this;
 
-        var o = new NX.util.Observable();
+        var o = new NX.util.Observable({
+            listeners : {
+                'testEvent' : function() {
+                }
+            }
+        });
 
+        console.log(o);
 
         me.assertOk(NX.isEmpty({}) === false);
     },
