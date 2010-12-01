@@ -15,6 +15,44 @@
  */
 NX.util.ObservableTestCase = NX.extend(NX.test.unit.TestCase, {
 
+    // {{{ testAddEvents
+
+    /**
+     * NX.util.Observable.addEventsテスト
+     */
+    testAddEvents : function() {
+
+        var me = this;
+        var o = new NX.util.Observable();
+        var v;
+        var f = function(name) {
+            v = name;
+        }
+
+        o.addEvents({
+            event1: true,
+            event2: false
+        });
+
+        o.on('event1', f);
+        o.fireEvent('event1', 'Fired Event1');
+        me.assertStrictEqual(v, 'Fired Event1');
+
+        v = undefined;
+        o.on('event2', f);
+        o.fireEvent('event2', 'Fired Event2');
+        me.assertStrictEqual(v, undefined);
+
+        o.addEvents('event3');
+
+        v = undefined;
+        o.on('event3', f);
+        o.fireEvent('event3', 'Fired Event3');
+        me.assertStrictEqual(v, 'Fired Event3');
+
+    },
+
+    // }}}
     // {{{ testAddListener
 
     /**
