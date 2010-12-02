@@ -22,6 +22,42 @@ NX.util.MixedCollectionTestCase = NX.extend(NX.test.unit.TestCase, {
      */
     testAdd : function() {
 
+        var me = this,
+            mix,
+            f1,
+            f2;
+
+        f1 = function(len, obj, key) {
+            me.assertStrictEqual(len, 0);
+            me.assertStrictEqual(obj, 'testValue');
+            me.assertStrictEqual(key, 'testKey');
+        };
+
+        f2 = function(len, obj, key) {
+            me.assertStrictEqual(len, 1);
+            me.assertStrictEqual(obj, 'testValue2');
+            me.assertStrictEqual(key, undefined);
+        };
+
+        mix = new NX.util.MixedCollection();
+
+        mix.on('add', f1);
+        mix.add('testKey', 'testValue');
+        mix.un('add', f1);
+
+        me.assertStrictEqual(mix.items[0], 'testValue');
+        me.assertStrictEqual(mix.keys[0], 'testKey');
+        me.assertStrictEqual(mix.map.testKey, 'testValue');
+        me.assertStrictEqual(mix.length, 1);
+
+        mix.on('add', f2);
+        mix.add('testValue2');
+        mix.un('add', f2);
+
+        me.assertStrictEqual(mix.items[1], 'testValue2');
+        me.assertStrictEqual(mix.keys[2], undefined);
+        me.assertStrictEqual(mix.length, 2);
+
     },
 
     // }}}
@@ -31,6 +67,17 @@ NX.util.MixedCollectionTestCase = NX.extend(NX.test.unit.TestCase, {
      * NX.util.MixedCollection.getKeyテスト
      */
     testGetKey : function() {
+
+        var me = this,
+            mix;
+
+        mix = new NX.util.MixedCollection();
+
+        mix.add('testKey', 'testValue');
+
+        me.assertStrictEqual(mix.getKey({id: 'test'}), 'test');
+        me.assertStrictEqual(mix.getKey({}), undefined);
+        me.assertStrictEqual(mix.getKey(), undefined);
 
     },
 
