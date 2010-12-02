@@ -89,6 +89,34 @@ NX.util.MixedCollectionTestCase = NX.extend(NX.test.unit.TestCase, {
      */
     testReplace : function() {
 
+        var me = this,
+            mix,
+            f;
+
+        var check = false;
+
+        f = function(key, oldObj, newObj) {
+
+            if(check) {
+                me.assertStrictEqual(key, 'testKey');
+                me.assertStrictEqual(oldObj, 'testValue');
+                me.assertStrictEqual(newObj, 'testValueReplaced');
+            }
+        };
+
+        mix = new NX.util.MixedCollection();
+
+        mix.on('replace', f);
+
+        mix.add('testKey', 'testValue');
+
+        me.assertStrictEqual(mix.items[0], 'testValue');
+
+        check = true;
+        mix.replace('testKey', 'testValueReplaced');
+
+        me.assertStrictEqual(mix.items[0], 'testValueReplaced');
+
     },
 
     // }}}
