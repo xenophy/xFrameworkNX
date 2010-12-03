@@ -5,172 +5,168 @@
  * Copyright(c) 2006-2010 Xenophy.CO.,LTD All rights Reserved.
  * http://www.xenophy.com
  */
-exports.mimetype = {
-    dwg : 'application/acad',
-    arj : 'application/arj',
-    asd : 'application/astound',
-    asn : 'application/astound',
-    css : 'text/css',
-    ccad : 'application/clariscad',
-    drw : 'application/drafting',
-    dxf : 'application/dxf',
-    ico : 'image/vnd.microsoft.icon',
-    unv : 'application/i-deas',
-    iges : 'application/iges',
-    iges : 'application/iges',
-    jar : 'application/java-archive',
-    hqx : 'application/mac-binhex40',
-    mdb : 'application/msaccess',
-    xla : 'application/msexcel',
-    xls : 'application/msexcel',
-    xlt : 'application/msexcel',
-    xlw : 'application/msexcel',
-    pot : 'application/mspowerpoint',
-    pps : 'application/mspowerpoint',
-    ppt : 'application/mspowerpoint',
-    mpp : 'application/msproject',
-    doc : 'application/msword',
-    word : 'application/msword',
-    w6w : 'application/msword',
-    wri : 'application/mswrite',
-    bin : 'application/octet-stream',
-    oda : 'application/oda',
-    pdf : 'application/pdf',
-    ai : 'application/postscript',
-    eps : 'application/postscript',
-    ps : 'application/postscript',
-    part : 'application/pro_eng',
-    part : 'application/pro_eng',
-    rtf : 'application/rtf',
-    set : 'application/set',
-    stl : 'application/sla',
-    sol : 'application/solids',
-    st : 'application/STEP',
-    step : 'application/STEP',
-    stp : 'application/STEP',
-    vda : 'application/vda',
-    bcpio : 'application/x-bcpio',
-    cpio : 'application/x-cpio',
-    csh : 'application/x-csh',
-    dcr : 'application/x-director',
-    dir : 'application/x-director',
-    dxr : 'application/x-director',
-    dvi : 'application/x-dvi',
-    dwf : 'application/x-dwf',
-    gtar : 'application/x-gtar',
-    gz : 'application/x-gzip',
-    gzip : 'application/x-gzip',
-    hdf : 'application/x-hdf',
-    js : 'application/x-javascript',
-    latex : 'application/x-latex',
-    bin : 'application/x-macbinary',
-    mid : 'application/x-midi',
-    mif : 'application/x-mif',
-    cdf : 'application/x-netcdf',
-    nc : 'application/x-netcdf',
-    sh : 'application/x-sh',
-    shar : 'application/x-shar',
-    swf : 'application/x-shockwave-flash',
-    sit : 'application/x-stuffit',
-    sv4cpio : 'application/x-sv4cpio',
-    sv4crc : 'application/x-sv4crc',
-    tar : 'application/x-tar',
-    tcl : 'application/x-tcl',
-    tex : 'application/x-tex',
-    texi : 'application/x-texinfo',
-    texinfo : 'application/x-texinfo',
-    roff : 'application/x-troff',
-    t : 'application/x-troff',
-    tr : 'application/x-troff',
-    man : 'application/x-troff-man',
-    me : 'application/x-troff-me',
-    ms : 'application/x-troff-ms',
-    ustar : 'application/x-ustar',
-    src : 'application/x-wais-source',
-    hlp : 'application/x-winhelp',
-    zip : 'application/zip',
-    au : 'audio/basic',
-    snd : 'audio/basic',
-    mid : 'audio/midi',
-    midi : 'audio/midi',
-    aif : 'audio/x-aiff',
-    aifc : 'audio/x-aiff',
-    aiff : 'audio/x-aiff',
-    mp3 : 'audio/x-mpeg',
-    ra : 'audio/x-pn-realaudio',
-    ram : 'audio/x-pn-realaudio',
-    rpm : 'audio/x-pn-realaudio-plugin',
-    voc : 'audio/x-voice',
-    wav : 'audio/x-wav',
-    bmp : 'image/bmp',
-    gif : 'image/gif',
-    ief : 'image/ief',
-    jpe : 'image/jpeg',
-    jpeg : 'image/jpeg',
-    jpg : 'image/jpeg',
-    pict : 'image/pict',
-    png : 'image/png',
-    tif : 'image/tiff',
-    tiff : 'image/tiff',
-    ras : 'image/x-cmu-raster',
-    pnm : 'image/x-portable-anymap',
-    pbm : 'image/x-portable-bitmap',
-    pgm : 'image/x-portable-graymap',
-    ppm : 'image/x-portable-pixmap',
-    rgb : 'image/x-rgb',
-    xbm : 'image/x-xbitmap',
-    xpm : 'image/x-xpixmap',
-    xwd : 'image/x-xwindowdump',
-    gzip : 'multipart/x-gzip',
-    zip : 'multipart/x-zip',
-    htm : 'text/html',
-    html : 'text/html',
-    C : 'text/plain',
-    cc : 'text/plain',
-    h : 'text/plain',
-    txt : 'text/plain',
-    rtx : 'text/richtext',
-    tsv : 'text/tab-separated-values',
-    etx : 'text/x-setext',
-    sgm : 'text/x-sgml',
-    sgml : 'text/x-sgml',
-    mpe : 'video/mpeg',
-    mpeg : 'video/mpeg',
-    mpg : 'video/mpeg',
-    avi : 'video/msvideo',
-    mov : 'video/quicktime',
-    qt : 'video/quicktime',
-    vdo : 'video/vdo',
-    viv : 'video/vivo',
-    vivo : 'video/vivo',
-    movie : 'video/x-sgi-movie',
-    ice : 'x-conference/x-cooltalk',
-    svr : 'x-world/x-svr',
-    wrl : 'x-world/x-vrml',
-    vrt : 'x-world/x-vrt',
-    rdf : 'text/xml',
-    xml : 'text/xml',
-    json : 'text/plane',
-    docm : 'application/vnd.ms-word.document.macroEnabled.12',
-    docx : 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
-    dotm : 'application/vnd.ms-word.template.macroEnabled.12',
-    dotx : 'application/vnd.openxmlformats-officedocument.wordprocessingml.template',
-    potm : 'application/vnd.ms-powerpoint.template.macroEnabled.12',
-    potx : 'application/vnd.openxmlformats-officedocument.presentationml.template',
-    ppam : 'application/vnd.ms-powerpoint.addin.macroEnabled.12',
-    ppsm : 'application/vnd.ms-powerpoint.slideshow.macroEnabled.12',
-    ppsx : 'application/vnd.openxmlformats-officedocument.presentationml.slideshow',
-    pptm : 'application/vnd.ms-powerpoint.presentation.macroEnabled.12',
-    pptx : 'application/vnd.openxmlformats-officedocument.presentationml.presentation',
-    xlam : 'application/vnd.ms-excel.addin.macroEnabled.12',
-    xlsb : 'application/vnd.ms-excel.sheet.binary.macroEnabled.12',
-    xlsm : 'application/vnd.ms-excel.sheet.macroEnabled.12',
-    xlsx : 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
-    xltm : 'application/vnd.ms-excel.template.macroEnabled.12',
-    xltx : 'application/vnd.openxmlformats-officedocument.spreadsheetml.template'
-};
-
+exports.dwg = 'application/acad';
+exports.arj = 'application/arj';
+exports.asd = 'application/astound';
+exports.asn = 'application/astound';
+exports.css = 'text/css';
+exports.ccad = 'application/clariscad';
+exports.drw = 'application/drafting';
+exports.dxf = 'application/dxf';
+exports.ico = 'image/vnd.microsoft.icon';
+exports.unv = 'application/i-deas';
+exports.iges = 'application/iges';
+exports.iges = 'application/iges';
+exports.jar = 'application/java-archive';
+exports.hqx = 'application/mac-binhex40';
+exports.mdb = 'application/msaccess';
+exports.xla = 'application/msexcel';
+exports.xls = 'application/msexcel';
+exports.xlt = 'application/msexcel';
+exports.xlw = 'application/msexcel';
+exports.pot = 'application/mspowerpoint';
+exports.pps = 'application/mspowerpoint';
+exports.ppt = 'application/mspowerpoint';
+exports.mpp = 'application/msproject';
+exports.doc = 'application/msword';
+exports.word = 'application/msword';
+exports.w6w = 'application/msword';
+exports.wri = 'application/mswrite';
+exports.bin = 'application/octet-stream';
+exports.oda = 'application/oda';
+exports.pdf = 'application/pdf';
+exports.ai = 'application/postscript';
+exports.eps = 'application/postscript';
+exports.ps = 'application/postscript';
+exports.part = 'application/pro_eng';
+exports.part = 'application/pro_eng';
+exports.rtf = 'application/rtf';
+exports.set = 'application/set';
+exports.stl = 'application/sla';
+exports.sol = 'application/solids';
+exports.st = 'application/STEP';
+exports.step = 'application/STEP';
+exports.stp = 'application/STEP';
+exports.vda = 'application/vda';
+exports.bcpio = 'application/x-bcpio';
+exports.cpio = 'application/x-cpio';
+exports.csh = 'application/x-csh';
+exports.dcr = 'application/x-director';
+exports.dir = 'application/x-director';
+exports.dxr = 'application/x-director';
+exports.dvi = 'application/x-dvi';
+exports.dwf = 'application/x-dwf';
+exports.gtar = 'application/x-gtar';
+exports.gz = 'application/x-gzip';
+exports.gzip = 'application/x-gzip';
+exports.hdf = 'application/x-hdf';
+exports.js = 'application/x-javascript';
+exports.latex = 'application/x-latex';
+exports.bin = 'application/x-macbinary';
+exports.mid = 'application/x-midi';
+exports.mif = 'application/x-mif';
+exports.cdf = 'application/x-netcdf';
+exports.nc = 'application/x-netcdf';
+exports.sh = 'application/x-sh';
+exports.shar = 'application/x-shar';
+exports.swf = 'application/x-shockwave-flash';
+exports.sit = 'application/x-stuffit';
+exports.sv4cpio = 'application/x-sv4cpio';
+exports.sv4crc = 'application/x-sv4crc';
+exports.tar = 'application/x-tar';
+exports.tcl = 'application/x-tcl';
+exports.tex = 'application/x-tex';
+exports.texi = 'application/x-texinfo';
+exports.texinfo = 'application/x-texinfo';
+exports.roff = 'application/x-troff';
+exports.t = 'application/x-troff';
+exports.tr = 'application/x-troff';
+exports.man = 'application/x-troff-man';
+exports.me = 'application/x-troff-me';
+exports.ms = 'application/x-troff-ms';
+exports.ustar = 'application/x-ustar';
+exports.src = 'application/x-wais-source';
+exports.hlp = 'application/x-winhelp';
+exports.zip = 'application/zip';
+exports.au = 'audio/basic';
+exports.snd = 'audio/basic';
+exports.mid = 'audio/midi';
+exports.midi = 'audio/midi';
+exports.aif = 'audio/x-aiff';
+exports.aifc = 'audio/x-aiff';
+exports.aiff = 'audio/x-aiff';
+exports.mp3 = 'audio/x-mpeg';
+exports.ra = 'audio/x-pn-realaudio';
+exports.ram = 'audio/x-pn-realaudio';
+exports.rpm = 'audio/x-pn-realaudio-plugin';
+exports.voc = 'audio/x-voice';
+exports.wav = 'audio/x-wav';
+exports.bmp = 'image/bmp';
+exports.gif = 'image/gif';
+exports.ief = 'image/ief';
+exports.jpe = 'image/jpeg';
+exports.jpeg = 'image/jpeg';
+exports.jpg = 'image/jpeg';
+exports.pict = 'image/pict';
+exports.png = 'image/png';
+exports.tif = 'image/tiff';
+exports.tiff = 'image/tiff';
+exports.ras = 'image/x-cmu-raster';
+exports.pnm = 'image/x-portable-anymap';
+exports.pbm = 'image/x-portable-bitmap';
+exports.pgm = 'image/x-portable-graymap';
+exports.ppm = 'image/x-portable-pixmap';
+exports.rgb = 'image/x-rgb';
+exports.xbm = 'image/x-xbitmap';
+exports.xpm = 'image/x-xpixmap';
+exports.xwd = 'image/x-xwindowdump';
+exports.gzip = 'multipart/x-gzip';
+exports.zip = 'multipart/x-zip';
+exports.htm = 'text/html';
 exports.html = 'text/html';
+exports.C = 'text/plain';
+exports.cc = 'text/plain';
+exports.h = 'text/plain';
+exports.txt = 'text/plain';
+exports.rtx = 'text/richtext';
+exports.tsv = 'text/tab-separated-values';
+exports.etx = 'text/x-setext';
+exports.sgm = 'text/x-sgml';
+exports.sgml = 'text/x-sgml';
+exports.mpe = 'video/mpeg';
+exports.mpeg = 'video/mpeg';
+exports.mpg = 'video/mpeg';
+exports.avi = 'video/msvideo';
+exports.mov = 'video/quicktime';
+exports.qt = 'video/quicktime';
+exports.vdo = 'video/vdo';
+exports.viv = 'video/vivo';
+exports.vivo = 'video/vivo';
+exports.movie = 'video/x-sgi-movie';
+exports.ice = 'x-conference/x-cooltalk';
+exports.svr = 'x-world/x-svr';
+exports.wrl = 'x-world/x-vrml';
+exports.vrt = 'x-world/x-vrt';
+exports.rdf = 'text/xml';
+exports.xml = 'text/xml';
+exports.json = 'text/plane';
+exports.docm = 'application/vnd.ms-word.document.macroEnabled.12';
+exports.docx = 'application/vnd.openxmlformats-officedocument.wordprocessingml.document';
+exports.dotm = 'application/vnd.ms-word.template.macroEnabled.12';
+exports.dotx = 'application/vnd.openxmlformats-officedocument.wordprocessingml.template';
+exports.potm = 'application/vnd.ms-powerpoint.template.macroEnabled.12';
+exports.potx = 'application/vnd.openxmlformats-officedocument.presentationml.template';
+exports.ppam = 'application/vnd.ms-powerpoint.addin.macroEnabled.12';
+exports.ppsm = 'application/vnd.ms-powerpoint.slideshow.macroEnabled.12';
+exports.ppsx = 'application/vnd.openxmlformats-officedocument.presentationml.slideshow';
+exports.pptm = 'application/vnd.ms-powerpoint.presentation.macroEnabled.12';
+exports.pptx = 'application/vnd.openxmlformats-officedocument.presentationml.presentation';
+exports.xlam = 'application/vnd.ms-excel.addin.macroEnabled.12';
+exports.xlsb = 'application/vnd.ms-excel.sheet.binary.macroEnabled.12';
+exports.xlsm = 'application/vnd.ms-excel.sheet.macroEnabled.12';
+exports.xlsx = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet';
+exports.xltm = 'application/vnd.ms-excel.template.macroEnabled.12';
+exports.xltx = 'application/vnd.openxmlformats-officedocument.spreadsheetml.template';
 
 /*
  * Local variables:
