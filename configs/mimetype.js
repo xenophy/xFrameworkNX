@@ -5,7 +5,7 @@
  * Copyright(c) 2006-2010 Xenophy.CO.,LTD All rights Reserved.
  * http://www.xenophy.com
  */
-NX.http.MimeType = {
+exports.mimetype = {
     dwg : 'application/acad',
     arj : 'application/arj',
     asd : 'application/astound',
