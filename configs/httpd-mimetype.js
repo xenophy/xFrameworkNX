@@ -124,6 +124,7 @@ exports.mimetype = {
     gzip : 'multipart/x-gzip',
     zip : 'multipart/x-zip',
     htm : 'text/html',
+    html : 'text/html',
     C : 'text/plain',
     cc : 'text/plain',
     h : 'text/plain',
@@ -168,6 +169,8 @@ exports.mimetype = {
     xltm : 'application/vnd.ms-excel.template.macroEnabled.12',
     xltx : 'application/vnd.openxmlformats-officedocument.spreadsheetml.template'
 };
+
+exports.html = 'text/html';
 
 /*
  * Local variables:
