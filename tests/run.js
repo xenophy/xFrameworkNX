@@ -8,7 +8,7 @@
 
 // {{{ requires
 
-require('../lib/NX/Test.js');
+require('../lib/NX.js');
 
 // }}}
 // {{{ run unit tests

@@ -8,12 +8,24 @@
 
 // {{{ requires
 
-require('./lib/NX/NX.js');
+require('./lib/NX.js');
 
 // }}}
-// {{{ run http server
+// {{{ setup server
 
-NX.http({
+NX.service({
+
+    // {{{ items
+
+    /**
+     * サービス設定
+     */
+    items: [{
+        port: 8124,
+        host: '127.0.0.1'
+    }]
+
+    // }}}
 
 });
 
