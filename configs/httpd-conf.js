@@ -6,7 +6,7 @@
  * http://www.xenophy.com
  */
 exports.directoryIndex = [
-        'index.html'
+    'index.html'
 ];
 
 exports.errorDocument = {
