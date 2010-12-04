@@ -48,14 +48,14 @@ Ext.extend(Ext.app.App, Ext.util.Observable, {
                 // xtype設定
                 xtype: 'header',
 
-                // サイズ設定
-                height: 50
+                // ID設定
+                id: 'header'
 
             },{
 
                 // リージョン設定
                 region: 'west',
-                width: 100
+                width: 235
             },{
 
                 // リージョン設定

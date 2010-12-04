@@ -23,7 +23,15 @@ Ext.HeaderBoxComponent = Ext.extend(Ext.BoxComponent, {
 
         // 設定適用
         Ext.apply(me, {
-            html: 'test'
+            html: [{
+                tag: 'img',
+                src: 'resources/images/title.png',
+                width: 195,
+                height: 49
+            
+            
+            
+            }]
         });
 
         // スーパークラスメソッドコール

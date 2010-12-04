@@ -1,0 +1,23 @@
+/* vim: set expandtab tabstop=2 shiftwidth=2 softtabstop=2: */
+
+/*!
+ * xFramework NX Docs
+ *
+ * http://xFrameworknx.com
+ */
+
+#header{
+  height: 44px;
+}
+
+.x-viewport body {
+  background: #ededed url(../images/hd-bg.png) repeat-x !important;
+}
+
+/*
+ * Local variables:
+ * tab-width: 2
+ * c-basic-offset: 2
+ * c-hanging-comment-ender-p: nil
+ * End:
+ */
