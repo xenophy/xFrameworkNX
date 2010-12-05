@@ -6,6 +6,15 @@
  * http://xFrameworknx.com
  */
 
+// {{{ Namespace
+
+Ext.ns(
+    'Ext.docs',
+    'Ext.docs.wiki',
+    'Ext.docs.api'
+);
+
+// }}}
 // {{{ Ext.app.App
 
 /**
@@ -33,8 +42,10 @@ Ext.extend(Ext.app.App, Ext.util.Observable, {
 
     initApp : function() {
 
+        var me = this;
+
         // ビューポート生成
-        new Ext.Viewport({
+        me.viewport = new Ext.Viewport({
 
             // レイアウト設定
             layout: 'border',
@@ -55,22 +66,85 @@ Ext.extend(Ext.app.App, Ext.util.Observable, {
 
                 // リージョン設定
                 region: 'west',
-                width: 235
+
+                // xtype設定
+                xtype: 'nav',
+
+                // ID設定
+                id: 'nav',
+
+                // 参照設定
+                ref: 'nav',
+
+                // サイズ設定
+                width: 225,
+                minSize: 175,
+                maxSize: 400,
+
+                // スプリット設定
+                split:true,
+
+                // マージン設定
+                margins:'0 0 5 5',
+                cmargins:'0 5 5 5',
+
+                // 自動スクロール設定
+                autoScroll:true,
+
+                // リスナー設定
+                listeners: {
+                    opendoc: function(id, node) {
+                        me.viewport.main.load({
+                            url: 'resources/output/' + id + '.html',
+                            callback: function() {
+                            }
+                        });
+                    }
+                }
+
             },{
 
                 // リージョン設定
                 region: 'center',
 
-            
+                // xtype設定
+                xtype: 'main',
+
+                // ID設定
+                id: 'doc-body',
+
+                // 参照設定
+                ref: 'main',
+
+                // マージン設定
+                margins:'0 5 5 0',
+                cmargins:'0 5 5 0'
+
             },{
 
                 // リージョン設定
                 region: 'south',
-                height: 20
-            
+
+                // xtype設定
+                xtype: 'footer',
+
+                // ID設定
+                id: 'footer'
+
             }]
 
         });
+
+        var firstNode;
+        me.viewport.nav.root.findChildBy(function(node) {
+            if(node.isLeaf() && !firstNode) {
+                firstNode = node;
+            }
+        }, me, true);
+        firstNode.select();
+        var t = Ext.get(firstNode.getUI().getEl());
+        var a = t.child('a');
+        me.viewport.nav.fireEvent('opendoc', a.getAttribute('href'), firstNode);
 
     }
 
