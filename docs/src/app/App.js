@@ -61,13 +61,18 @@ Ext.extend(Ext.app.App, Ext.util.Observable, {
                 // リージョン設定
                 region: 'center'
 
-            
+
             },{
 
                 // リージョン設定
                 region: 'south',
-                height: 20
-            
+
+                // xtype設定
+                xtype: 'footer',
+
+                // ID設定
+                id: 'footer'
+
             }]
 
         });
