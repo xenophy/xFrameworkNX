@@ -23,6 +23,8 @@ Ext.NavPanel = Ext.extend(Ext.tree.TreePanel, {
 
         // 設定適用
         Ext.apply(me, {
+            animate: false,
+            singleExpand:true,
             rootVisible:false,
             lines:false,
             root: new Ext.tree.TreeNode(),

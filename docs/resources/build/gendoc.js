@@ -17,6 +17,8 @@ var mpath = require('path');
 
 var path = __dirname + '/../wiki/';
 path = mpath.normalize(path);
+var outpath = __dirname + '/../output/';
+outpath = mpath.normalize(outpath);
 var wikifiles = [];
 var target;
 var category;
@@ -35,6 +37,7 @@ var getWikiFiles = function(path) {
             file = mpath.normalize(file);
             var c = NX.fs.readFileSync(file + '/.category.js', 'utf-8');
             category = NX.decode(c);
+            var pi = NX.pathinfo(file);
 
             var o = {
                 text: category.name,
@@ -47,12 +50,17 @@ var getWikiFiles = function(path) {
                 o.expanded = false;
             }
 
+            var subdir = pi['dirname'].substr(path.length);
+            var outputDir = outpath + '/' + subdir + '/' + pi['basename'];
+            outputDir = mpath.normalize(outputDir);
+
+            if(!NX.fs.exists(outputDir)) {
+                NX.fs.mkdirSync(outputDir,0777);
+            }
+
             target = o.children;
-
             wikifiles.push(o);
-
             getWikiFiles(file + '/');
-
 
         } else if(s.isFile() === true) {
 
@@ -65,6 +73,14 @@ var getWikiFiles = function(path) {
                 if(target) {
 
                     path = path.substr(__dirname.length);
+
+                    var docWiki = NX.fs.readFileSync(file, 'utf8');
+                    var docHtml = NX.util.Wiki.parse(docWiki);
+
+                    var outFile = __dirname + '/../output/' + path + pi['filename'] + '.html';
+                    outFile = mpath.normalize(outFile);
+
+                    NX.fs.writeFileSync(outFile, docHtml, 'utf-8');
 
                     var o = {
                         href: path + pi['filename'],
