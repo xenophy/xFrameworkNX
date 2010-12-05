@@ -59,7 +59,7 @@ Ext.extend(Ext.app.App, Ext.util.Observable, {
             },{
 
                 // リージョン設定
-                region: 'center',
+                region: 'center'
 
             
             },{

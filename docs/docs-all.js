@@ -1,0 +1,1 @@
+Ext.app.App=function(cfg){var me=this;Ext.apply(me,cfg);me.addEvents({ready:true,beforeunload:true});Ext.onReady(me.initApp,me)};Ext.extend(Ext.app.App,Ext.util.Observable,{initApp:function(){new Ext.Viewport({layout:"border",items:[{region:"north",xtype:"header",id:"header"},{region:"west",width:235},{region:"center"},{region:"south",height:20}]})}});Application=new Ext.app.App;
