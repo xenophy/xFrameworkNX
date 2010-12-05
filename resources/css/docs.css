@@ -59,6 +59,18 @@
   text-align:left;
 }
 
+div.doc .x-tree-node-icon {
+  background-image:url(../images/icons/page_white_text.png) !important;
+}
+
+.x-tree-node-expanded .x-tree-node-icon {
+  background-image:url(../images/icons/book_open.png) !important;
+}
+.x-tree-node-collapsed .x-tree-node-icon {
+  background-image:url(../images/icons/book.png) !important;
+}
+
+
 /*
  * Local variables:
  * tab-width: 2
