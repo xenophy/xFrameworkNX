@@ -1,1 +1,5 @@
 src/app/App.js
+src/widgets/HeaderBoxComponent.js
+src/widgets/FooterBoxComponent.js
+src/widgets/NavPanel.js
+src/widgets/MainPanel.js

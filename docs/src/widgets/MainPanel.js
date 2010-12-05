@@ -6,14 +6,14 @@
  * http://xFrameworknx.com
  */
 
-// {{{ Ext.FooterBoxComponent
+// {{{ Ext.MainPanel
 
 /**
- * Ext.FooterBoxComponent
+ * Ext.MainPanel
  *
  * @author  Kazuhiro Kotsutsumi <kotsutsumi@xenophy.com>
  */
-Ext.FooterBoxComponent = Ext.extend(Ext.BoxComponent, {
+Ext.MainPanel = Ext.extend(Ext.Panel, {
 
     // {{{ initComponent
 
@@ -23,14 +23,11 @@ Ext.FooterBoxComponent = Ext.extend(Ext.BoxComponent, {
 
         // 設定適用
         Ext.apply(me, {
-            html: [{
-                tag: 'address',
-                html: 'Copyright &copy; 2010 Xenophy.CO.,LTD All rights Reserved.'
-            }]
+            padding: 20
         });
 
         // スーパークラスメソッドコール
-        Ext.FooterBoxComponent.superclass.initComponent.apply(me, arguments);
+        Ext.MainPanel.superclass.initComponent.apply(me, arguments);
     }
 
     // }}}
@@ -40,7 +37,7 @@ Ext.FooterBoxComponent = Ext.extend(Ext.BoxComponent, {
 // }}}
 // {{{ register xtype
 
-Ext.reg('footer', Ext.FooterBoxComponent);
+Ext.reg('main', Ext.MainPanel);
 
 // }}}
 
