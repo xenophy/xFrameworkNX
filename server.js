@@ -22,6 +22,7 @@ NX.service({
      */
     items: [{
 
+        port: 8888,
         app: __dirname + '/webapp'
 
     }]

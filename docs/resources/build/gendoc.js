@@ -13,6 +13,18 @@ require('../../../lib/NX.js');
 // }}}
 // {{{ generate document
 
+var manualPath = __dirname + '/../manual/';
+
+var filename = manualPath + '01.intro/001.welcome.mdown';
+
+var c = NX.fs.readFileSync(filename, 'utf8');
+
+var docHtml = NX.util.MarkDown.parse(c);
+
+console.log(docHtml);
+
+
+/*
 var mpath = require('path');
 
 var path = __dirname + '/../wiki/';
@@ -26,7 +38,6 @@ var category;
 var getWikiFiles = function(path) {
 
     var dl = NX.fs.readdirSync(path);
-
     NX.each(dl, function(dirname) {
 
         var s = NX.fs.statSync(path + dirname);
@@ -72,18 +83,18 @@ var getWikiFiles = function(path) {
 
                 if(target) {
 
-                    path = path.substr(__dirname.length);
+                    var tmpPath = path.substr(__dirname.length);
 
                     var docWiki = NX.fs.readFileSync(file, 'utf8');
                     var docHtml = NX.util.Wiki.parse(docWiki);
 
-                    var outFile = __dirname + '/../output/' + path + pi['filename'] + '.html';
+                    var outFile = __dirname + '/../output/' + tmpPath + pi['filename'] + '.html';
                     outFile = mpath.normalize(outFile);
 
                     NX.fs.writeFileSync(outFile, docHtml, 'utf-8');
 
                     var o = {
-                        href: path + pi['filename'],
+                        href: tmpPath + pi['filename'],
                         ctext: category['name'],
                         text: category[pi['filename']],
                         cls: 'doc',
@@ -108,6 +119,8 @@ output = NX.encode(wikifiles);
 output = 'Ext.docs.wiki = ' + output + ';';
 
 NX.fs.writeFileSync(__dirname + '/../wiki.js', output, 'utf-8');
+
+*/
 
 // }}}
 

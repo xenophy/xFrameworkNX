@@ -31,7 +31,16 @@
   border-top:1px solid #ddd;
   border-bottom:1px solid #ccc;
   padding-top:2px;
-  padding-bottom:1px;
+  padding-bottom:3px;
+}
+
+.category-node {
+  padding-left: 5px;
+  padding-bottom: 5px;
+}
+
+.category-node span {
+  font-weight: bold;
 }
 
 .category-node .x-tree-node-icon {
@@ -42,8 +51,18 @@
   display:none;
 }
 
+.x-tree-node .x-tree-selected a span {
+  background: transparent;
+  color: #1E4176;;
+  font-weight: bold;
+}
+
 .doc .x-tree-ec-icon {
-    display:none;
+  display:none;
+}
+
+.doc-node .x-tree-node-indent {
+  display:none;
 }
 
 #doc-body .loading-indicator {
@@ -66,10 +85,87 @@ div.doc .x-tree-node-icon {
 .x-tree-node-expanded .x-tree-node-icon {
   background-image:url(../images/icons/book_open.png) !important;
 }
+
 .x-tree-node-collapsed .x-tree-node-icon {
   background-image:url(../images/icons/book.png) !important;
 }
 
+#doc-body {
+  line-height: 1.4em;
+  color: #222;
+}
+
+#doc-body h1 {
+  margin-bottom: 0.5em;
+  display: block;
+  font-size: 2em;
+  font-weight: bold;
+  padding: 10px 0 20px 0;
+  border-bottom: 1px solid #DDD;
+}
+
+#doc-body h2,
+#doc-body h3 {
+  margin: 1em 0px;
+}
+
+#doc-body h2 {
+  display: block;
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+#doc-body h3 {
+  display: block;
+  font-size: 1.17em;
+  font-weight: bold;
+}
+
+#doc-body p {
+  margin: 1em 0px;
+  display: block;
+}
+
+#doc-body strong,
+#doc-body b, {
+  font-weight: bold;
+}
+
+#doc-body a:link {
+  color: #083772;
+  text-decoration: none;
+}
+
+#doc-body a {
+  color: #083772;
+}
+
+#doc-body a:hover {
+  color: #15428B;
+  text-decoration: underline;
+}
+
+#doc-body pre,
+#doc-body xmp,
+#doc-body plaintext,
+#doc-body listing {
+  display: block;
+  font-family: monospace;
+  margin: 1em 0px;
+  white-space: pre;
+}
+
+#doc-body pre {
+  font-family: 'Lucida Console', 'Courier New', Courier, monospace;
+  background: #F8F8F8;
+  border: 1px dotted #CCC;
+  font-size: 12px;
+  line-height: 14px;
+  margin: 1em 0px;
+  margin-left: 0px;
+  margin-right: 0px;
+  padding: 7px;
+}
 
 /*
  * Local variables:
