@@ -95,7 +95,7 @@ Ext.extend(Ext.app.App, Ext.util.Observable, {
                 listeners: {
                     opendoc: function(id, node) {
                         me.viewport.main.load({
-                            url: 'resources/output/' + id + '.html',
+                            url: 'resources/output/' + id,
                             callback: function() {
                             }
                         });
@@ -135,16 +135,25 @@ Ext.extend(Ext.app.App, Ext.util.Observable, {
 
         });
 
+        /*
         var firstNode;
         me.viewport.nav.root.findChildBy(function(node) {
+
+                console.log(node);
             if(node.isLeaf() && !firstNode) {
                 firstNode = node;
+                return;
             }
+
+
+//            console.log(node.text);
+//            node.expand();
         }, me, true);
         firstNode.select();
         var t = Ext.get(firstNode.getUI().getEl());
         var a = t.child('a');
         me.viewport.nav.fireEvent('opendoc', a.getAttribute('href'), firstNode);
+        */
 
     }
 
@@ -313,7 +322,7 @@ Ext.NavPanel = Ext.extend(Ext.tree.TreePanel, {
             text: 'マニュアル',
             cls: 'category-node',
             expanded: true,
-            children: Ext.docs.wiki
+            children: Ext.docs.manual
         }, {
             text: 'API ドキュメント',
             cls: 'category-node',
@@ -387,7 +396,7 @@ Ext.MainPanel = Ext.extend(Ext.Panel, {
 
         // 設定適用
         Ext.apply(me, {
-            padding: 20
+            autoScroll: true
         });
 
         // スーパークラスメソッドコール

@@ -23,7 +23,7 @@ Ext.MainPanel = Ext.extend(Ext.Panel, {
 
         // 設定適用
         Ext.apply(me, {
-            padding: 20
+            autoScroll: true
         });
 
         // スーパークラスメソッドコール

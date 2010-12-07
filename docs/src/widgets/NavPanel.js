@@ -24,7 +24,6 @@ Ext.NavPanel = Ext.extend(Ext.tree.TreePanel, {
         // 設定適用
         Ext.apply(me, {
             animate: false,
-            singleExpand:true,
             rootVisible:false,
             lines:false,
             root: new Ext.tree.TreeNode(),
@@ -35,7 +34,7 @@ Ext.NavPanel = Ext.extend(Ext.tree.TreePanel, {
             text: 'マニュアル',
             cls: 'category-node',
             expanded: true,
-            children: Ext.docs.wiki
+            children: Ext.docs.manual
         }, {
             text: 'API ドキュメント',
             cls: 'category-node',

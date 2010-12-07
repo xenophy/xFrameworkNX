@@ -11,116 +11,133 @@
 require('../../../lib/NX.js');
 
 // }}}
+// {{{ setting
+
+var path = {
+    manual : NX.path.normalize(__dirname + '/../manual/'),
+    api : NX.path.normalize(__dirname + '/../api/')
+};
+
+// }}}
 // {{{ generate document
 
-var manualPath = __dirname + '/../manual/';
+var manual = [];
 
-var filename = manualPath + '01.intro/001.welcome.mdown';
+NX.fs.iterate(path.manual, function(file) {
 
-var c = NX.fs.readFileSync(filename, 'utf8');
+    var p = file.getPath();
 
-var docHtml = NX.util.MarkDown.parse(c);
+    if(file.isDir()) {
 
-console.log(docHtml);
+        var dirname = NX.path.normalize(p + '/' + file.getFilename());
+        var filepath = NX.path.normalize(path.manual + dirname);
+        var outputPath = filepath.replace(/manual/g, 'output');
 
-
-/*
-var mpath = require('path');
-
-var path = __dirname + '/../wiki/';
-path = mpath.normalize(path);
-var outpath = __dirname + '/../output/';
-outpath = mpath.normalize(outpath);
-var wikifiles = [];
-var target;
-var category;
-
-var getWikiFiles = function(path) {
-
-    var dl = NX.fs.readdirSync(path);
-    NX.each(dl, function(dirname) {
-
-        var s = NX.fs.statSync(path + dirname);
-
-        if(s.isDirectory() === true) {
-
-            var file = path + dirname;
-            file = mpath.normalize(file);
-            var c = NX.fs.readFileSync(file + '/.category.js', 'utf-8');
-            category = NX.decode(c);
-            var pi = NX.pathinfo(file);
-
-            var o = {
-                text: category.name,
-                cls: 'doc-node',
-                expanded: true,
-                children: []
-            };
-
-            if(wikifiles.length > 0) {
-                o.expanded = false;
-            }
-
-            var subdir = pi['dirname'].substr(path.length);
-            var outputDir = outpath + '/' + subdir + '/' + pi['basename'];
-            outputDir = mpath.normalize(outputDir);
-
-            if(!NX.fs.exists(outputDir)) {
-                NX.fs.mkdirSync(outputDir,0777);
-            }
-
-            target = o.children;
-            wikifiles.push(o);
-            getWikiFiles(file + '/');
-
-        } else if(s.isFile() === true) {
-
-            var file = path + dirname;
-            file = mpath.normalize(file);
-            var pi = NX.pathinfo(file);
-
-            if(pi['extension'] === 'wiki') {
-
-                if(target) {
-
-                    var tmpPath = path.substr(__dirname.length);
-
-                    var docWiki = NX.fs.readFileSync(file, 'utf8');
-                    var docHtml = NX.util.Wiki.parse(docWiki);
-
-                    var outFile = __dirname + '/../output/' + tmpPath + pi['filename'] + '.html';
-                    outFile = mpath.normalize(outFile);
-
-                    NX.fs.writeFileSync(outFile, docHtml, 'utf-8');
-
-                    var o = {
-                        href: tmpPath + pi['filename'],
-                        ctext: category['name'],
-                        text: category[pi['filename']],
-                        cls: 'doc',
-                        leaf: true
-                    };
-
-                    target.push(o);
-
-                }
-            }
-
+        if(!NX.fs.exists(outputPath)) {
+            NX.fs.mkdirSync(outputPath, 0777);
         }
 
-    });
+        var category = {
+            name: file.getFilename()
+        };
 
+        if(NX.fs.exists(filepath + '/.category.js')) {
+            category = NX.fs.readFileSync(filepath + '/.category.js', 'utf-8');
+            category = NX.decode(category);
+        }
 
-}
+        var o = {
+            text: category.name,
+            dirname: file.getFilename(),
+            cls: 'doc-node',
+            expanded: false,
+            children: []
+        };
 
-getWikiFiles(path);
+        var target = manual;
+        var deep = 0;
 
-output = NX.encode(wikifiles);
-output = 'Ext.docs.wiki = ' + output + ';';
+        NX.each((NX.explode('/', dirname)), function(v) {
+            if(v != '') {
+                NX.each(target, function(to) {
+                    if(to.dirname == v) {
+                        target = to.children;
+                        return false;
+                    }
+                });
+                deep++;
+            }
+        });
 
-NX.fs.writeFileSync(__dirname + '/../wiki.js', output, 'utf-8');
+        o.cls += ' doc-deep' + deep;
 
-*/
+        target.push(o);
+
+    } else {
+
+        if(file.getFilename() == '.category.js') {
+            return;
+        }
+
+        filename = file.getFilename();
+        var pi = NX.pathinfo(filename);
+        outputFilename = pi['filename'] + '.html';
+        filepath = path.manual + file.getPath() + '/' + filename;
+
+        var mdown = '';
+        var title = filename;
+        if(NX.fs.exists(filepath)) {
+            mdown = NX.fs.readFileSync(filepath, 'utf8');
+            var LF = String.fromCharCode(10);
+            var smdown = NX.explode(LF, mdown);
+            title = smdown[0];
+        }
+
+        // コンバート
+        var html = NX.util.MarkDown.parse(mdown);
+
+        var outputPath = path.manual + outputFilename;
+        var outputPath = NX.path.normalize(filepath.replace(/manual/g, 'output'));
+        pi = NX.pathinfo(outputPath);
+        outputPath = pi['dirname'] + '/' + pi['filename'] + '.html';
+        NX.fs.writeFileSync(outputPath, html, 'utf-8');
+
+        outputPath = NX.path.normalize(filepath.replace(/output/g, 'manual'));
+        outputPath = outputPath.substr(path.manual.length);
+        pi = NX.pathinfo(outputPath);
+        outputPath = pi['dirname'] + '/' + pi['filename'] + '.html';
+
+        var o = {
+            href: outputPath,
+//            ctext: 'dummy',
+            text: title,
+            cls: 'doc',
+            leaf: true
+        };
+
+        var target = manual;
+
+        var dirname = NX.path.normalize(p + '/' + file.getFilename());
+
+        NX.each((NX.explode('/', dirname)), function(v) {
+            if(v != '') {
+                NX.each(target, function(to) {
+                    if(to.dirname == v) {
+                        target = to.children;
+                        return false;
+                    }
+                });
+            }
+        });
+
+        target.push(o);
+
+    }
+
+});
+
+output = NX.sprintf('Ext.docs.manual = %s;', NX.encode(manual));
+NX.fs.writeFileSync(__dirname + '/../manual.js', output, 'utf-8');
 
 // }}}
 
@@ -131,6 +148,3 @@ NX.fs.writeFileSync(__dirname + '/../wiki.js', output, 'utf-8');
  * c-hanging-comment-ender-p: nil
  * End:
  */
-
-
-

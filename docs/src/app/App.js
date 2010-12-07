@@ -95,7 +95,7 @@ Ext.extend(Ext.app.App, Ext.util.Observable, {
                 listeners: {
                     opendoc: function(id, node) {
                         me.viewport.main.load({
-                            url: 'resources/output/' + id + '.html',
+                            url: 'resources/output/' + id,
                             callback: function() {
                             }
                         });
@@ -135,16 +135,25 @@ Ext.extend(Ext.app.App, Ext.util.Observable, {
 
         });
 
+        /*
         var firstNode;
         me.viewport.nav.root.findChildBy(function(node) {
+
+                console.log(node);
             if(node.isLeaf() && !firstNode) {
                 firstNode = node;
+                return;
             }
+
+
+//            console.log(node.text);
+//            node.expand();
         }, me, true);
         firstNode.select();
         var t = Ext.get(firstNode.getUI().getEl());
         var a = t.child('a');
         me.viewport.nav.fireEvent('opendoc', a.getAttribute('href'), firstNode);
+        */
 
     }
 

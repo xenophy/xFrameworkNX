@@ -61,8 +61,12 @@
   display:none;
 }
 
-.doc-node .x-tree-node-indent {
+.doc-deep1 .x-tree-node-indent {
   display:none;
+}
+
+#doc-body .x-panel-body {
+  padding: 0 20px 20px 20px;
 }
 
 #doc-body .loading-indicator {
