@@ -93,9 +93,7 @@ NX.fs.iterate(path.manual, function(file) {
             title = smdown[0];
         }
 
-        // コンバート
         var html = NX.util.MarkDown.parse(mdown);
-
         var outputPath = path.manual + outputFilename;
         var outputPath = NX.path.normalize(filepath.replace(/manual/g, 'output'));
         pi = NX.pathinfo(outputPath);
@@ -109,7 +107,6 @@ NX.fs.iterate(path.manual, function(file) {
 
         var o = {
             href: outputPath,
-//            ctext: 'dummy',
             text: title,
             cls: 'doc',
             leaf: true
