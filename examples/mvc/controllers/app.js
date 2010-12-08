@@ -6,23 +6,19 @@
  * http://www.xenophy.com
  */
 
-// {{{ NX.http.Controller
+// {{{ app
 
-/**
- * @class NX.http.Controller
- */
-NX.http.Controller = function(config) {
+module.exports = NX.http.Controller({
 
-    return new (NX.extend(NX.extend(NX.AbstractController, config), {
+    index: function() {
+        console.log("index");
+    },
 
-        index3: function() {
+    index2: function() {
+        console.log("index2");
+    }
 
-            console.log('index3');
-        }
-
-    }));
-
-};
+})
 
 // }}}
 
