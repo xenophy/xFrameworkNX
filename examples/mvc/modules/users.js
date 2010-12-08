@@ -6,24 +6,18 @@
  * http://www.xenophy.com
  */
 
-// {{{ app
+// {{{ users
 
-module.exports = NX.http.Controller({
+//module.exports = NX.Model({
+module.exports = {
 
-    index: function() {
-
-        this.users.get();
-
-
-        console.log("index");
-
-    },
-
-    index2: function() {
-        console.log("index2");
+    get: function() {
+    
+        console.log("module:get");
+    
     }
 
-})
+};
 
 // }}}
 
@@ -33,4 +27,4 @@ module.exports = NX.http.Controller({
  * c-basic-offset: 4
  * c-hanging-comment-ender-p: nil
  * End:
- */
+*/
