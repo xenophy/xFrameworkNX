@@ -10,10 +10,10 @@ exports.directoryIndex = [
 ];
 
 exports.errorDocument = {
-    401: 'configs/error/HTTP_UNAUTHORIZED.html',
-    403: 'configs/error/HTTP_FORBIDDEN.html',
-    404: 'configs/error/HTTP_NOT_FOUND.html',
-    500: 'configs/error/HTTP_INTERNAL_SERVER_ERROR.html'
+    401: 'error/HTTP_UNAUTHORIZED.html',
+    403: 'error/HTTP_FORBIDDEN.html',
+    404: 'error/HTTP_NOT_FOUND.html',
+    500: 'error/HTTP_INTERNAL_SERVER_ERROR.html'
 };
 
 /*
