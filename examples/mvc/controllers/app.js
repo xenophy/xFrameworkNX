@@ -12,9 +12,6 @@ module.exports = NX.http.Controller({
 
     index: function() {
 
-        this.users.get();
-
-
         console.log("index");
 
     },
