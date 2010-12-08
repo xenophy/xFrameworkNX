@@ -22,11 +22,11 @@ NX.service({
      */
     items: [{
 
-        // アプリケーションディレクトリ
-        app: __dirname + '/webapp',
+        // 公開ディレクトリ
+        public_html: __dirname + '/public_html',
 
         // 設定ディレクトリ
-        config: __dirname + '../../config'
+        configs: __dirname + '/../../configs'
 
     }]
 
