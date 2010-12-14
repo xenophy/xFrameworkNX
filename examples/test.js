@@ -1,3 +1,3 @@
 NX = require('../lib/NX');
 
-console.log(NX.isArray({}));
+console.log(NX);
