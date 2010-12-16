@@ -8,9 +8,8 @@
 
 // {{{ requires
 
-var NX = require('NX');
-var assert = require('assert');
-
+var NX = require('NX'),
+    assert = require('assert');
 
 // }}}
 // {{{ NX Class Tests
@@ -21,14 +20,7 @@ module.exports = {
 
         assert.ok(/^\d+\.\d+\.\d+$/.test(NX.version), 'Test framework version format');
 
-    },
-
-    'test isString': function(){
-
-
-
-
-    },
+    }
 
 };
 
