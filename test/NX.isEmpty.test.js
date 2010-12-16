@@ -90,15 +90,9 @@ module.exports = {
 
         assert.ok(!NX.isEmpty(function(){}), 'Test value function');
 
-    },
+    }
 
     // }}}
-
-
-
-
-
-
 
 };
 
