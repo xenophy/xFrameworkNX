@@ -16,6 +16,26 @@ var NX = require('NX'),
 
 module.exports = {
 
+    // {{{ test isString#undefined
+
+    'test isString#undefined': function(){
+
+        // undefinedテスト
+        assert.ok(!NX.isString(undefined), 'Test value undefined');
+
+    },
+
+    // }}}
+    // {{{ test isString#null
+
+    'test isString#null': function(){
+
+        // nullテスト
+        assert.ok(!NX.isString(null), 'Test value null');
+
+    },
+
+    // }}}
     // {{{ test isString#string
 
     'test isString#string': function(){
@@ -74,9 +94,20 @@ module.exports = {
         // 関数オブジェクトテスト
         assert.ok(!NX.isString((function(){})), 'Test type function');
 
+    },
+
+    // }}}
+    // {{{ test isString#date
+
+    'test isString#date': function(){
+
+        // 日付オブジェクトテスト
+        assert.ok(!NX.isString(new Date()), 'Test type date');
+
     }
 
     // }}}
+
 
 };
 

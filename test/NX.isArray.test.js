@@ -74,6 +74,16 @@ module.exports = {
         // 関数オブジェクトテスト
         assert.ok(!NX.isArray((function(){})), 'Test type function');
 
+    },
+
+    // }}}
+    // {{{ test isArray#date
+
+    'test isArray#date': function(){
+
+        // 日付オブジェクトテスト
+        assert.ok(!NX.isArray(new Date()), 'Test type date');
+
     }
 
     // }}}

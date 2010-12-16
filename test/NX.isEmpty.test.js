@@ -20,6 +20,7 @@ module.exports = {
 
     'test isEmpty#undefined': function(){
 
+        // undefinedテスト
         assert.ok(NX.isEmpty(undefined), 'Test value undefined');
 
     },
@@ -29,6 +30,7 @@ module.exports = {
 
     'test isEmpty#null': function(){
 
+        // nullテスト
         assert.ok(NX.isEmpty(null), 'Test value null');
 
     },
@@ -89,6 +91,16 @@ module.exports = {
     'test isEmpty#function': function(){
 
         assert.ok(!NX.isEmpty(function(){}), 'Test value function');
+
+    },
+
+    // }}}
+    // {{{ test isEmpty#date
+
+    'test isEmpty#date': function(){
+
+        // 日付オブジェクトテスト
+        assert.ok(!NX.isEmpty(new Date()), 'Test type date');
 
     }
 
