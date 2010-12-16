@@ -20,6 +20,13 @@ module.exports = {
 
     'test each#standard': function() {
 
+        var tmp = [];
+        var ret = NX.each([1,2,3,4,5], function(v) {
+            tmp.push(v);
+        });
+
+        assert.equal(tmp.length, 5, 'Test each standard');
+
     },
 
     // }}}
