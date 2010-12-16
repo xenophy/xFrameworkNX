@@ -8,8 +8,8 @@
 
 // {{{ requires
 
-var NX = require('../lib/NX'),
-    assert = require('assert');
+var NX = require('NX');
+var assert = require('assert');
 
 
 // }}}
@@ -19,7 +19,7 @@ module.exports = {
 
     'test version': function(){
 
-        //assert.ok(/^\d+\.\d+\.\d+$/.test(NX.version), 'Test framework version format');
+        assert.ok(/^\d+\.\d+\.\d+$/.test(NX.version), 'Test framework version format');
 
     },
 
