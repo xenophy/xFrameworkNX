@@ -16,11 +16,42 @@ var NX = require('NX'),
 
 module.exports = {
 
+    // {{{ test version
+
     'test version': function(){
 
         assert.ok(/^\d+\.\d+\.\d+$/.test(NX.version), 'Test framework version format');
 
+    },
+
+    // }}}
+    // {{{ test versionDetail#major
+
+    'test versionDetail#major': function(){
+
+        assert.ok(/^\d+$/.test(NX.versionDetail.major), 'Test framework version detail major format');
+
+    },
+
+    // }}}
+    // {{{ test versionDetail#minor
+
+    'test versionDetail#minor': function(){
+
+        assert.ok(/^\d+$/.test(NX.versionDetail.minor), 'Test framework version detail minor format');
+
+    },
+
+    // }}}
+    // {{{ test versionDetail#Patch
+
+    'test versionDetail#Patch': function(){
+
+        assert.ok(/^\d+$/.test(NX.versionDetail.patch), 'Test framework version detail patch format');
+
     }
+
+    // }}}
 
 };
 
