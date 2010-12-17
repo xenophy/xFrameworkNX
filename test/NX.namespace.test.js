@@ -20,11 +20,45 @@ module.exports = {
 
     'test namespace#standard': function() {
 
-        // TODO: careate test.
+        NX.namespace(
+            'App',
+            'App.app',
+            'App.form',
+            'App.grid',
+            'App.tree'
+        );
+
+        assert.ok(App, 'Test create Namespace "App"');
+        assert.ok(App.app, 'Test create Namespace "App.app"');
+        assert.ok(App.form, 'Test create Namespace "App.form"');
+        assert.ok(App.grid, 'Test create Namespace "App.grid"');
+        assert.ok(App.tree, 'Test create Namespace "App.tree"');
+
+    },
+
+    // }}}
+    // {{{ test namespace#shorthand
+
+    'test namespace#shorthand': function() {
+
+        NX.ns(
+            'App',
+            'App.app',
+            'App.form',
+            'App.grid',
+            'App.tree'
+        );
+
+        assert.ok(App, 'Test create Namespace "App" with shorthand');
+        assert.ok(App.app, 'Test create Namespace "App.app" with shorthand');
+        assert.ok(App.form, 'Test create Namespace "App.form" with shorthand');
+        assert.ok(App.grid, 'Test create Namespace "App.grid" with shorthand');
+        assert.ok(App.tree, 'Test create Namespace "App.tree" with shorthand');
 
     }
 
     // }}}
+
 
 };
 
