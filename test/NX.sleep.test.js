@@ -8,8 +8,8 @@
 
 // {{{ requires
 
-var NX = require('NX'),
-    assert = require('assert');
+require('NX');
+var assert = require('assert');
 
 // }}}
 // {{{ NX Class Tests
