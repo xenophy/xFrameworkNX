@@ -1,12 +1,21 @@
 # Makefile
 
+NODE = node
+TEST = /usr/local/bin/expresso
+TESTS ?= test/*.test.js
+PREFIX = /usr/local
+LIB_PREFIX = $(HOME)/.node_libraries
+
 test:
-	clear
-	node-jscoverage lib lib-cov
-	expresso -I lib-cov test/*
-	rm -Rf lib-cov
+	@NODE_ENV=test $(TEST) \
+		-I lib \
+		$(TEST_FLAGS) $(TESTS)
 
-.PHONY: test
+test-cov:
+	@rm -Rf lib-cov
+	@$(MAKE) test TEST_FLAGS="--cov"
+	@rm -Rf lib-cov
 
+.PHONY: test test-cov
 
 # eof
