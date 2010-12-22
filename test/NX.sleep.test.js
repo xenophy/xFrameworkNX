@@ -20,7 +20,14 @@ module.exports = {
 
     'test sleep#standard': function() {
 
-        // TODO: careate test.
+        var start = new Date;
+
+        NX.sleep(1000);
+
+        var end = new Date;
+        var time = end.getTime() - start.getTime();
+
+        assert.equal(Math.floor(time / 1000), 1);
 
     }
 
