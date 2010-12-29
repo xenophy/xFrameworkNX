@@ -178,6 +178,7 @@ var genApiNode = function(rootPath, targetPath, deploy, outputDir) {
                 text: clsName,
 //                href: cd + '/' + cf,
                 cls: 'cls-node',
+                order: 1,
                 leaf: true
             };
 
@@ -206,6 +207,7 @@ var genApiNode = function(rootPath, targetPath, deploy, outputDir) {
                     text: pkgName,
                     cls: 'pkg-node',
                     expanded: false,
+                    order: 0,
                     children: []
                 };
 
@@ -217,6 +219,8 @@ var genApiNode = function(rootPath, targetPath, deploy, outputDir) {
 
             createNode(clsName, ns, o.children);
         }
+
+        NX.asort(deploy, 'order');
 
     };
 

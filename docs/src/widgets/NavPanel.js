@@ -33,12 +33,12 @@ Ext.NavPanel = Ext.extend(Ext.tree.TreePanel, {
         // カテゴリノード追加
         me.root.appendChild([{
             text: 'マニュアル',
-            cls: 'category-node',
+            cls: 'category-node man-root',
             expanded: true,
             children: Ext.docs.man
         }, {
             text: 'API ドキュメント',
-            cls: 'category-node',
+            cls: 'category-node api-root',
             expanded: true,
             children: Ext.docs.api
         }]);
