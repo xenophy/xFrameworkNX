@@ -168,7 +168,7 @@ Application = new Ext.app.App();
 
 // }}}
 
-/*
+/**
  * Local variables:
  * tab-width: 4
  * c-basic-offset: 4
