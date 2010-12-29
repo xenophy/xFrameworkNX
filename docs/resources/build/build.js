@@ -50,6 +50,7 @@ var genManNode = function(rootPath, targetPath, deploy, outputDir) {
     NX.each(NX.fs.readdirSync(rootPath + targetPath), function(file) {
 
         var targetFullPath = rootPath + targetPath;
+        var outputFullPath = outputDir + targetPath;
 
         var s = NX.fs.statSync(targetFullPath + file);
         var pi = NX.fs.pathinfo(targetFullPath + file);
@@ -93,6 +94,10 @@ var genManNode = function(rootPath, targetPath, deploy, outputDir) {
             var LF = String.fromCharCode(10);
             var smdown = NX.str.explode(LF, mdown);
             title = smdown[0];
+
+            // HTML生成
+            var html = NX.util.MarkDown.parse(mdown);
+            NX.fs.writeFileSync(outputFullPath + cf, html, 'utf8');
 
             var o = {
                 text: title,

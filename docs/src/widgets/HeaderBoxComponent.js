@@ -28,9 +28,6 @@ Ext.HeaderBoxComponent = Ext.extend(Ext.BoxComponent, {
                 src: 'resources/images/title.png',
                 width: 195,
                 height: 49
-            
-            
-            
             }]
         });
 

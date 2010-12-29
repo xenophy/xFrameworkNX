@@ -22,7 +22,7 @@ Ext.ns(
  *
  * @author  Kazuhiro Kotsutsumi <kotsutsumi@xenophy.com>
  */
-Ext.app.App = function(cfg){
+Ext.app.App = function(cfg) {
 
     var me = this;
 
@@ -95,7 +95,7 @@ Ext.extend(Ext.app.App, Ext.util.Observable, {
                 listeners: {
                     opendoc: function(id, node) {
                         me.viewport.main.load({
-                            url: 'resources/output/' + id,
+                            url: 'resources/output/v' + me.version + '/' + id,
                             callback: function() {
                             }
                         });
@@ -164,7 +164,7 @@ Ext.extend(Ext.app.App, Ext.util.Observable, {
 // }}}
 // {{{ Start Application
 
-Application = new Ext.app.App();
+Application = new Ext.app.App({version: '0.1.0'});
 
 // }}}
 
