@@ -174,6 +174,7 @@ var genApiNode = function(rootPath, targetPath, deploy, outputDir) {
         if(ns.length === 0) {
 
             // クラスツリー作成
+            /*
             var o = {
                 text: clsName,
 //                href: cd + '/' + cf,
@@ -181,6 +182,35 @@ var genApiNode = function(rootPath, targetPath, deploy, outputDir) {
                 order: 1,
                 leaf: true
             };
+            */
+
+            var o = {
+                text: clsName,
+                cls: 'cls-node',
+                expanded: false,
+                order: 1,
+                children: []
+            };
+
+
+            o.children.push({
+                text: clsName,
+//                href: cd + '/' + cf,
+                cls: 'method-node',
+                order: 1,
+                leaf: true
+            });
+
+            // プロパティ一覧取得
+
+
+            // メソッド一覧取得
+
+
+
+
+
+
 
             deploy.push(o);
 
