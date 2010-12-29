@@ -169,21 +169,11 @@ var genApiNode = function(rootPath, targetPath, deploy, outputDir) {
 
     });
 
-    var createNode = function(clsName, ns, deploy) {
+    var createNode = function(clsName, ns, clsData, deploy) {
 
         if(ns.length === 0) {
 
             // クラスツリー作成
-            /*
-            var o = {
-                text: clsName,
-//                href: cd + '/' + cf,
-                cls: 'cls-node',
-                order: 1,
-                leaf: true
-            };
-            */
-
             var o = {
                 text: clsName,
                 cls: 'cls-node',
@@ -192,25 +182,27 @@ var genApiNode = function(rootPath, targetPath, deploy, outputDir) {
                 children: []
             };
 
-
-            o.children.push({
-                text: clsName,
-//                href: cd + '/' + cf,
-                cls: 'method-node',
-                order: 1,
-                leaf: true
+            // プロパティ一覧取得
+            NX.each(clsData._prop, function(v) {
+                o.children.push({
+                    text: v,
+                    //                href: cd + '/' + cf,
+                    cls: 'prop-node',
+                    order: 10,
+                    leaf: true
+                });
             });
 
-            // プロパティ一覧取得
-
-
             // メソッド一覧取得
-
-
-
-
-
-
+            NX.each(clsData._method, function(v) {
+                o.children.push({
+                    text: v,
+                    //                href: cd + '/' + cf,
+                    cls: 'method-node',
+                    order: 11,
+                    leaf: true
+                });
+            });
 
             deploy.push(o);
 
@@ -247,7 +239,7 @@ var genApiNode = function(rootPath, targetPath, deploy, outputDir) {
                 o = exists;
             }
 
-            createNode(clsName, ns, o.children);
+            createNode(clsName, ns, clsData, o.children);
         }
 
         NX.asort(deploy, 'order');
@@ -265,7 +257,7 @@ var genApiNode = function(rootPath, targetPath, deploy, outputDir) {
             ns.splice(0, 1);
         }
 
-        createNode(clsName, ns, deploy);
+        createNode(clsName, ns, v, deploy);
 
     });
 

@@ -101,6 +101,10 @@ div.doc .x-tree-node-icon {
   background-image:url(../images/icons/pkg.gif) !important;
 }
 
+.api-root+ul .prop-node .x-tree-node-icon {
+  background-image:url(../images/icons/prop.gif) !important;
+}
+
 .api-root+ul .method-node .x-tree-node-icon {
   background-image:url(../images/icons/method.gif) !important;
 }
@@ -112,8 +116,6 @@ div.doc .x-tree-node-icon {
 .x-tree-no-lines .x-tree-elbow-end-minus {
   background-image: url(http://extjs.cachefly.net/ext-3.3.1/resources/images/default/tree/elbow-minus-nl.gif);
 }
-
-
 
 /*
  * Local variables:
