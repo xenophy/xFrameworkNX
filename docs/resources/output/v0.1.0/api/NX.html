@@ -32,9 +32,6 @@
     <b>versionDetail</b> : Object
     <div class="mdesc"><p>使用しているxFramework NXのバージョン詳細</p>
 
-<p><br />
-<strong>オブジェクトキー</strong></p>
-
 <ul>
 <li>major
 <ul><li>メジャーバージョン</li></ul></li>
@@ -60,8 +57,10 @@
   </td>
   <td class="sig">
     <a id="NX-apply"></a>
-    <b><a href="api/NX.html">apply</a></b> : void
-    
+    <b><a href="api/NX.html">apply</a></b>(Object o, Object config, Object defaults) : Object
+    <div class="mdesc"><p>指定されたoにconfigを適用します。</p>
+
+<p>configのキーが既に、oに存在する場合は、上書きします。</p><div class="params"><strong>パラメータ:</strong><ul><li>  o:Object  <ul>    <li>      <p>oパラメータ説明</p>    </li>  </ul></li><li>  config:Object  <ul>    <li>      <p>configパラメータの説明</p>    </li>  </ul></li><li>  defaults:Object  <ul>    <li>      <p>defaultsパラメータの説明</p>    </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  Object  <ul>    <li>    <p>configが適用されたオブジェクト</p>    </li>  </ul>  </li></ul></div></div>
   </td>
   <td class="msource">
     NX
@@ -72,8 +71,8 @@
   </td>
   <td class="sig">
     <a id="NX-asort"></a>
-    <b><a href="api/NX.html">asort</a></b> : undefined
-    
+    <b><a href="api/NX.html">asort</a></b>() : undefined
+    <div class="mdesc"><div class="params"><strong>パラメータ:</strong><ul></ul><strong>戻り値:</strong><ul>  <li>  undefined  <ul>    <li>        </li>  </ul>  </li></ul></div></div>
   </td>
   <td class="msource">
     NX
@@ -84,8 +83,8 @@
   </td>
   <td class="sig">
     <a id="NX-applyIf"></a>
-    <b><a href="api/NX.html">applyIf</a></b> : undefined
-    
+    <b><a href="api/NX.html">applyIf</a></b>() : undefined
+    <div class="mdesc"><div class="params"><strong>パラメータ:</strong><ul></ul><strong>戻り値:</strong><ul>  <li>  undefined  <ul>    <li>        </li>  </ul>  </li></ul></div></div>
   </td>
   <td class="msource">
     NX
@@ -96,8 +95,8 @@
   </td>
   <td class="sig">
     <a id="NX-clone"></a>
-    <b><a href="api/NX.html">clone</a></b> : undefined
-    
+    <b><a href="api/NX.html">clone</a></b>() : undefined
+    <div class="mdesc"><div class="params"><strong>パラメータ:</strong><ul></ul><strong>戻り値:</strong><ul>  <li>  undefined  <ul>    <li>        </li>  </ul>  </li></ul></div></div>
   </td>
   <td class="msource">
     NX
@@ -108,8 +107,8 @@
   </td>
   <td class="sig">
     <a id="NX-each"></a>
-    <b><a href="api/NX.html">each</a></b> : undefined
-    
+    <b><a href="api/NX.html">each</a></b>() : undefined
+    <div class="mdesc"><div class="params"><strong>パラメータ:</strong><ul></ul><strong>戻り値:</strong><ul>  <li>  undefined  <ul>    <li>        </li>  </ul>  </li></ul></div></div>
   </td>
   <td class="msource">
     NX
@@ -120,8 +119,8 @@
   </td>
   <td class="sig">
     <a id="NX-emptyFn"></a>
-    <b><a href="api/NX.html">emptyFn</a></b> : undefined
-    
+    <b><a href="api/NX.html">emptyFn</a></b>() : undefined
+    <div class="mdesc"><div class="params"><strong>パラメータ:</strong><ul></ul><strong>戻り値:</strong><ul>  <li>  undefined  <ul>    <li>        </li>  </ul>  </li></ul></div></div>
   </td>
   <td class="msource">
     NX
@@ -132,8 +131,8 @@
   </td>
   <td class="sig">
     <a id="NX-isArray"></a>
-    <b><a href="api/NX.html">isArray</a></b> : undefined
-    
+    <b><a href="api/NX.html">isArray</a></b>() : undefined
+    <div class="mdesc"><div class="params"><strong>パラメータ:</strong><ul></ul><strong>戻り値:</strong><ul>  <li>  undefined  <ul>    <li>        </li>  </ul>  </li></ul></div></div>
   </td>
   <td class="msource">
     NX
@@ -144,8 +143,8 @@
   </td>
   <td class="sig">
     <a id="NX-isBoolean"></a>
-    <b><a href="api/NX.html">isBoolean</a></b> : undefined
-    
+    <b><a href="api/NX.html">isBoolean</a></b>() : undefined
+    <div class="mdesc"><div class="params"><strong>パラメータ:</strong><ul></ul><strong>戻り値:</strong><ul>  <li>  undefined  <ul>    <li>        </li>  </ul>  </li></ul></div></div>
   </td>
   <td class="msource">
     NX
@@ -156,8 +155,8 @@
   </td>
   <td class="sig">
     <a id="NX-isDate"></a>
-    <b><a href="api/NX.html">isDate</a></b> : undefined
-    
+    <b><a href="api/NX.html">isDate</a></b>() : undefined
+    <div class="mdesc"><div class="params"><strong>パラメータ:</strong><ul></ul><strong>戻り値:</strong><ul>  <li>  undefined  <ul>    <li>        </li>  </ul>  </li></ul></div></div>
   </td>
   <td class="msource">
     NX
@@ -168,8 +167,8 @@
   </td>
   <td class="sig">
     <a id="NX-isDefined"></a>
-    <b><a href="api/NX.html">isDefined</a></b> : undefined
-    
+    <b><a href="api/NX.html">isDefined</a></b>() : undefined
+    <div class="mdesc"><div class="params"><strong>パラメータ:</strong><ul></ul><strong>戻り値:</strong><ul>  <li>  undefined  <ul>    <li>        </li>  </ul>  </li></ul></div></div>
   </td>
   <td class="msource">
     NX
@@ -180,8 +179,8 @@
   </td>
   <td class="sig">
     <a id="NX-isEmpty"></a>
-    <b><a href="api/NX.html">isEmpty</a></b> : undefined
-    
+    <b><a href="api/NX.html">isEmpty</a></b>() : undefined
+    <div class="mdesc"><div class="params"><strong>パラメータ:</strong><ul></ul><strong>戻り値:</strong><ul>  <li>  undefined  <ul>    <li>        </li>  </ul>  </li></ul></div></div>
   </td>
   <td class="msource">
     NX
@@ -192,8 +191,8 @@
   </td>
   <td class="sig">
     <a id="NX-isFunction"></a>
-    <b><a href="api/NX.html">isFunction</a></b> : undefined
-    
+    <b><a href="api/NX.html">isFunction</a></b>() : undefined
+    <div class="mdesc"><div class="params"><strong>パラメータ:</strong><ul></ul><strong>戻り値:</strong><ul>  <li>  undefined  <ul>    <li>        </li>  </ul>  </li></ul></div></div>
   </td>
   <td class="msource">
     NX
@@ -204,8 +203,8 @@
   </td>
   <td class="sig">
     <a id="NX-isIterable"></a>
-    <b><a href="api/NX.html">isIterable</a></b> : undefined
-    
+    <b><a href="api/NX.html">isIterable</a></b>() : undefined
+    <div class="mdesc"><div class="params"><strong>パラメータ:</strong><ul></ul><strong>戻り値:</strong><ul>  <li>  undefined  <ul>    <li>        </li>  </ul>  </li></ul></div></div>
   </td>
   <td class="msource">
     NX
@@ -216,8 +215,8 @@
   </td>
   <td class="sig">
     <a id="NX-isNumber"></a>
-    <b><a href="api/NX.html">isNumber</a></b> : undefined
-    
+    <b><a href="api/NX.html">isNumber</a></b>() : undefined
+    <div class="mdesc"><div class="params"><strong>パラメータ:</strong><ul></ul><strong>戻り値:</strong><ul>  <li>  undefined  <ul>    <li>        </li>  </ul>  </li></ul></div></div>
   </td>
   <td class="msource">
     NX
@@ -228,8 +227,8 @@
   </td>
   <td class="sig">
     <a id="NX-isObject"></a>
-    <b><a href="api/NX.html">isObject</a></b> : undefined
-    
+    <b><a href="api/NX.html">isObject</a></b>() : undefined
+    <div class="mdesc"><div class="params"><strong>パラメータ:</strong><ul></ul><strong>戻り値:</strong><ul>  <li>  undefined  <ul>    <li>        </li>  </ul>  </li></ul></div></div>
   </td>
   <td class="msource">
     NX
@@ -240,8 +239,8 @@
   </td>
   <td class="sig">
     <a id="NX-isPrimitive"></a>
-    <b><a href="api/NX.html">isPrimitive</a></b> : undefined
-    
+    <b><a href="api/NX.html">isPrimitive</a></b>() : undefined
+    <div class="mdesc"><div class="params"><strong>パラメータ:</strong><ul></ul><strong>戻り値:</strong><ul>  <li>  undefined  <ul>    <li>        </li>  </ul>  </li></ul></div></div>
   </td>
   <td class="msource">
     NX
@@ -252,8 +251,8 @@
   </td>
   <td class="sig">
     <a id="NX-isString"></a>
-    <b><a href="api/NX.html">isString</a></b> : undefined
-    
+    <b><a href="api/NX.html">isString</a></b>() : undefined
+    <div class="mdesc"><div class="params"><strong>パラメータ:</strong><ul></ul><strong>戻り値:</strong><ul>  <li>  undefined  <ul>    <li>        </li>  </ul>  </li></ul></div></div>
   </td>
   <td class="msource">
     NX
@@ -264,8 +263,8 @@
   </td>
   <td class="sig">
     <a id="NX-iterate"></a>
-    <b><a href="api/NX.html">iterate</a></b> : undefined
-    
+    <b><a href="api/NX.html">iterate</a></b>() : undefined
+    <div class="mdesc"><div class="params"><strong>パラメータ:</strong><ul></ul><strong>戻り値:</strong><ul>  <li>  undefined  <ul>    <li>        </li>  </ul>  </li></ul></div></div>
   </td>
   <td class="msource">
     NX
@@ -276,8 +275,8 @@
   </td>
   <td class="sig">
     <a id="NX-namespace"></a>
-    <b><a href="api/NX.html">namespace</a></b> : undefined
-    
+    <b><a href="api/NX.html">namespace</a></b>() : undefined
+    <div class="mdesc"><div class="params"><strong>パラメータ:</strong><ul></ul><strong>戻り値:</strong><ul>  <li>  undefined  <ul>    <li>        </li>  </ul>  </li></ul></div></div>
   </td>
   <td class="msource">
     NX
@@ -288,8 +287,8 @@
   </td>
   <td class="sig">
     <a id="NX-override"></a>
-    <b><a href="api/NX.html">override</a></b> : undefined
-    
+    <b><a href="api/NX.html">override</a></b>() : undefined
+    <div class="mdesc"><div class="params"><strong>パラメータ:</strong><ul></ul><strong>戻り値:</strong><ul>  <li>  undefined  <ul>    <li>        </li>  </ul>  </li></ul></div></div>
   </td>
   <td class="msource">
     NX
@@ -300,8 +299,8 @@
   </td>
   <td class="sig">
     <a id="NX-service"></a>
-    <b><a href="api/NX.html">service</a></b> : undefined
-    
+    <b><a href="api/NX.html">service</a></b>() : undefined
+    <div class="mdesc"><div class="params"><strong>パラメータ:</strong><ul></ul><strong>戻り値:</strong><ul>  <li>  undefined  <ul>    <li>        </li>  </ul>  </li></ul></div></div>
   </td>
   <td class="msource">
     NX
@@ -312,8 +311,8 @@
   </td>
   <td class="sig">
     <a id="NX-sleep"></a>
-    <b><a href="api/NX.html">sleep</a></b> : undefined
-    
+    <b><a href="api/NX.html">sleep</a></b>() : undefined
+    <div class="mdesc"><div class="params"><strong>パラメータ:</strong><ul></ul><strong>戻り値:</strong><ul>  <li>  undefined  <ul>    <li>        </li>  </ul>  </li></ul></div></div>
   </td>
   <td class="msource">
     NX
@@ -324,8 +323,8 @@
   </td>
   <td class="sig">
     <a id="NX-toArray"></a>
-    <b><a href="api/NX.html">toArray</a></b> : undefined
-    
+    <b><a href="api/NX.html">toArray</a></b>() : undefined
+    <div class="mdesc"><div class="params"><strong>パラメータ:</strong><ul></ul><strong>戻り値:</strong><ul>  <li>  undefined  <ul>    <li>        </li>  </ul>  </li></ul></div></div>
   </td>
   <td class="msource">
     NX

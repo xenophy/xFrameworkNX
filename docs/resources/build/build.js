@@ -346,15 +346,14 @@ var genApiNode = function(rootPath, targetPath, deploy, outputDir) {
             // メソッド一覧取得
             NX.each(clsData._method, function(v) {
 
-//                var mdfile = tp + '/' + v.name + '.method.mdown';
-                var infofile = tp + '/' + v.name + '.js';
+                var mdfile = tp + '/' + v.name + '.method.mdown';
+                var infofile = tp + '/' + v.name + '.method.js';
 
-                /*
+                // 説明文読み込み
                 if(NX.fs.exists(mdfile)) {
                     mdown = NX.fs.readFileSync(mdfile, 'utf8');
                     htmls.method[v.name] = NX.util.MarkDown.parse(mdown);
                 }
-                */
 
                 // 情報読み込み
                 var info = {
@@ -365,6 +364,40 @@ var genApiNode = function(rootPath, targetPath, deploy, outputDir) {
                     info = NX.fs.readFileSync(infofile, 'utf8');
                     info = NX.decode(info);
                 }
+
+                // パラメータ情報取得
+                var params = {};
+                NX.each(info.param, function(pn) {
+
+                    var mdfile = tp + '/' + v.name + '/' + pn + '.mdown';
+                    var infofile = tp + '/' + v.name + '/' + pn + '.js';
+
+                    var type = '';
+                    var desc = '';
+
+                    // 説明文読み込み
+                    if(NX.fs.exists(mdfile)) {
+                        mdown = NX.fs.readFileSync(mdfile, 'utf8');
+                        desc = NX.util.MarkDown.parse(mdown);
+                    }
+
+                    // 情報読み込み
+                    var info = {
+                        type: '未定義'
+                    };
+
+                    if(NX.fs.exists(infofile)) {
+                        info = NX.fs.readFileSync(infofile, 'utf8');
+                        info = NX.decode(info);
+                    }
+
+                    params[pn] = {
+                        name: pn,
+                        type: info.type,
+                        desc: desc
+                    };
+
+                });
 
                 o.children.push({
                     text: v.name,
@@ -378,15 +411,74 @@ var genApiNode = function(rootPath, targetPath, deploy, outputDir) {
                 var methodId = fullNs + '-' + v.name;
                 var methodPath = 'api/' + fullNs + '.html';
                 var methodName = v.name;
-                var methodType = info.return;
+                var methodArgs = ' : ' + info.return;
 
+                var args = '';
+                var cnt = 0;
+                NX.iterate(params, function(key, v) {
 
+                    if(cnt > 0) {
+                        args += ', ';
+                    }
+                    args += v.type + ' ' + key;
+                    cnt++;
 
+                });
+
+                methodArgs = '(' + args + ')' + methodArgs;
 
                 var methodDesc = '';
+                methodDesc += '<div class="mdesc">';
                 if(htmls.method[v.name]) {
-                    methodDesc = '<div class="mdesc">' + htmls.method[v.name] + '</div>';
+                    methodDesc += htmls.method[v.name];
                 }
+
+                // パラメータ情報出力
+                var paramList = '';
+                paramList += '<div class="params">';
+                paramList += '<strong>パラメータ:</strong>';
+                paramList += '<ul>';
+
+                NX.iterate(params, function(key, v) {
+
+                    paramList += '<li>';
+                    paramList += '  ' + key + ':' + v.type;
+                    paramList += '  <ul>';
+                    paramList += '    <li>';
+                    paramList += '      ' + v.desc;
+                    paramList += '    </li>';
+                    paramList += '  </ul>';
+                    paramList += '</li>';
+
+                });
+
+                paramList += '</ul>';
+
+                var mdfile = tp + '/' + v.name + '/' + 'return.mdown';
+                var desc = '';
+                // 説明文読み込み
+                if(NX.fs.exists(mdfile)) {
+                    mdown = NX.fs.readFileSync(mdfile, 'utf8');
+                    desc = NX.util.MarkDown.parse(mdown);
+                }
+
+                paramList += '<strong>戻り値:</strong>';
+                paramList += '<ul>';
+                paramList += '  <li>';
+                paramList += '  ' + info.return;
+                paramList += '  <ul>';
+                paramList += '    <li>';
+                paramList += '    ' + desc;
+                paramList += '    </li>';
+                paramList += '  </ul>';
+                paramList += '  </li>';
+                paramList += '</ul>';
+
+                paramList += '</div>';
+
+                methodDesc += paramList;
+                methodDesc += '</div>';
+
                 // 継承クラスへのリンクは未実装
                 var methodDefined = clsName;
 
@@ -397,7 +489,7 @@ var genApiNode = function(rootPath, targetPath, deploy, outputDir) {
                     '  </td>',
                     '  <td class="sig">',
                     '    <a id="%2$s"></a>',
-                    '    <b><a href="%3$s">%4$s</a></b> : %5$s',
+                    '    <b><a href="%3$s">%4$s</a></b>%5$s',
                     '    %6$s',
                     '  </td>',
                     '  <td class="msource">',
@@ -410,7 +502,7 @@ var genApiNode = function(rootPath, targetPath, deploy, outputDir) {
                     methodId,
                     methodPath,
                     methodName,
-                    methodType,
+                    methodArgs,
                     methodDesc,
                     methodDefined
                 );
