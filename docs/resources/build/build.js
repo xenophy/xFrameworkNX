@@ -274,6 +274,9 @@ var genApiNode = function(rootPath, targetPath, deploy, outputDir) {
             // 継承合成
             bindExtendMember(clsData._parentClsName, clsData);
 
+            NX.asort(clsData._prop, 'name');
+            NX.asort(clsData._method, 'name');
+
             // プロパティ一覧取得
             NX.each(clsData._prop, function(v) {
 
