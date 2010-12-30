@@ -94,11 +94,22 @@ Ext.extend(Ext.app.App, Ext.util.Observable, {
                 // リスナー設定
                 listeners: {
                     opendoc: function(id, node) {
-                        me.viewport.main.load({
-                            url: 'resources/output/v' + me.version + '/' + id,
-                            callback: function() {
-                            }
-                        });
+
+                        var pos = id.indexOf('#');
+                        var path = id;
+
+                        if(pos !== -1) {
+                            path = path.substr(0, pos);
+                        }
+
+                        if(me.currentHtml != path) {
+                            me.viewport.main.load({
+                                url: 'resources/output/v' + me.version + '/' + id,
+                                callback: function() {
+                                    me.currentHtml = path;
+                                }
+                            });
+                        }
                     }
                 }
 

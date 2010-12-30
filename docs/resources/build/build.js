@@ -14,6 +14,8 @@ var path = require('path');
 // }}}
 // {{{ Setting
 
+var LF = String.fromCharCode(10);
+
 var NXDoc = {
     lib: path.normalize(__dirname + '/../../../lib/NX/'),
     manuscript: path.normalize(__dirname + '/../manuscript/'),
@@ -23,6 +25,14 @@ var NXDoc = {
     api: [],
     cls: {}
 };
+
+// }}}
+// {{{ API Doc Template
+
+NXDoc.apiTpl = [
+    '<h1>%1$s クラス</h1>',
+    '<div class="description">%2$s</div>',
+].join(LF);
 
 // }}}
 // {{{ Starting Message
@@ -91,7 +101,6 @@ var genManNode = function(rootPath, targetPath, deploy, outputDir) {
 
             // タイトル取得
             mdown = NX.fs.readFileSync(targetFullPath + file, 'utf8');
-            var LF = String.fromCharCode(10);
             var smdown = NX.str.explode(LF, mdown);
             title = smdown[0];
 
@@ -117,7 +126,9 @@ var genManNode = function(rootPath, targetPath, deploy, outputDir) {
 var genApiNode = function(rootPath, targetPath, deploy, outputDir) {
 
     var targetFullPath = rootPath + targetPath;
+    var outputFullPath = outputDir + targetPath;
 
+    // ソースコード解析
     NX.fs.iterate(NXDoc.lib, function(file) {
 
         if(file.isDir()) {
@@ -129,44 +140,75 @@ var genApiNode = function(rootPath, targetPath, deploy, outputDir) {
 
             if(/@class/.test(src)) {
 
-                var matches = src.match(/@class .+/g);
+                var classes = {};
+                var clsName = null;
+                NX.each(NX.str.explode(LF, src), function(line, cnt) {
 
-                if(matches && NX.isArray(matches)) {
+                    if(clsName !== null) {
+                        classes[clsName].push(line);
+                    }
 
-                    NX.each(matches, function(line) {
+                    var matches = line.match(/@class .+/);
+                    if(matches) {
 
-                        var clsName = line.substr('@class '.length);
+                        line = matches[0];
+                        clsName = line.substr('@class '.length);
 
-                        if(!NXDoc.cls[clsName]) {
-                            NXDoc.cls[clsName] = {
-                                _prop: [],
-                                _method: []
-                            };
+                        if(!classes[clsName]) {
+                            classes[clsName] = [];
                         }
 
-                        var cls = NXDoc.cls[clsName];
+                    }
 
-                        var matches = src.match(/@prop .+/g);
+                });
 
-                        if(matches) {
-                            NX.each(matches, function(prop) {
-                                prop = prop.substr('@prop '.length);
-                                cls._prop.push(prop);
+                NX.iterate(classes, function(clsName, v) {
+
+                    var parentClsName = 'Object';
+
+                    src = NX.str.implode(LF, v);
+
+                    // スーパークラス名取得
+                    var matches = src.match(/@extend .+/);
+                    if(matches) {
+                        var line = matches[0];
+                        parentClsName = line.substr('@extend '.length);
+                    }
+
+                    if(!NXDoc.cls[clsName]) {
+                        NXDoc.cls[clsName] = {
+                            _parentClsName: parentClsName,
+                            _prop: [],
+                            _method: []
+                        };
+                    }
+
+                    var cls = NXDoc.cls[clsName];
+                    var matches = src.match(/@prop .+/g);
+
+                    if(matches) {
+                        NX.each(matches, function(prop) {
+                            prop = prop.substr('@prop '.length);
+                            cls._prop.push({
+                                name: prop,
+                                expanded: false
                             });
-                        }
+                        });
+                    }
 
-                        var matches = src.match(/@method .+/g);
+                    var matches = src.match(/@method .+/g);
 
-                        if(matches) {
-                            NX.each(matches, function(method) {
-                                method = method.substr('@method '.length);
-                                cls._method.push(method);
+                    if(matches) {
+                        NX.each(matches, function(method) {
+                            method = method.substr('@method '.length);
+                            cls._method.push({
+                                name: method,
+                                expanded: false
                             });
-                        }
+                        });
+                    }
 
-                    });
-
-                }
+                });
 
             }
 
@@ -174,41 +216,224 @@ var genApiNode = function(rootPath, targetPath, deploy, outputDir) {
 
     });
 
-    var createNode = function(clsName, ns, clsData, deploy) {
+    var bindExtendMember = function(parent, clsData) {
+
+        if(parent === 'Object') {
+            return;
+        }
+
+        var parentCls = NXDoc.cls[parent];
+
+        bindExtendMember(parentCls._parentClsName, parentCls);
+
+        NX.each(parentCls._prop, function(prop) {
+            clsData._prop.push({
+                name: prop.name,
+                expanded: true
+            });
+        });
+
+        NX.each(parentCls._method, function(method) {
+            clsData._method.push({
+                name: method.name,
+                expanded: true
+            });
+        });
+
+        NX.asort(clsData._prop, 'name');
+        NX.asort(clsData._method, 'name');
+    };
+
+    var createNode = function(clsName, ns, clsData, deploy, fullNs) {
 
         if(ns.length === 0) {
+
+            var htmls = {cls: '', prop: {}, propList: '', method: {}, methodList: ''};
+            var tp = path.normalize(targetFullPath + NX.str.implode('/', ns) + '/' + clsName);
+            var file = fullNs + '.html';
 
             // クラスツリー作成
             var o = {
                 text: clsName,
+                href: 'api/' + fullNs + '.html',
                 cls: 'cls-node',
                 expanded: false,
                 order: 1,
                 children: []
             };
 
+            // クラス定義mdown読み込み
+            var mdfile = tp + '/cls.mdown';
+            if(NX.fs.exists(mdfile)) {
+                mdown = NX.fs.readFileSync(mdfile, 'utf8');
+                htmls.cls = NX.util.MarkDown.parse(mdown);
+            }
+
+            // 継承合成
+            bindExtendMember(clsData._parentClsName, clsData);
+
             // プロパティ一覧取得
             NX.each(clsData._prop, function(v) {
+
+                var mdfile = tp + '/' + v.name + '.prop.mdown';
+                var infofile = tp + '/' + v.name + '.prop.js';
+
+                // 説明文読み込み
+                if(NX.fs.exists(mdfile)) {
+                    mdown = NX.fs.readFileSync(mdfile, 'utf8');
+                    htmls.prop[v.name] = NX.util.MarkDown.parse(mdown);
+                }
+
+                // 情報読み込み
+                var info = {
+                    type: '未定義'
+                };
+                if(NX.fs.exists(infofile)) {
+                    info = NX.fs.readFileSync(infofile, 'utf8');
+                    info = NX.decode(info);
+                }
+
                 o.children.push({
-                    text: v,
-                    //                href: cd + '/' + cf,
+                    text: v.name,
+                    href: 'api/' + fullNs + '.html#' + v.name,
                     cls: 'prop-node',
                     order: 10,
                     leaf: true
                 });
+
+                var extended = v.extended ? 'extended' : 'inherited';
+                var propId = fullNs + '-' + v.name;
+                var propPath = 'api/' + fullNs + '.html';
+                var propName = v.name;
+                var propType = info.type;
+                var propDesc = '';
+                if(htmls.prop[v.name]) {
+                    propDesc = '<div class="mdesc">' + htmls.prop[v.name] + '</div>';
+                }
+                // 継承クラスへのリンクは未実装
+                var propDefined = clsName;
+
+                htmls.propList += NX.sprintf([
+                    '<tr class="prop-row %1$s">',
+                    '  <td class="micon">',
+                    '    <a href="#expand" class="exi">&nbsp;</a>',
+                    '  </td>',
+                    '  <td class="sig">',
+                    '    <a id="%2$s"></a>',
+                    '    <b><a href="%3$s">%4$s</a></b> : %5$s',
+                    '    %6$s',
+                    '  </td>',
+                    '  <td class="msource">',
+                    '    %7$s',
+//                    '    <a href="output/Ext.Component.html#allowDomMove" ext:member="#allowDomMove" ext:cls="Ext.Component">Component</a>',
+                    '  </td>',
+                    '</tr>'
+                ].join(LF),
+                    extended,
+                    propId,
+                    propPath,
+                    propName,
+                    propType,
+                    propDesc,
+                    propDefined
+                );
+
             });
 
             // メソッド一覧取得
             NX.each(clsData._method, function(v) {
+
+                var mdfile = tp + '/' + v.name + '.method.mdown';
+                var infofile = tp + '/' + v.name + '.js';
+
+                if(NX.fs.exists(mdfile)) {
+                    mdown = NX.fs.readFileSync(mdfile, 'utf8');
+                    htmls.method[v.name] = NX.util.MarkDown.parse(mdown);
+                }
+
+                // 情報読み込み
+                var info = {
+                    type: '未定義'
+                };
+
+                if(NX.fs.exists(infofile)) {
+                    info = NX.fs.readFileSync(infofile, 'utf8');
+                    info = NX.decode(info);
+                }
+
                 o.children.push({
-                    text: v,
-                    //                href: cd + '/' + cf,
+                    text: v.name,
+                    href: 'api/' + fullNs + '.html#' + v.name,
                     cls: 'method-node',
                     order: 11,
                     leaf: true
                 });
+
+                var extended = v.extended ? 'extended' : 'inherited';
+                var methodId = fullNs + '-' + v.name;
+                var methodPath = 'api/' + fullNs + '.html';
+                var methodName = v.name;
+                var methodType = info.return;
+                var methodDesc = '';
+                if(htmls.method[v.name]) {
+                    methodDesc = '<div class="mdesc">' + htmls.method[v.name] + '</div>';
+                }
+                // 継承クラスへのリンクは未実装
+                var methodDefined = clsName;
+
+                htmls.methodList += NX.sprintf([
+                    '<tr class="method-row %1$s">',
+                    '  <td class="micon">',
+                    '    <a href="#expand" class="exi">&nbsp;</a>',
+                    '  </td>',
+                    '  <td class="sig">',
+                    '    <a id="%2$s"></a>',
+                    '    <b><a href="%3$s">%4$s</a></b> : %5$s',
+                    '    %6$s',
+                    '  </td>',
+                    '  <td class="msource">',
+                    '    %7$s',
+//                    '    <a href="output/Ext.Component.html#allowDomMove" ext:member="#allowDomMove" ext:cls="Ext.Component">Component</a>',
+                    '  </td>',
+                    '</tr>'
+                ].join(LF),
+                    extended,
+                    methodId,
+                    methodPath,
+                    methodName,
+                    methodType,
+                    methodDesc,
+                    methodDefined
+                );
+
             });
 
+            // HTML出力
+            var html = NX.sprintf(NXDoc.apiTpl, fullNs, htmls.cls) + LF;
+
+            // プロパティ出力
+            html += NX.sprintf([
+                '<h2>プロパティ</h2>',
+                '<table cellspacing="0" class="member-table">',
+                '<tr>',
+                '  <th colspan="2" class="sig-header">プロパティ</th>',
+                '  <th class="sig-header">定義クラス</th>',
+                '</tr>',
+                '%1$s'].join(LF), htmls.propList);
+
+            // メソッド出力
+            html += NX.sprintf([
+                '<h2>メソッド</h2>',
+                '<table cellspacing="0" class="member-table">',
+                '<tr>',
+                '  <th colspan="2" class="sig-header">メソッド</th>',
+                '  <th class="sig-header">定義クラス</th>',
+                '</tr>',
+                '%1$s'].join(LF), htmls.methodList);
+
+            NX.fs.writeFileSync(outputFullPath + file, html, 'utf8');
+
+            // オブジェクト追加
             deploy.push(o);
 
         } else {
@@ -244,7 +469,7 @@ var genApiNode = function(rootPath, targetPath, deploy, outputDir) {
                 o = exists;
             }
 
-            createNode(clsName, ns, clsData, o.children);
+            createNode(clsName, ns, clsData, o.children, fullNs);
         }
 
         NX.asort(deploy, 'order');
@@ -262,7 +487,7 @@ var genApiNode = function(rootPath, targetPath, deploy, outputDir) {
             ns.splice(0, 1);
         }
 
-        createNode(clsName, ns, v, deploy);
+        createNode(clsName, ns, v, deploy, key);
 
     });
 

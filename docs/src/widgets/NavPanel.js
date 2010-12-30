@@ -46,6 +46,7 @@ Ext.NavPanel = Ext.extend(Ext.tree.TreePanel, {
         me.on('afterrender', function() {
             var el = me.getEl();
             el.on('click', function(e, t) {
+
                 var t = e.getTarget('div.x-tree-node-leaf');
 
                 if(t) {
@@ -57,7 +58,22 @@ Ext.NavPanel = Ext.extend(Ext.tree.TreePanel, {
                     if(id !== '#') {
                         me.fireEvent('opendoc', id);
                     }
+
+                } else {
+
+                    var t = e.getTarget('div.cls-node');
+
+                    if(t) {
+
+                        var t = Ext.get(t);
+                        var a = t.down('a');
+                        var id = a.getAttribute('href');
+
+                        me.fireEvent('opendoc', id);
+                    }
+
                 }
+
                 e.stopEvent();
             });
         });
