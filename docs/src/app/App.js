@@ -38,11 +38,38 @@ Ext.app.App = function(cfg) {
 
 Ext.extend(Ext.app.App, Ext.util.Observable, {
 
+    // {{{ scrollToMember
+
+    scrollToMember : function(clsName, member) {
+
+        var me = this;
+        var el = Ext.get(clsName + '-' + member);
+
+        if(el) {
+            var top = (el.getOffsetsTo(me.docBody.dom)[1]) + me.docBody.dom.scrollTop;
+            me.docBody.scrollTo(
+                'top',
+                top-25,
+                {
+                    duration: 0.25,
+                    callback: function() {
+                        var tr = null;
+                        if(tr = el.up('tr')) {
+                            tr.highlight('#cadaf9');
+                        }
+                    }
+                }
+            );
+        }
+    },
+
+    // }}}
     // {{{ initApp
 
     initApp : function() {
 
         var me = this;
+
 
         // ビューポート生成
         me.viewport = new Ext.Viewport({
@@ -93,23 +120,34 @@ Ext.extend(Ext.app.App, Ext.util.Observable, {
 
                 // リスナー設定
                 listeners: {
-                    opendoc: function(id, node) {
+                    opendoc: {
+                        fn: function(id, node) {
 
-                        var pos = id.indexOf('#');
-                        var path = id;
+                            var pos = id.indexOf('#');
+                            var path = id;
+                            var hash = '';
 
-                        if(pos !== -1) {
-                            path = path.substr(0, pos);
-                        }
+                            if(pos !== -1) {
+                                hash = path.substr(pos + 1);
+                                path = path.substr(0, pos);
+                            }
 
-                        if(me.currentHtml != path) {
-                            me.viewport.main.load({
-                                url: 'resources/output/v' + me.version + '/' + id,
-                                callback: function() {
-                                    me.currentHtml = path;
-                                }
-                            });
-                        }
+                            var clsName = path.substr('api/'.length);
+                            clsName = clsName.substr(0, clsName.length - '.html'.length);
+
+                            if(me.currentHtml != path) {
+                                me.viewport.main.load({
+                                    url: 'resources/output/v' + me.version + '/' + id,
+                                    callback: function() {
+                                        me.currentHtml = path;
+                                        me.scrollToMember(clsName, hash);
+                                    }
+                                });
+                            } else {
+                                me.scrollToMember(clsName, hash);
+                            }
+                        },
+                        scope: me
                     }
                 }
 
@@ -129,7 +167,13 @@ Ext.extend(Ext.app.App, Ext.util.Observable, {
 
                 // マージン設定
                 margins:'0 5 5 0',
-                cmargins:'0 5 5 0'
+                cmargins:'0 5 5 0',
+
+                listeners: {
+                    afterrender: function(p) {
+                        me.docBody = p.body;
+                    }
+                }
 
             },{
 
