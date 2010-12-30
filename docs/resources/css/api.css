@@ -1,0 +1,99 @@
+/* vim: set expandtab tabstop=2 shiftwidth=2 softtabstop=2: */
+
+/*!
+ * xFramework NX Docs
+ *
+ * http://xFrameworknx.com
+ */
+.api-doc h1 {
+  font-size: 18px;
+}
+
+.api-doc .cls .desc {
+  border-bottom: 1px solid #ccc;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+.api-doc .member-table {
+  margin-bottom: 10px;
+  width: 100%;
+  border: 1px solid #D0D0D0;
+}
+
+.api-doc .member-table th {
+  background: #F9F9F9 url(http://extjs.cachefly.net/ext-3.3.1/docs/resources/images/default/grid/grid3-hrow.gif) repeat-x 0px 0%;
+  border-left: 1px solid #EEE;
+  border-right: 1px solid #D0D0D0;
+  border-top: 1px solid #EEE;
+  padding: 3px 3px 0 3px;
+  text-align: left;
+  vertical-align: middle;
+}
+
+.api-doc,
+.api-doc td,
+.api-doc th {
+  font-size: 13px;
+}
+
+.api-doc .member-table td.micon {
+  background: #F9F9F9 url(http://extjs.cachefly.net/ext-3.3.1/docs/resources/expand-bg.gif) repeat-y 100% 0%;
+  border-right: 1px solid #D0D0D0;
+  padding: 0px;
+  width: 16px;
+}
+
+.api-doc .member-table td.micon a {
+  cursor: default;
+  display: block;
+  height: 1px;
+  overflow: hidden;
+  width: 1px;
+}
+
+.api-doc .member-table td.micon,
+.api-doc .member-table td.sig,
+.api-doc .member-table td.msource {
+  border-top: 1px solid #D0D0D0;
+}
+
+.api-doc .member-table td.sig {
+  padding-left: 7px;
+}
+
+.api-doc .member-table td {
+  padding: 4px 15px 4px 4px;
+  padding-right: 15px;
+  vertical-align: top;
+}
+
+.api-doc a:link {
+  color: #083772;
+  text-decoration: none;
+}
+
+.api-doc a {
+  color: #083772;
+}
+
+.api-doc th.defined {
+  width: 20%;
+}
+
+.api-doc td.msource {
+  border-left: 1px solid #D0D0D0;
+}
+
+.api-doc b {
+  color: #083772;
+}
+
+/*
+ * Local variables:
+ * tab-width: 2
+ * c-basic-offset: 2
+ * c-hanging-comment-ender-p: nil
+ * End:
+ */

@@ -30,8 +30,10 @@ var NXDoc = {
 // {{{ API Doc Template
 
 NXDoc.apiTpl = [
-    '<h1>%1$s クラス</h1>',
-    '<div class="description">%2$s</div>',
+    '<div class="cls">',
+    '  <h1>%1$s クラス</h1>',
+    '  <div class="desc">%2$s</div>',
+    '</div>',
 ].join(LF);
 
 // }}}
@@ -320,7 +322,8 @@ var genApiNode = function(rootPath, targetPath, deploy, outputDir) {
                     '  </td>',
                     '  <td class="sig">',
                     '    <a id="%2$s"></a>',
-                    '    <b><a href="%3$s">%4$s</a></b> : %5$s',
+                    //'    <b><a href="%3$s">%4$s</a></b> : %5$s',
+                    '    <b>%4$s</b> : %5$s',
                     '    %6$s',
                     '  </td>',
                     '  <td class="msource">',
@@ -409,27 +412,31 @@ var genApiNode = function(rootPath, targetPath, deploy, outputDir) {
             });
 
             // HTML出力
-            var html = NX.sprintf(NXDoc.apiTpl, fullNs, htmls.cls) + LF;
+            var html = '<div class="api-doc">' + NX.sprintf(NXDoc.apiTpl, fullNs, htmls.cls) + LF;
 
             // プロパティ出力
             html += NX.sprintf([
                 '<h2>プロパティ</h2>',
                 '<table cellspacing="0" class="member-table">',
                 '<tr>',
-                '  <th colspan="2" class="sig-header">プロパティ</th>',
-                '  <th class="sig-header">定義クラス</th>',
+                '  <th colspan="2" class="sig-header caption">プロパティ</th>',
+                '  <th class="sig-header defined">定義クラス</th>',
                 '</tr>',
-                '%1$s'].join(LF), htmls.propList);
+                '%1$s',
+                '</table>'].join(LF), htmls.propList);
 
             // メソッド出力
             html += NX.sprintf([
                 '<h2>メソッド</h2>',
                 '<table cellspacing="0" class="member-table">',
                 '<tr>',
-                '  <th colspan="2" class="sig-header">メソッド</th>',
-                '  <th class="sig-header">定義クラス</th>',
+                '  <th colspan="2" class="sig-header caption">メソッド</th>',
+                '  <th class="sig-header defined">定義クラス</th>',
                 '</tr>',
-                '%1$s'].join(LF), htmls.methodList);
+                '%1$s',
+                '</table>'].join(LF), htmls.methodList);
+
+            html += '</div>';
 
             NX.fs.writeFileSync(outputFullPath + file, html, 'utf8');
 
