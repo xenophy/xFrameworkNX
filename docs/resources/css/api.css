@@ -6,6 +6,7 @@
  * http://xFrameworknx.com
  */
 .api-doc h1 {
+  color: #083772;
   font-size: 18px;
 }
 
@@ -88,6 +89,40 @@
 
 .api-doc b {
   color: #083772;
+}
+
+.api-doc em {
+  font-style: italic;
+}
+
+.api-doc ul {
+  list-style: circle inside;
+  list-style-type: circle;
+  margin: 12px;
+}
+
+.api-doc li {
+  list-style: circle inside;
+  list-style-type: circle;
+  font-weight: bold;
+}
+
+.api-doc ul li ul {
+  margin: 0 12px;
+}
+
+.api-doc ul li ul li {
+  list-style: none;
+  font-weight: normal;
+  margin-left: 12px;
+}
+
+.api-doc strong {
+  color: #555;
+  display: block;
+  font-size: 11px;
+  font-weight: bold;
+  margin-bottom: 3px;
 }
 
 /*

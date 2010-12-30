@@ -346,13 +346,15 @@ var genApiNode = function(rootPath, targetPath, deploy, outputDir) {
             // メソッド一覧取得
             NX.each(clsData._method, function(v) {
 
-                var mdfile = tp + '/' + v.name + '.method.mdown';
+//                var mdfile = tp + '/' + v.name + '.method.mdown';
                 var infofile = tp + '/' + v.name + '.js';
 
+                /*
                 if(NX.fs.exists(mdfile)) {
                     mdown = NX.fs.readFileSync(mdfile, 'utf8');
                     htmls.method[v.name] = NX.util.MarkDown.parse(mdown);
                 }
+                */
 
                 // 情報読み込み
                 var info = {
@@ -377,6 +379,10 @@ var genApiNode = function(rootPath, targetPath, deploy, outputDir) {
                 var methodPath = 'api/' + fullNs + '.html';
                 var methodName = v.name;
                 var methodType = info.return;
+
+
+
+
                 var methodDesc = '';
                 if(htmls.method[v.name]) {
                     methodDesc = '<div class="mdesc">' + htmls.method[v.name] + '</div>';
@@ -415,26 +421,33 @@ var genApiNode = function(rootPath, targetPath, deploy, outputDir) {
             var html = '<div class="api-doc">' + NX.sprintf(NXDoc.apiTpl, fullNs, htmls.cls) + LF;
 
             // プロパティ出力
-            html += NX.sprintf([
-                '<h2>プロパティ</h2>',
-                '<table cellspacing="0" class="member-table">',
-                '<tr>',
-                '  <th colspan="2" class="sig-header caption">プロパティ</th>',
-                '  <th class="sig-header defined">定義クラス</th>',
-                '</tr>',
-                '%1$s',
-                '</table>'].join(LF), htmls.propList);
+
+            if(htmls.propList != '') {
+                html += NX.sprintf([
+                    '<h2>プロパティ</h2>',
+                    '<table cellspacing="0" class="member-table">',
+                    '<tr>',
+                    '  <th colspan="2" class="sig-header caption">プロパティ</th>',
+                    '  <th class="sig-header defined">定義クラス</th>',
+                    '</tr>',
+                    '%1$s',
+                    '</table>'
+                ].join(LF), htmls.propList);
+            }
 
             // メソッド出力
-            html += NX.sprintf([
-                '<h2>メソッド</h2>',
-                '<table cellspacing="0" class="member-table">',
-                '<tr>',
-                '  <th colspan="2" class="sig-header caption">メソッド</th>',
-                '  <th class="sig-header defined">定義クラス</th>',
-                '</tr>',
-                '%1$s',
-                '</table>'].join(LF), htmls.methodList);
+            if(htmls.methodList != '') {
+                html += NX.sprintf([
+                   '<h2>メソッド</h2>',
+                   '<table cellspacing="0" class="member-table">',
+                   '<tr>',
+                   '  <th colspan="2" class="sig-header caption">メソッド</th>',
+                   '  <th class="sig-header defined">定義クラス</th>',
+                   '</tr>',
+                   '%1$s',
+                   '</table>'
+                ].join(LF), htmls.methodList);
+            }
 
             html += '</div>';
 

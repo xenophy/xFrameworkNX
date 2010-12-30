@@ -1,2 +1,1 @@
-
-version説明
+使用しているxFramework NXのバージョン

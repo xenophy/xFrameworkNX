@@ -1,1 +1,4 @@
-NX Class description
+xFramework NX コアクラスと関数群
+
+<br />
+*このクラスはシングルトンパターンで実装されています。直接生成することはできません。*

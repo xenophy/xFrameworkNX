@@ -1,2 +1,11 @@
+使用しているxFramework NXのバージョン詳細
 
-versionDetail説明
+<br />
+**オブジェクトキー**
+
+* major
+  * メジャーバージョン
+* minor
+  * マイナーバージョン
+* patch
+  * パッチバージョン
