@@ -64,6 +64,46 @@ Ext.extend(Ext.app.App, Ext.util.Observable, {
     },
 
     // }}}
+    // {{{ opendoc
+
+    opendoc: function(id, node) {
+
+        var pos = id.indexOf('#');
+        var path = id;
+        var hash = '';
+
+        if(pos !== -1) {
+            hash = path.substr(pos + 1);
+            path = path.substr(0, pos);
+        }
+
+        var clsName = path.substr('api/'.length);
+        clsName = clsName.substr(0, clsName.length - '.html'.length);
+
+        if(me.currentHtml != path) {
+            me.viewport.main.load({
+                url: 'resources/output/v' + me.version + '/' + id,
+                callback: function() {
+
+                    var pre = me.docBody.child('pre');
+
+                    if(pre) {
+                        Ext.each(pre, function(el) {
+                            var src = el.dom.innerHTML;
+                            sh_highlightElement(el.dom, sh_languages['javascript']);
+                        });
+                    }
+
+                    me.currentHtml = path;
+                    me.scrollToMember(clsName, hash);
+                }
+            });
+        } else {
+            me.scrollToMember(clsName, hash);
+        }
+    },
+
+    // }}}
     // {{{ initApp
 
     initApp : function() {
@@ -197,18 +237,36 @@ Ext.extend(Ext.app.App, Ext.util.Observable, {
                                 } else if(t.up('li.method')) {
                                     me.scrollToMember(id, 'methods');
                                 } else if(t.up('li.direct')) {
-
                                     Ext.Msg.alert(
                                         'ダイレクトリンク : ' + id,
-                                        '<a href="http://' + location.host + location.pathname + '?class=' + id + '">http://' + location.host + location.pathname + '?class=' + id + '</a>'
+                                        '<a target="_blank" href="http://' + location.host + location.pathname + '?class=' + id + '">http://' + location.host + location.pathname + '?class=' + id + '</a>'
                                     );
-
                                 }
 
                                 e.stopEvent();
                             }
 
                         });
+
+
+                        if(location.search) {
+
+                            var q = Ext.urlDecode(location.search.substr(1));
+                            console.log(q);
+
+                            p.load({
+                                url: 'resources/output/v' + me.version + '/api/' + q.class + '.html',
+                                callback: function() {
+
+                                    if(q.member) {
+                                        me.scrollToMember(q.class, q.member);
+                                    }
+
+                                }
+                            });
+
+                        }
+
 
 
                     }
