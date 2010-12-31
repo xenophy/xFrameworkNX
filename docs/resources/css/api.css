@@ -135,6 +135,17 @@
   margin: 10px;
 }
 
+.api-doc pre {
+  background: #F8F8F8;
+  border: 1px dotted #CCC;
+  font-size: 12px;
+  line-height: 14px;
+  margin: 1em 0px;
+  margin-left: 0px;
+  margin-right: 0px;
+  padding: 7px;
+}
+
 /*
  * Local variables:
  * tab-width: 2

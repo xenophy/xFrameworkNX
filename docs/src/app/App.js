@@ -139,6 +139,24 @@ Ext.extend(Ext.app.App, Ext.util.Observable, {
                                 me.viewport.main.load({
                                     url: 'resources/output/v' + me.version + '/' + id,
                                     callback: function() {
+
+                                        var pre = me.docBody.child('pre');
+
+                                        if(pre) {
+                                            Ext.each(pre, function(el) {
+
+                                                var src = el.dom.innerHTML;
+                                                //src = src.replace(/(?:\r\n?|\n)$/, '');
+                                                sh_highlightElement(el.dom, sh_languages['javascript']);
+//                                                var colorized = prettyPrintOne(src);
+                                            
+                                            });
+                                        }
+
+
+
+
+
                                         me.currentHtml = path;
                                         me.scrollToMember(clsName, hash);
                                     }
