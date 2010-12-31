@@ -146,6 +146,36 @@
   padding: 7px;
 }
 
+.api-doc .nav ul {
+  text-align: right;
+}
+
+.api-doc .nav li {
+  display: inline;
+  margin-right: 10px;
+  padding-left: 20px;
+  font-size: 13px;
+  padding-top: 3px;
+}
+
+.api-doc .nav li a:hover {
+  text-decoration: underline;
+}
+
+.api-doc .nav li.prop  {
+  background-image:url(../images/icons/prop.gif) !important;
+  background-repeat: no-repeat;
+}
+
+.api-doc .nav li.method  {
+  background-image:url(../images/icons/method.gif) !important;
+  background-repeat: no-repeat;
+}
+
+.api-doc .nav li.direct  {
+  background-image:url(../images/icons/fav.gif) !important;
+  background-repeat: no-repeat;
+}
 /*
  * Local variables:
  * tab-width: 2

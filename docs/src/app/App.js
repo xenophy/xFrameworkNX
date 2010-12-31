@@ -144,18 +144,10 @@ Ext.extend(Ext.app.App, Ext.util.Observable, {
 
                                         if(pre) {
                                             Ext.each(pre, function(el) {
-
                                                 var src = el.dom.innerHTML;
-                                                //src = src.replace(/(?:\r\n?|\n)$/, '');
                                                 sh_highlightElement(el.dom, sh_languages['javascript']);
-//                                                var colorized = prettyPrintOne(src);
-                                            
                                             });
                                         }
-
-
-
-
 
                                         me.currentHtml = path;
                                         me.scrollToMember(clsName, hash);
@@ -190,6 +182,35 @@ Ext.extend(Ext.app.App, Ext.util.Observable, {
                 listeners: {
                     afterrender: function(p) {
                         me.docBody = p.body;
+
+                        me.docBody.on('click', function(e, t) {
+
+                            var t = e.getTarget('.inner-link');
+
+                            if(t) {
+
+                                var t = Ext.get(t);
+                                var id = t.getAttribute('href');
+
+                                if(t.up('li.prop')) {
+                                    me.scrollToMember(id, 'props');
+                                } else if(t.up('li.method')) {
+                                    me.scrollToMember(id, 'methods');
+                                } else if(t.up('li.direct')) {
+
+                                    Ext.Msg.alert(
+                                        'ダイレクトリンク : ' + id,
+                                        '<a href="http://' + location.host + location.pathname + '?class=' + id + '">http://' + location.host + location.pathname + '?class=' + id + '</a>'
+                                    );
+
+                                }
+
+                                e.stopEvent();
+                            }
+
+                        });
+
+
                     }
                 }
 

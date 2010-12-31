@@ -30,7 +30,7 @@ var NXDoc = {
 // {{{ API Doc Template
 
 NXDoc.apiTpl = [
-    '<div class="cls">',
+   '<div class="cls">',
     '  <h1>%1$s クラス</h1>',
     '  <div class="desc">%2$s</div>',
     '</div>',
@@ -492,7 +492,7 @@ var genApiNode = function(rootPath, targetPath, deploy, outputDir) {
                     '  </td>',
                     '  <td class="sig">',
                     '    <a id="%2$s"></a>',
-                    '    <b><a href="%3$s">%4$s</a></b>%5$s',
+                    '    <b>%4$s</b>%5$s',
                     '    %6$s',
                     '  </td>',
                     '  <td class="msource">',
@@ -512,13 +512,29 @@ var genApiNode = function(rootPath, targetPath, deploy, outputDir) {
 
             });
 
+            var apiTpl = [
+                '<div class="nav">',
+                '<ul>',
+                '   <li class="prop">',
+                '     <a class="inner-link" href="' + fullNs + '">プロパティ</a>',
+                '   </li>',
+                '   <li class="method">',
+                '     <a class="inner-link" href="' + fullNs + '">メソッド</a>',
+                '   </li>',
+                '   <li class="direct">',
+                '     <a class="inner-link" href="' + fullNs + '">ダイレクトリンク</a>',
+                '   </li>',
+                '</ul>',
+                '</div>',
+            ].join(LF) + NXDoc.apiTpl;
+
             // HTML出力
-            var html = '<div class="api-doc">' + NX.sprintf(NXDoc.apiTpl, fullNs, htmls.cls) + LF;
+            var html = '<div class="api-doc">' + NX.sprintf(apiTpl, fullNs, htmls.cls) + LF;
 
             // プロパティ出力
-
             if(htmls.propList != '') {
                 html += NX.sprintf([
+                    '<a id="' + fullNs + '-props"></a>',
                     '<h2>プロパティ</h2>',
                     '<table cellspacing="0" class="member-table">',
                     '<tr>',
@@ -533,14 +549,15 @@ var genApiNode = function(rootPath, targetPath, deploy, outputDir) {
             // メソッド出力
             if(htmls.methodList != '') {
                 html += NX.sprintf([
-                   '<h2>メソッド</h2>',
-                   '<table cellspacing="0" class="member-table">',
-                   '<tr>',
-                   '  <th colspan="2" class="sig-header caption">メソッド</th>',
-                   '  <th class="sig-header defined">定義クラス</th>',
-                   '</tr>',
-                   '%1$s',
-                   '</table>'
+                    '<a id="' + fullNs + '-methods"></a>',
+                    '<h2>メソッド</h2>',
+                    '<table cellspacing="0" class="member-table">',
+                    '<tr>',
+                    '  <th colspan="2" class="sig-header caption">メソッド</th>',
+                    '  <th class="sig-header defined">定義クラス</th>',
+                    '</tr>',
+                    '%1$s',
+                    '</table>'
                 ].join(LF), htmls.methodList);
             }
 
