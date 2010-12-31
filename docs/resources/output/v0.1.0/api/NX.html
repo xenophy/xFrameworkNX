@@ -74,23 +74,7 @@
     <b>apply</b>(Object o, Object config, Object defaults) : Object
     <div class="mdesc"><p>指定されたoにconfigを適用します。</p>
 
-<p>configのキーが既に、oに存在する場合は、上書きします。</p>
-
-<pre><code>// Example 1:
-Ext.zip([1,2,3],[4,5,6]); // [[1,4],[2,5],[3,6]]
-// Example 2:
-Ext.zip(
-    [ "+", "-", "+"],
-    [  12,  10,  22],
-    [  43,  15,  96],
-    function(a, b, c){
-        return "$" + a + "" + b + "." + c
-    }
-); // ["$+12.43", "$-10.15", "$+22.96"]
-function test() {
-
-}
-</code></pre><div class="params"><strong>パラメータ:</strong><ul><li>  o:Object  <ul>    <li>      <p>oパラメータ説明</p>    </li>  </ul></li><li>  config:Object  <ul>    <li>      <p>configパラメータの説明</p>    </li>  </ul></li><li>  defaults:Object  <ul>    <li>      <p>defaultsパラメータの説明</p>    </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  Object  <ul>    <li>    <p>configが適用されたオブジェクト</p>    </li>  </ul>  </li></ul></div></div>
+<p>configのキーが既に、oに存在する場合は、上書きします。</p><div class="params"><strong>パラメータ:</strong><ul><li>  o:Object  <ul>    <li>      <p>値を設定するオブジェクト</p>    </li>  </ul></li><li>  config:Object  <ul>    <li>      <p>設定を行うためのオブジェクト</p>    </li>  </ul></li><li>  defaults:Object  <ul>    <li>      <p>初期値として適用されるオブジェクト</p>    </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  Object  <ul>    <li>    <p>configが適用されたオブジェクト</p>    </li>  </ul>  </li></ul></div></div>
   </td>
   <td class="msource">
     NX
@@ -101,8 +85,10 @@ function test() {
   </td>
   <td class="sig">
     <a id="NX-applyIf"></a>
-    <b>applyIf</b>() : undefined
-    <div class="mdesc"><div class="params"><strong>パラメータ:</strong><ul></ul><strong>戻り値:</strong><ul>  <li>  undefined  <ul>    <li>        </li>  </ul>  </li></ul></div></div>
+    <b>applyIf</b>(Object target, Object config) : Object
+    <div class="mdesc"><p>指定されたtargetにconfigを適用します。</p>
+
+<p>configのキーが既に、oに存在する場合は、上書きしません。</p><div class="params"><strong>パラメータ:</strong><ul><li>  target:Object  <ul>    <li>      <p>configパラメータの説明</p>    </li>  </ul></li><li>  config:Object  <ul>    <li>      <p>設定を行うためのオブジェクト</p>    </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  Object  <ul>    <li>    <p>configが適用されたオブジェクト</p>    </li>  </ul>  </li></ul></div></div>
   </td>
   <td class="msource">
     NX
@@ -113,8 +99,22 @@ function test() {
   </td>
   <td class="sig">
     <a id="NX-asort"></a>
-    <b>asort</b>() : undefined
-    <div class="mdesc"><div class="params"><strong>パラメータ:</strong><ul></ul><strong>戻り値:</strong><ul>  <li>  undefined  <ul>    <li>        </li>  </ul>  </li></ul></div></div>
+    <b>asort</b>(Array arr, String key) : void
+    <div class="mdesc"><p>arr配列内のオブジェクトのキーをソートします。</p>
+
+<pre><code>var arr = [
+    {name: 'apple', order: 2},
+    {name: 'orange', order: 3},
+    {name: 'peach', order: 1}
+];
+
+NX.asort(arr, 'order');
+
+// arr trace
+// {name: 'peach', order: 1}
+// {name: 'apple', order: 2}
+// {name: 'orange', order: 3}
+</code></pre><div class="params"><strong>パラメータ:</strong><ul><li>  arr:Array  <ul>    <li>      <p>ソートする配列</p>    </li>  </ul></li><li>  key:String  <ul>    <li>      <p>オブジェクトキー名</p>    </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  void  <ul>    <li>        </li>  </ul>  </li></ul></div></div>
   </td>
   <td class="msource">
     NX
@@ -125,8 +125,8 @@ function test() {
   </td>
   <td class="sig">
     <a id="NX-clone"></a>
-    <b>clone</b>() : undefined
-    <div class="mdesc"><div class="params"><strong>パラメータ:</strong><ul></ul><strong>戻り値:</strong><ul>  <li>  undefined  <ul>    <li>        </li>  </ul>  </li></ul></div></div>
+    <b>clone</b>(Object obj) : Object
+    <div class="mdesc"><p>objに指定されたオブジェクトのクローンを生成します。</p><div class="params"><strong>パラメータ:</strong><ul><li>  obj:Object  <ul>    <li>      <p>クローンするオブジェクト</p>    </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  Object  <ul>    <li>    <p>クローンされたオブジェクト</p>    </li>  </ul>  </li></ul></div></div>
   </td>
   <td class="msource">
     NX
