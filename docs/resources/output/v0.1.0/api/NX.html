@@ -29,6 +29,19 @@
     <a href="#expand" class="exi">&nbsp;</a>
   </td>
   <td class="sig">
+    <a id="NX-emptyFn"></a>
+    <b>emptyFn</b> : Function
+    <div class="mdesc"><p>再利用ができる空の関数オブジェクトです。
+プログラム内部で何かしらの関数を設定しなくてはならない場合や、 継承先のクラスにメソッドを実装してもらうときの抽象メソッド定義などに使用します。</p></div>
+  </td>
+  <td class="msource">
+    NX
+  </td>
+</tr><tr class="prop-row inherited">
+  <td class="micon">
+    <a href="#expand" class="exi">&nbsp;</a>
+  </td>
+  <td class="sig">
     <a id="NX-version"></a>
     <b>version</b> : String
     <div class="mdesc"><p>使用しているxFramework NXのバージョン</p></div>
@@ -137,20 +150,15 @@ NX.asort(arr, 'order');
   </td>
   <td class="sig">
     <a id="NX-each"></a>
-    <b>each</b>() : undefined
-    <div class="mdesc"><div class="params"><strong>パラメータ:</strong><ul></ul><strong>戻り値:</strong><ul>  <li>  undefined  <ul>    <li>        </li>  </ul>  </li></ul></div></div>
-  </td>
-  <td class="msource">
-    NX
-  </td>
-</tr><tr class="method-row inherited">
-  <td class="micon">
-    <a href="#expand" class="exi">&nbsp;</a>
-  </td>
-  <td class="sig">
-    <a id="NX-emptyFn"></a>
-    <b>emptyFn</b>() : undefined
-    <div class="mdesc"><div class="params"><strong>パラメータ:</strong><ul></ul><strong>戻り値:</strong><ul>  <li>  undefined  <ul>    <li>        </li>  </ul>  </li></ul></div></div>
+    <b>each</b>(Array arr, Function fn, [Object scope]) : Number
+    <div class="mdesc"><p>arrに指定された配列を、fn指定された関数オブジェクトを使って繰り返します。
+もし、繰り返しを途中で停止させたい場合は、呼び出し関数の戻り値をfalse に設定してください。
+もし、配列でないオブジェクトを指定した場合、本来配列の要素オブジェクトが渡されるところに、そのオブジェクトを引き渡し関数が呼び出されます。</p><div class="params"><strong>パラメータ:</strong><ul><li>  arr:Array  <ul>    <li>      <p>繰り返しを行う配列</p>    </li>  </ul></li><li>  fn:Function  <ul>    <li>      <p>第１引数:現在繰り返されているデータオブジェクト
+<br />
+第２引数:カウント値
+<br />
+第３引数:設定した配列
+<br /></p>    </li>  </ul></li><li>  scope:Object  <ul>    <li> (オプション) <p>繰り返される関数オブジェクト内のスコープオブジェクトを指定します。</p>    </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  Number  <ul>    <li>    <p>繰り返された数</p>    </li>  </ul>  </li></ul></div></div>
   </td>
   <td class="msource">
     NX

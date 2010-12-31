@@ -397,6 +397,7 @@ var genApiNode = function(rootPath, targetPath, deploy, outputDir) {
                     params[pn] = {
                         name: pn,
                         type: info.type,
+                        option: info.option,
                         desc: desc
                     };
 
@@ -423,7 +424,13 @@ var genApiNode = function(rootPath, targetPath, deploy, outputDir) {
                     if(cnt > 0) {
                         args += ', ';
                     }
-                    args += v.type + ' ' + key;
+
+                    if(v.option == true) {
+                        args += '[' + v.type + ' ' + key + ']';
+                    } else {
+                        args += v.type + ' ' + key;
+                    }
+
                     cnt++;
 
                 });
@@ -445,10 +452,21 @@ var genApiNode = function(rootPath, targetPath, deploy, outputDir) {
                 NX.iterate(params, function(key, v) {
 
                     paramList += '<li>';
-                    paramList += '  ' + key + ':' + v.type;
+
+                    if(v.option == true) {
+                        paramList += '  ' + key + ':' + v.type;
+                    } else {
+                        paramList += '  ' + key + ':' + v.type;
+                    }
                     paramList += '  <ul>';
                     paramList += '    <li>';
-                    paramList += '      ' + v.desc;
+
+                    if(v.option == true) {
+                        paramList += ' (オプション) ' + v.desc;
+                    } else {
+                        paramList += '      ' + v.desc;
+                    }
+
                     paramList += '    </li>';
                     paramList += '  </ul>';
                     paramList += '</li>';
