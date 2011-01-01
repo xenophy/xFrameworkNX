@@ -396,6 +396,70 @@ Company.data.CustomStore = function(config) { ... }
     <a href="#expand" class="exi">&nbsp;</a>
   </td>
   <td class="sig">
+    <a id="NX-sprintf"></a>
+    <b>sprintf</b>(String format, [Mixed value args]) : String
+    <div class="mdesc"><p>NX.util.str.sprintfのエイリアス
+<div class="long">
+フォーマット文字列 format に基づき生成された文字列を返します。</p><div class="params"><strong>パラメータ:</strong><ul><li>  format:String  <ul>    <li>      <p>フォーマット文字列は 0 個以上のディレクティブ(指示子) により構成されます。</p>
+
+<p>ディレクティブには、そのまま結果にコピーされる(% を除く)通常の文字と変換指定子(conversion specifications)があり、</p>
+
+<p>取り出される際はどちらもそれ自身がパラメータとなります。</p>
+
+<ol>
+<li><p>オプションの符号指定子。
+これは、 数値で符号 (- あるいは +) を使用するよう指定します。
+デフォルトでは、数値が負の場合の - 符号のみが使用されます。
+この指定子により、正の数にも強制的に + 符号をつけることができます。</p></li>
+<li><p>オプションのパディング指定子。
+これは、文字列が正しい長さになるまでどんな文字で埋めるかということを指定します。
+これは空白かまたは 0 (文字 '0') のいずれかです。
+デフォルトでは空白で埋められます。
+これ以外のパディング文字を指定するには、その文字の前に 単一引用符 (') を置きます。
+後述の例を参照ください。</p></li>
+<li><p>オプションのアラインメント指定子。
+これは、結果を左寄せまたは右寄せにしたい場合に指定します。
+デフォルトは右寄せです。ここで - 文字を指定すると左寄せとなります。</p></li>
+<li><p>オプションの数字。
+これは表示幅指定子です。
+結果を(最低)何桁にするかを指定します。</p></li>
+<li><p>オプションの精度指定子(ピリオド(`.')に続けてオプションで桁数指定文字列を書いたもの)。
+これは、浮動小数点数に対して数字を何桁まで表示するかを指定します。
+文字列に対して使用した場合は、これは切り捨て位置として働きます。
+この文字数を超える文字を切り捨てられます。</p></li>
+<li><p>型指定子。
+引数を何の型として扱うかを指定します。
+指定できる型を以下に示します。</p></li>
+</ol>
+
+<p><br /></p>
+
+<ul>
+<li><strong>%</strong> - パーセント文字。引数は不要です。</li>
+<li><strong>b</strong> - 引数を整数として扱い、 2 進数として表現します。</li>
+<li><strong>c</strong> - 引数を整数として扱い、その ASCII 値の文字として表現します。</li>
+<li><strong>d</strong> - 引数を整数として扱い、 10 進数として表現します。</li>
+<li><strong>e</strong> - 引数を科学記法として扱います (例 1.2e+2)。</li>
+<li><strong>E</strong> - %e と同じですが、 大文字を使います (例 1.2E+2)。</li>
+<li><strong>u</strong> - 引数を整数として扱い、符号無しの 10 進数として表現します。</li>
+<li><strong>f</strong> - 引数を double として扱い、 浮動小数点数として表現します。</li>
+<li><strong>F</strong> - 引数を float として扱い、 浮動小数点数として表現します (ロケールに依存しません)。</li>
+<li><strong>g</strong> - %e および %f の短縮形。</li>
+<li><strong>G</strong> - %E および %f の短縮形。</li>
+<li><strong>o</strong> - 引数を整数として扱い、 8 進数として表現します。</li>
+<li><strong>s</strong> - 引数を文字列として扱い、表現します。</li>
+<li><strong>x</strong> - 引数を整数として扱い、16 進数として (小文字で)表現します。</li>
+<li><strong>X</strong> - 引数を整数として扱い、16 進数として (大文字で)表現します。</li>
+</ul>    </li>  </ul></li><li>  args:Mixed value  <ul>    <li> (オプション) <p>フォーマットに指定する値を複数指定できます。</p>    </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  String  <ul>    <li>    <p>フォーマットされた文字列</p>    </li>  </ul>  </li></ul></div></div></div>
+  </td>
+  <td class="msource">
+    NX
+  </td>
+</tr><tr class="method-row inherited expandable">
+  <td class="micon">
+    <a href="#expand" class="exi">&nbsp;</a>
+  </td>
+  <td class="sig">
     <a id="NX-toArray"></a>
     <b>toArray</b>(Array arr, Number start, Number end) : Array
     <div class="mdesc"><p>0 から数えて、start 番目～ end - 1 番目までの要素を抜き出した配列を返します。

@@ -167,6 +167,11 @@
   margin-bottom: 5px;
 }
 
+.api-doc ul li ol li {
+  margin-left: 20px;
+  list-style-type: decimal;
+}
+
 .api-doc strong {
   color: #555;
   display: block;

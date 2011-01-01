@@ -251,7 +251,10 @@ var genApiNode = function(rootPath, targetPath, deploy, outputDir) {
         if(ns.length === 0) {
 
             var htmls = {cls: '', prop: {}, propList: '', method: {}, methodList: ''};
-            var tp = path.normalize(targetFullPath + NX.str.implode('/', ns) + '/' + clsName);
+
+            var dns = NX.str.explode('.', fullNs);
+
+            var tp = path.normalize(targetFullPath + NX.str.implode('/', dns)/* + '/' + clsName*/);
             var file = fullNs + '.html';
 
             // クラスツリー作成
