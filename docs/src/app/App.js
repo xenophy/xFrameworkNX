@@ -147,7 +147,7 @@ Ext.extend(Ext.app.App, Ext.util.Observable, {
                 ref: 'nav',
 
                 // サイズ設定
-                width: 225,
+                width: 265,
                 minSize: 175,
                 maxSize: 400,
 

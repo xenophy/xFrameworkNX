@@ -27,7 +27,54 @@ Ext.NavPanel = Ext.extend(Ext.tree.TreePanel, {
             rootVisible:false,
             lines:false,
             root: new Ext.tree.TreeNode(),
-            collapseFirst:false
+            collapseFirst:false,
+            bbar:[ ' ',
+                new Ext.form.TriggerField({
+                    width: 200,
+                    triggerClass:'x-form-clear-trigger',
+                    emptyText:'クラス検索',
+                    enableKeyEvents: true,
+                    onTriggerClick: function() {
+                        this.setValue('');
+                        Ext.each(me.hiddenPkgs, function(n){
+                            n.ui.show();
+                        });
+                    },
+                    listeners:{
+                        render: function(f){
+                            this.filter = new Ext.tree.TreeFilter(this, {
+                                clearBlank: true,
+                                autoClear: true
+                            });
+                        },
+                        keydown: {
+                            fn: this.filterTree,
+                            buffer: 350,
+                            scope: this
+                        },
+                        scope: this
+                    }
+                }), ' ', ' ',
+                {
+                    iconCls: 'icon-expand-all',
+                    tooltip: 'Expand All',
+                    handler: function(){
+                        this.root.expand(true); 
+                        me.manroot.expand(true);
+                        me.apiroot.expand(true);
+                    },
+                    scope: this
+                }, '-', {
+                    iconCls: 'icon-collapse-all',
+                    tooltip: 'Collapse All',
+                    handler: function(){ 
+                        this.root.collapse(true); 
+                        me.manroot.expand(false);
+                        me.apiroot.expand(false);
+                    },
+                    scope: this
+            }]
+
         });
 
         // カテゴリノード追加
@@ -104,6 +151,91 @@ Ext.NavPanel = Ext.extend(Ext.tree.TreePanel, {
 
         // スーパークラスメソッドコール
         Ext.NavPanel.superclass.initComponent.apply(me, arguments);
+    },
+
+    // }}}
+    // {{{ filterTree
+
+    filterTree: function(t, e) {
+
+        var text = t.getValue();
+
+        Ext.each(this.hiddenPkgs, function(n){
+            n.ui.show();
+        });
+
+        if(!text){
+            this.filter.clear();
+            return;
+        }
+        this.expandAll();
+
+        var re = new RegExp('^' + Ext.escapeRe(text), 'i');
+        this.filter.filterBy(function(n){
+
+            if(n.attributes.cls && n.attributes.cls.indexOf('category-node') !== -1) {
+                return true;
+            }
+            if(n.attributes.cls && n.attributes.cls.indexOf('pkg-node') !== -1) {
+                return true;
+            }
+            if(n.attributes.cls && n.attributes.cls.indexOf('cls-node') !== -1) {
+                var exists = false;
+                n.eachChild(function(cn) {
+                    if(re.test(cn.text)) {
+                        exists = true;
+                        return false;
+                    }
+                });
+                if(exists) {
+                    return true;
+                }
+            }
+
+            if(n.attributes.cls && n.attributes.cls.indexOf('prop-node') !== -1) {
+                return re.test(n.text);
+            }
+            if(n.attributes.cls && n.attributes.cls.indexOf('method-node') !== -1) {
+                return re.test(n.text);
+            }
+
+            return re.test(n.text);
+        });
+
+        this.hiddenPkgs = [];
+        var me = this;
+        this.root.cascade(function(n){
+
+            if(n.attributes.cls && n.attributes.cls.indexOf('category-node') !== -1) {
+                return;
+            }
+            if(n.attributes.cls && n.attributes.cls.indexOf('pkg-node') !== -1) {
+                return;
+            }
+            if(n.attributes.cls && n.attributes.cls.indexOf('cls-node') !== -1) {
+                var exists = false;
+                n.eachChild(function(cn) {
+                    if(re.test(cn.text)) {
+                        exists = true;
+                        return false;
+                    }
+                });
+                if(exists) {
+                    return;
+                }
+            }
+            if(n.attributes.cls && n.attributes.cls.indexOf('prop-node') !== -1) {
+                return re.test(n.text);
+            }
+            if(n.attributes.cls && n.attributes.cls.indexOf('method-node') !== -1) {
+                return re.test(n.text);
+            }
+
+            if(n.attributes.id === 'man-root' || n.ui.ctNode.offsetHeight < 3){
+                n.ui.hide();
+                me.hiddenPkgs.push(n);
+            }
+        });
     }
 
     // }}}

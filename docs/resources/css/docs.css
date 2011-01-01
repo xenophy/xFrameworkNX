@@ -117,6 +117,14 @@ div.doc .x-tree-node-icon {
   background-image: url(http://extjs.cachefly.net/ext-3.3.1/resources/images/default/tree/elbow-minus-nl.gif);
 }
 
+.icon-expand-all {
+  background-image: url(http://extjs.cachefly.net/ext-3.3.1/docs/resources/expand-all.gif) !important;
+}
+
+.icon-collapse-all {
+  background-image: url(http://extjs.cachefly.net/ext-3.3.1/docs/resources/collapse-all.gif) !important;
+}
+
 /*
  * Local variables:
  * tab-width: 2
