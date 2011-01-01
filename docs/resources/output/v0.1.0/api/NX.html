@@ -344,8 +344,25 @@ Company.data.CustomStore = function(config) { ... }
   </td>
   <td class="sig">
     <a id="NX-override"></a>
-    <b>override</b>() : undefined
-    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul></ul><strong>戻り値:</strong><ul>  <li>  undefined  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+    <b>override</b>(Object orgcls, Object overrides) : void
+    <div class="mdesc"><p>既に存在するクラスに対してメソッドをオーバーライドします。
+<div class="long">
+同じ名前のメソッドが存在する場合、そのまま上書きされます。
+<br />
+<br />
+使用方法:
+<br /></p>
+
+<pre><code>NX.override(MyClass, {
+    newMethod1: function(){
+        // etc.  
+    },
+    newMethod2: function(foo){
+        // etc.  
+    }
+});
+</code></pre><div class="params"><strong>パラメータ:</strong><ul><li>  orgcls:Object  <ul>    <li>      <p>オーバーライドするクラス</p>    </li>  </ul></li><li>  overrides:Object  <ul>    <li>      <p>オブジェクトキーにメソッドやプロパティが設定されたオブジェクトを指定します。
+オリジナルクラスに存在しないメソッドは追加されます。</p>    </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  void  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
   </td>
   <td class="msource">
     NX
@@ -368,8 +385,8 @@ Company.data.CustomStore = function(config) { ... }
   </td>
   <td class="sig">
     <a id="NX-sleep"></a>
-    <b>sleep</b>() : undefined
-    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul></ul><strong>戻り値:</strong><ul>  <li>  undefined  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+    <b>sleep</b>(Number ms) : void
+    <div class="mdesc"><p>msで指定した時間(ミリ秒)処理を停止します。</p><div class="long"><div class="params"><strong>パラメータ:</strong><ul><li>  ms:Number  <ul>    <li>      <p>停止時間(ミリ秒)</p>    </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  void  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
   </td>
   <td class="msource">
     NX
@@ -380,8 +397,11 @@ Company.data.CustomStore = function(config) { ... }
   </td>
   <td class="sig">
     <a id="NX-toArray"></a>
-    <b>toArray</b>() : undefined
-    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul></ul><strong>戻り値:</strong><ul>  <li>  undefined  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+    <b>toArray</b>(Array arr, Number start, Number end) : Array
+    <div class="mdesc"><p>0 から数えて、start 番目～ end - 1 番目までの要素を抜き出した配列を返します。
+<div class="long">
+start を省略した場合は、先頭から、end を省略した場合は最後までの要素を返します。
+arr は変化しません。</p><div class="params"><strong>パラメータ:</strong><ul><li>  arr:Array  <ul>    <li>      <p>抽出する配列</p>    </li>  </ul></li><li>  start:Number  <ul>    <li>      <p>抽出開始番号</p>    </li>  </ul></li><li>  end:Number  <ul>    <li>      <p>抽出終了番号</p>    </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  Array  <ul>    <li>    <p>抽出された配列</p>    </li>  </ul>  </li></ul></div></div></div>
   </td>
   <td class="msource">
     NX
