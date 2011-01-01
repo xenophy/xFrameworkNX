@@ -46,6 +46,42 @@
   width: 16px;
 }
 
+.api-doc .member-table .expanded td.micon {
+  background: #F9F9F9 url(http://extjs.cachefly.net/ext-3.3.1/docs/resources/expand-bg-over.gif) repeat-y 100% 0%;
+  cursor: pointer;
+}
+
+.api-doc .member-table .expandable td.micon {
+  cursor: pointer;
+}
+
+.api-doc .member-table .expandable td.micon a {
+  display: block;
+  height: 30px;
+  outline: none;
+  text-decoration: none !important;
+  width: 98%;
+  cursor: pointer;
+}
+
+.api-doc .expandable .micon a {
+  background: transparent url(http://extjs.cachefly.net/ext-3.3.1/docs/resources/member-collapsed.gif) no-repeat 5px 6px;
+  cursor: pointer;
+}
+
+.api-doc .member-table .expanded td.micon a {
+  background: transparent url(http://extjs.cachefly.net/ext-3.3.1/docs/resources/member-expanded.gif) no-repeat 5px 6px;
+  cursor: pointer;
+}
+
+.api-doc .member-table .expandable td.sig .long {
+  display: none;
+}
+
+.api-doc .member-table .expanded td.sig .long {
+  display: block;
+}
+
 .api-doc .member-table td.micon a {
   cursor: default;
   display: block;
@@ -176,6 +212,13 @@
   background-image:url(../images/icons/fav.gif) !important;
   background-repeat: no-repeat;
 }
+
+.api-doc .mdesc strong {
+  color: #083772 !important;
+  display: inline;
+  font-weight: bold;
+}
+
 /*
  * Local variables:
  * tab-width: 2

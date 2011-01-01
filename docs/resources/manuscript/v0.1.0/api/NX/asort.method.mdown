@@ -1,4 +1,5 @@
 arr配列内のオブジェクトのキーをソートします。
+<div class="long">
 
     var arr = [
         {name: 'apple', order: 2},

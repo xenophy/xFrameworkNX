@@ -32,11 +32,13 @@ Ext.NavPanel = Ext.extend(Ext.tree.TreePanel, {
 
         // カテゴリノード追加
         me.root.appendChild([{
+            id: 'man-root',
             text: 'マニュアル',
             cls: 'category-node man-root',
             expanded: true,
             children: Ext.docs.man
         }, {
+            id: 'api-root',
             text: 'API ドキュメント',
             cls: 'category-node api-root',
             expanded: true,
@@ -44,6 +46,10 @@ Ext.NavPanel = Ext.extend(Ext.tree.TreePanel, {
         }]);
 
         me.on('afterrender', function() {
+
+            me.manroot = me.root.findChild('id', 'man-root');
+            me.apiroot = me.root.findChild('id', 'api-root');
+
             var el = me.getEl();
             el.on('click', function(e, t) {
 
@@ -69,7 +75,25 @@ Ext.NavPanel = Ext.extend(Ext.tree.TreePanel, {
                         var a = t.down('a');
                         var id = a.getAttribute('href');
 
+                        var tn = me.apiroot.findChild('href', id, true);
+                        tn.expand();
+
                         me.fireEvent('opendoc', id);
+
+                    } else {
+
+                        var t = e.getTarget('div.pkg-node');
+
+                        if(t) {
+
+                            var t = Ext.get(t);
+                            var a = t.down('a');
+                            var id = a.getAttribute('href');
+
+                            var tn = me.apiroot.findChild('href', id, true);
+                            tn.expand();
+                        }
+
                     }
 
                 }

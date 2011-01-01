@@ -443,6 +443,11 @@ var genApiNode = function(rootPath, targetPath, deploy, outputDir) {
                     methodDesc += htmls.method[v.name];
                 }
 
+                // 開閉設定
+                if(methodDesc.indexOf('<div class="long">') === -1) {
+                    methodDesc = methodDesc + '<div class="long">';
+                }
+
                 // パラメータ情報出力
                 var paramList = '';
                 paramList += '<div class="params">';
@@ -500,11 +505,16 @@ var genApiNode = function(rootPath, targetPath, deploy, outputDir) {
                 methodDesc += paramList;
                 methodDesc += '</div>';
 
+                // 開閉設定
+                methodDesc += '</div>';
+
+//                methodDesc = '<div ="long">' + methodDesc + '</div>';
+
                 // 継承クラスへのリンクは未実装
                 var methodDefined = clsName;
 
                 htmls.methodList += NX.sprintf([
-                    '<tr class="method-row %1$s">',
+                    '<tr class="method-row %1$s expandable">',
                     '  <td class="micon">',
                     '    <a href="#expand" class="exi">&nbsp;</a>',
                     '  </td>',
@@ -606,6 +616,7 @@ var genApiNode = function(rootPath, targetPath, deploy, outputDir) {
 
                 // パッケージツリー作成
                 var o = {
+                    href: 'pkg-' + fullNs,
                     text: pkgName,
                     cls: 'pkg-node',
                     expanded: false,

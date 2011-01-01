@@ -26,6 +26,32 @@ Ext.MainPanel = Ext.extend(Ext.Panel, {
             autoScroll: true
         });
 
+        me.on('afterrender', function() {
+
+            var el = me.getEl();
+            el.on('click', function(e, t) {
+
+                if(t = e.getTarget('.micon', 2)) {
+
+                    e.stopEvent();
+
+                    var tr = Ext.fly(t.parentNode);
+
+                    if(tr.hasClass('expandable')){
+                        tr.toggleClass('expanded');
+
+
+
+                    }
+                }
+
+            });
+
+        });
+        /*
+        }
+ 
+        * */
         // スーパークラスメソッドコール
         Ext.MainPanel.superclass.initComponent.apply(me, arguments);
     }
