@@ -55,12 +55,12 @@ Ext.extend(Ext.app.App, Ext.util.Observable, {
                     callback: function() {
                         var tr = null;
                         if(tr = el.up('tr')) {
-
                             if(tr.hasClass('expandable')){
-                                tr.toggleClass('expanded');
+                                if(!tr.hasClass('expanded')){
+                                    tr.addClass('expanded');
+                                }
                             }
                             tr.highlight('#cadaf9');
-
                         }
                     }
                 }
