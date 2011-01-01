@@ -326,8 +326,18 @@ objに指定された値が、配列の場合、内部的にeachが利用され�
   </td>
   <td class="sig">
     <a id="NX-namespace"></a>
-    <b>namespace</b>() : undefined
-    <div class="mdesc"><div class="params"><strong>パラメータ:</strong><ul></ul><strong>戻り値:</strong><ul>  <li>  undefined  <ul>    <li>        </li>  </ul>  </li></ul></div></div>
+    <b>namespace</b>(String namespace1, String namespace2, String etc) : void
+    <div class="mdesc"><p>変数やクラスのための名前空間を作成します。名前空間内の変数やクラスはグローバルではありません。
+<br />
+<br />
+使用方法:</p>
+
+<pre><code>NX.namespace('Company', 'Company.data');
+NX.namespace('Company.data');
+
+Company.Widget = function() { ... }
+Company.data.CustomStore = function(config) { ... }
+</code></pre><div class="params"><strong>パラメータ:</strong><ul><li>  namespace1:String  <ul>    <li>      <p>定義する名前空間</p>    </li>  </ul></li><li>  namespace2:String  <ul>    <li>      <p>定義する名前空間</p>    </li>  </ul></li><li>  etc:String  <ul>    <li>      <p>定義する名前空間</p>    </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  void  <ul>    <li>        </li>  </ul>  </li></ul></div></div>
   </td>
   <td class="msource">
     NX

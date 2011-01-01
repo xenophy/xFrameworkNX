@@ -85,14 +85,12 @@ Ext.extend(Ext.app.App, Ext.util.Observable, {
                 url: 'resources/output/v' + me.version + '/' + id,
                 callback: function() {
 
-                    var pre = me.docBody.child('pre');
+                    var pre = me.docBody.select('pre');
 
-                    if(pre) {
-                        Ext.each(pre, function(el) {
-                            var src = el.dom.innerHTML;
-                            sh_highlightElement(el.dom, sh_languages['javascript']);
-                        });
-                    }
+                    pre.each(function(el) {
+                        var src = el.dom.innerHTML;
+                        sh_highlightElement(el.dom, sh_languages['javascript']);
+                    });
 
                     me.currentHtml = path;
                     me.scrollToMember(clsName, hash);
@@ -180,14 +178,12 @@ Ext.extend(Ext.app.App, Ext.util.Observable, {
                                     url: 'resources/output/v' + me.version + '/' + id,
                                     callback: function() {
 
-                                        var pre = me.docBody.child('pre');
+                                        var pre = me.docBody.select('pre');
 
-                                        if(pre) {
-                                            Ext.each(pre, function(el) {
-                                                var src = el.dom.innerHTML;
-                                                sh_highlightElement(el.dom, sh_languages['javascript']);
-                                            });
-                                        }
+                                        pre.each(function(el) {
+                                            var src = el.dom.innerHTML;
+                                            sh_highlightElement(el.dom, sh_languages['javascript']);
+                                        });
 
                                         me.currentHtml = path;
                                         me.scrollToMember(clsName, hash);
