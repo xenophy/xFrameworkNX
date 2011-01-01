@@ -7,7 +7,7 @@
  */
 .api-doc h1 {
   color: #083772;
-  font-size: 18px;
+  font-size: 140%;
 }
 
 .api-doc .cls .desc {
@@ -35,6 +35,19 @@
 
 .api-doc,
 .api-doc td,
+.api-doc th {
+  /*font-size: 13px;*/
+}
+
+.api-doc {
+  font-size: 14px;
+}
+
+.api-doc td {
+  font-size: 14px;
+}
+
+
 .api-doc th {
   font-size: 13px;
 }
@@ -157,7 +170,7 @@
 .api-doc strong {
   color: #555;
   display: block;
-  font-size: 11px;
+  font-size: 76%;
   font-weight: bold;
   margin-bottom: 3px;
 }
@@ -174,7 +187,7 @@
 .api-doc pre {
   background: #F8F8F8;
   border: 1px dotted #CCC;
-  font-size: 12px;
+  font-size: 86%;
   line-height: 14px;
   margin: 1em 0px;
   margin-left: 0px;
@@ -190,7 +203,7 @@
   display: inline;
   margin-right: 10px;
   padding-left: 20px;
-  font-size: 13px;
+  font-size: 90%;
   padding-top: 3px;
 }
 
@@ -230,10 +243,27 @@
 
 .icon-hide-inherited {
   background-image: url(http://extjs.cachefly.net/ext-3.3.1/docs/resources/hide-inherited.gif) !important;
+  background-repeat: no-repeat;
 }
 
 .icon-expand-members {
   background-image: url(http://extjs.cachefly.net/ext-3.3.1/docs/resources/expand-members.gif) !important;
+  background-repeat: no-repeat;
+}
+
+.icon-font-inc {
+  background-image:url(../images/icons/font-inc.png) !important;
+  background-repeat: no-repeat;
+}
+
+.icon-font-dec {
+  background-image:url(../images/icons/font-dec.png) !important;
+  background-repeat: no-repeat;
+}
+
+.icon-font-reset {
+  background-image:url(../images/icons/font.png) !important;
+  background-repeat: no-repeat;
 }
 
 .api-doc .mdesc strong {

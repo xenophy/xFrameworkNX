@@ -24,7 +24,26 @@ Ext.MainPanel = Ext.extend(Ext.Panel, {
         // 設定適用
         Ext.apply(me, {
             autoScroll: true,
-            bbar: ['->', {
+            bbar: [{
+                text: '文字サイズ',
+                iconCls: 'icon-font-reset',
+                menu: [{
+                    text: '拡大',
+                    iconCls: 'icon-font-inc',
+                    handler: me.changeSize.createDelegate(this, [2]),
+                    hideOnClick: false
+                },{
+                    text: '縮小',
+                    iconCls: 'icon-font-dec',
+                    handler: me.changeSize.createDelegate(this, [-2]),
+                    hideOnClick: false
+                },{
+                    text: 'リセット',
+                    iconCls: 'icon-font-reset',
+                    handler: me.resetSize.createDelegate(this),
+                    hideOnClick: false
+                }]
+            },'->', {
                 ref: '../btnProp',
                 text: 'プロパティ',
                 iconCls: 'icon-prop',
@@ -160,9 +179,30 @@ Ext.MainPanel = Ext.extend(Ext.Panel, {
         bbar.show();
 
         me.doLayout();
+    },
 
+    // }}}
+    // {{{ changeSize
 
+    changeSize : function(val) {
 
+        var rule = Ext.util.CSS.getRule('#doc-body .x-panel-body', true);
+        var size = parseInt(rule.style.getPropertyValue('font-size'));
+        if(!this.fontSize){
+            this.fontSize = size;
+        }
+        Ext.util.CSS.updateRule('.api-doc td', 'fontSize', size + val + 'px');
+        Ext.util.CSS.updateRule('.api-doc', 'fontSize', size + val + 'px');
+        Ext.util.CSS.updateRule('#doc-body .x-panel-body', 'fontSize', size + val + 'px');
+    },
+
+    // }}}
+    // {{{ resetSize
+
+    resetSize : function(){
+        Ext.util.CSS.updateRule('#doc-body .x-panel-body', 'fontSize', (this.fontSize || 14) + 'px');
+        Ext.util.CSS.updateRule('.api-doc td', 'fontSize', (this.fontSize || 14) + 'px');
+        Ext.util.CSS.updateRule('.api-doc', 'fontSize', (this.fontSize || 14) + 'px');
     }
 
     // }}}
