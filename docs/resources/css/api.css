@@ -203,7 +203,17 @@
   background-repeat: no-repeat;
 }
 
+.icon-prop {
+  background-image:url(../images/icons/prop.gif) !important;
+  background-repeat: no-repeat;
+}
+
 .api-doc .nav li.method  {
+  background-image:url(../images/icons/method.gif) !important;
+  background-repeat: no-repeat;
+}
+
+.icon-method {
   background-image:url(../images/icons/method.gif) !important;
   background-repeat: no-repeat;
 }
@@ -211,6 +221,19 @@
 .api-doc .nav li.direct  {
   background-image:url(../images/icons/fav.gif) !important;
   background-repeat: no-repeat;
+}
+
+.icon-direct {
+  background-image:url(../images/icons/fav.gif) !important;
+  background-repeat: no-repeat;
+}
+
+.icon-hide-inherited {
+  background-image: url(http://extjs.cachefly.net/ext-3.3.1/docs/resources/hide-inherited.gif) !important;
+}
+
+.icon-expand-members {
+  background-image: url(http://extjs.cachefly.net/ext-3.3.1/docs/resources/expand-members.gif) !important;
 }
 
 .api-doc .mdesc strong {

@@ -23,10 +23,85 @@ Ext.MainPanel = Ext.extend(Ext.Panel, {
 
         // 設定適用
         Ext.apply(me, {
-            autoScroll: true
+            autoScroll: true,
+            bbar: ['->', {
+                ref: '../btnProp',
+                text: 'プロパティ',
+                iconCls: 'icon-prop',
+                handler: function() {
+                    var clsName = Application.currentHtml.substr('api/'.length);
+                    clsName = clsName.substr(0, clsName.length - '.html'.length);
+                    Application.scrollToMember.call(Application, clsName, 'props');
+                }
+            },{
+                ref: '../sepProp',
+                xtype: 'tbseparator',
+            },{
+                ref: '../btnMethod',
+                text: 'メソッド',
+                iconCls: 'icon-method',
+                handler: function() {
+                    var clsName = Application.currentHtml.substr('api/'.length);
+                    clsName = clsName.substr(0, clsName.length - '.html'.length);
+                    Application.scrollToMember.call(Application, clsName, 'methods');
+                }
+            },{
+                ref: '../sepMethod',
+                xtype: 'tbseparator',
+            },{
+                ref: '../btnDirect',
+                text: 'ダイレクトリンク',
+                iconCls: 'icon-direct',
+                handler: function() {
+                    var clsName = Application.currentHtml.substr('api/'.length);
+                    clsName = clsName.substr(0, clsName.length - '.html'.length);
+                    Ext.Msg.alert(
+                        'ダイレクトリンク : ' + clsName,
+                        '<a target="_blank" href="http://' + location.host + location.pathname + '?class=' + clsName + '">http://' + location.host + location.pathname + '?class=' + clsName + '</a>'
+                    );
+                }
+            },{
+                ref: '../sepDirect',
+                xtype: 'tbseparator',
+            },{
+                iconCls: 'icon-hide-inherited',
+                enableToggle: true,
+                disabled: true,
+                ref: '../btnHideInherited',
+            },{
+                ref: '../sepHideInherited',
+                xtype: 'tbseparator',
+            },{
+                iconCls: 'icon-expand-members',
+                enableToggle: true,
+                tooltip: 'すべてのメンバを展開',
+                ref: '../btnExpandMembers',
+                toggleHandler: function(btn, toggle) {
+
+                    tr = Ext.query('tr.expandable', me.body.dom);
+
+                    if(toggle) {
+                        Ext.each(tr, function(t) {
+                            if(!Ext.fly(t).hasClass('expanded')) {
+                                Ext.fly(t).addClass('expanded');
+                            }
+                        });
+                    } else {
+                        Ext.each(tr, function(t) {
+                            if(Ext.fly(t).hasClass('expanded')) {
+                                Ext.fly(t).removeClass('expanded');
+                            }
+                        });
+                    }
+
+                },
+                scope : me
+            }]
         });
 
         me.on('afterrender', function() {
+
+            me.getBottomToolbar().hide();
 
             var el = me.getEl();
             el.on('click', function(e, t) {
@@ -39,21 +114,55 @@ Ext.MainPanel = Ext.extend(Ext.Panel, {
 
                     if(tr.hasClass('expandable')){
                         tr.toggleClass('expanded');
-
-
-
                     }
                 }
 
             });
 
         });
-        /*
-        }
- 
-        * */
+
         // スーパークラスメソッドコール
         Ext.MainPanel.superclass.initComponent.apply(me, arguments);
+    },
+
+    // }}}
+    // {{{ changeBottomToolbar
+
+    changeBottomToolbar : function(type) {
+
+        var me = this;
+        var bbar = me.getBottomToolbar();
+
+        if(type == 'man') {
+
+            me.btnProp.hide();
+            me.sepProp.hide();
+            me.btnMethod.hide();
+            me.sepMethod.hide();
+            me.btnDirect.hide();
+            me.sepDirect.hide();
+            me.btnHideInherited.hide();
+            me.sepHideInherited.hide();
+            me.btnExpandMembers.hide();
+
+        } else {
+
+            me.btnProp.show();
+            me.sepProp.show();
+            me.btnMethod.show();
+            me.sepMethod.show();
+            me.btnDirect.show();
+            me.sepDirect.show();
+            me.btnHideInherited.show();
+            me.sepHideInherited.show();
+            me.btnExpandMembers.show();
+        }
+        bbar.show();
+
+        me.doLayout();
+
+
+
     }
 
     // }}}

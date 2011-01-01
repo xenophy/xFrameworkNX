@@ -59,7 +59,7 @@ Ext.NavPanel = Ext.extend(Ext.tree.TreePanel, {
                     iconCls: 'icon-expand-all',
                     tooltip: 'Expand All',
                     handler: function(){
-                        this.root.expand(true); 
+                        this.root.expand(true);
                         me.manroot.expand(true);
                         me.apiroot.expand(true);
                     },
@@ -67,8 +67,8 @@ Ext.NavPanel = Ext.extend(Ext.tree.TreePanel, {
                 }, '-', {
                     iconCls: 'icon-collapse-all',
                     tooltip: 'Collapse All',
-                    handler: function(){ 
-                        this.root.collapse(true); 
+                    handler: function(){
+                        this.root.collapse(true);
                         me.manroot.expand(false);
                         me.apiroot.expand(false);
                     },
@@ -143,6 +143,12 @@ Ext.NavPanel = Ext.extend(Ext.tree.TreePanel, {
 
                     }
 
+                }
+
+                if(e.getTarget('div.api-node')) {
+                    me.fireEvent('doctype', 'api');
+                } else if(e.getTarget('div.man-node')) {
+                    me.fireEvent('doctype', 'man');
                 }
 
                 e.stopEvent();

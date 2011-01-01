@@ -113,7 +113,7 @@ var genManNode = function(rootPath, targetPath, deploy, outputDir) {
             var o = {
                 text: title,
                 href: cd + '/' + cf,
-                cls: 'doc',
+                cls: 'doc man-node',
                 leaf: true
             };
 
@@ -258,7 +258,7 @@ var genApiNode = function(rootPath, targetPath, deploy, outputDir) {
             var o = {
                 text: clsName,
                 href: 'api/' + fullNs + '.html',
-                cls: 'cls-node',
+                cls: 'cls-node api-node',
                 expanded: false,
                 order: 1,
                 children: []
@@ -301,7 +301,7 @@ var genApiNode = function(rootPath, targetPath, deploy, outputDir) {
                 o.children.push({
                     text: v.name,
                     href: 'api/' + fullNs + '.html#' + v.name,
-                    cls: 'prop-node',
+                    cls: 'prop-node api-node',
                     order: 10,
                     leaf: true
                 });
@@ -415,7 +415,7 @@ var genApiNode = function(rootPath, targetPath, deploy, outputDir) {
                 o.children.push({
                     text: v.name,
                     href: 'api/' + fullNs + '.html#' + v.name,
-                    cls: 'method-node',
+                    cls: 'method-node api-node',
                     order: 11,
                     leaf: true
                 });
@@ -550,6 +550,7 @@ var genApiNode = function(rootPath, targetPath, deploy, outputDir) {
             });
 
             var apiTpl = [
+                /*
                 '<div class="nav">',
                 '<ul>',
                 '   <li class="prop">',
@@ -563,6 +564,7 @@ var genApiNode = function(rootPath, targetPath, deploy, outputDir) {
                 '   </li>',
                 '</ul>',
                 '</div>',
+                */
             ].join(LF) + NXDoc.apiTpl;
 
             // HTML出力

@@ -113,6 +113,8 @@ Ext.extend(Ext.app.App, Ext.util.Observable, {
 
         var me = this;
 
+        // クイックチップ初期化
+        Ext.QuickTips.init();
 
         // ビューポート生成
         me.viewport = new Ext.Viewport({
@@ -163,6 +165,9 @@ Ext.extend(Ext.app.App, Ext.util.Observable, {
 
                 // リスナー設定
                 listeners: {
+                    doctype: function(type) {
+                        me.viewport.main.changeBottomToolbar.call(me.viewport.main, type);
+                    },
                     opendoc: {
                         fn: function(id, node) {
 
