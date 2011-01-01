@@ -1,4 +1,5 @@
 使用しているxFramework NXのバージョン詳細
+<div class="long">
 
 * major
   * メジャーバージョン

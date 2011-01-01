@@ -315,6 +315,15 @@ var genApiNode = function(rootPath, targetPath, deploy, outputDir) {
                 if(htmls.prop[v.name]) {
                     propDesc = '<div class="mdesc">' + htmls.prop[v.name] + '</div>';
                 }
+
+                // 開閉設定
+                var expandable = false;
+                if(propDesc.indexOf('<div class="long">') !== -1) {
+                    propDesc += '</div>';
+                    expandable = true;
+                    extended += ' expandable';
+                }
+
                 // 継承クラスへのリンクは未実装
                 var propDefined = clsName;
 
