@@ -524,6 +524,7 @@ var genApiNode = function(rootPath, targetPath, deploy, outputDir) {
 
                 // 継承クラスへのリンクは未実装
                 var methodDefined = clsName;
+                methodDefined = fullNs;
 
                 htmls.methodList += NX.sprintf([
                     '<tr class="method-row %1$s expandable">',

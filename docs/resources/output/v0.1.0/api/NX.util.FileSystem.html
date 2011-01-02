@@ -15,11 +15,83 @@
   </td>
   <td class="sig">
     <a id="NX.util.FileSystem-basename"></a>
-    <b>basename</b>() : undefined
+    <b>basename</b>(String path, [String suffix]) : String
+    <div class="mdesc"><p>ファイルあるいはディレクトリへのパスを含む文字列を受け取って、最後にある名前の部分を返します。</p><div class="long"><div class="params"><strong>パラメータ:</strong><ul><li>  path:String  <ul>    <li>      <p>パス</p>    </li>  </ul></li><li>  suffix:String  <ul>    <li> (オプション) <p>名前の部分がsuffixで終了する場合、この部分もカットされます。</p>    </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  String  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+  </td>
+  <td class="msource">
+    NX.util.FileSystem
+  </td>
+</tr><tr class="method-row inherited expandable">
+  <td class="micon">
+    <a href="#expand" class="exi">&nbsp;</a>
+  </td>
+  <td class="sig">
+    <a id="NX.util.FileSystem-chmod"></a>
+    <b>chmod</b>() : undefined
     <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul></ul><strong>戻り値:</strong><ul>  <li>  undefined  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
   </td>
   <td class="msource">
-    FileSystem
+    NX.util.FileSystem
+  </td>
+</tr><tr class="method-row inherited expandable">
+  <td class="micon">
+    <a href="#expand" class="exi">&nbsp;</a>
+  </td>
+  <td class="sig">
+    <a id="NX.util.FileSystem-chmodSync"></a>
+    <b>chmodSync</b>() : undefined
+    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul></ul><strong>戻り値:</strong><ul>  <li>  undefined  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+  </td>
+  <td class="msource">
+    NX.util.FileSystem
+  </td>
+</tr><tr class="method-row inherited expandable">
+  <td class="micon">
+    <a href="#expand" class="exi">&nbsp;</a>
+  </td>
+  <td class="sig">
+    <a id="NX.util.FileSystem-close"></a>
+    <b>close</b>() : undefined
+    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul></ul><strong>戻り値:</strong><ul>  <li>  undefined  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+  </td>
+  <td class="msource">
+    NX.util.FileSystem
+  </td>
+</tr><tr class="method-row inherited expandable">
+  <td class="micon">
+    <a href="#expand" class="exi">&nbsp;</a>
+  </td>
+  <td class="sig">
+    <a id="NX.util.FileSystem-closeSync"></a>
+    <b>closeSync</b>() : undefined
+    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul></ul><strong>戻り値:</strong><ul>  <li>  undefined  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+  </td>
+  <td class="msource">
+    NX.util.FileSystem
+  </td>
+</tr><tr class="method-row inherited expandable">
+  <td class="micon">
+    <a href="#expand" class="exi">&nbsp;</a>
+  </td>
+  <td class="sig">
+    <a id="NX.util.FileSystem-createReadStream"></a>
+    <b>createReadStream</b>() : undefined
+    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul></ul><strong>戻り値:</strong><ul>  <li>  undefined  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+  </td>
+  <td class="msource">
+    NX.util.FileSystem
+  </td>
+</tr><tr class="method-row inherited expandable">
+  <td class="micon">
+    <a href="#expand" class="exi">&nbsp;</a>
+  </td>
+  <td class="sig">
+    <a id="NX.util.FileSystem-createWriteStream"></a>
+    <b>createWriteStream</b>() : undefined
+    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul></ul><strong>戻り値:</strong><ul>  <li>  undefined  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+  </td>
+  <td class="msource">
+    NX.util.FileSystem
   </td>
 </tr><tr class="method-row inherited expandable">
   <td class="micon">
@@ -27,11 +99,11 @@
   </td>
   <td class="sig">
     <a id="NX.util.FileSystem-dirname"></a>
-    <b>dirname</b>() : undefined
-    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul></ul><strong>戻り値:</strong><ul>  <li>  undefined  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+    <b>dirname</b>(String path) : String
+    <div class="mdesc"><p>親ディレクトリのパスを返す</p><div class="long"><div class="params"><strong>パラメータ:</strong><ul><li>  path:String  <ul>    <li>      <p>パス</p>    </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  String  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
   </td>
   <td class="msource">
-    FileSystem
+    NX.util.FileSystem
   </td>
 </tr><tr class="method-row inherited expandable">
   <td class="micon">
@@ -39,11 +111,35 @@
   </td>
   <td class="sig">
     <a id="NX.util.FileSystem-exists"></a>
-    <b>exists</b>() : undefined
+    <b>exists</b>(String path, [Boolean displayError]) : Boolean
+    <div class="mdesc"><p>パスの存在確認をします</p><div class="long"><div class="params"><strong>パラメータ:</strong><ul><li>  path:String  <ul>    <li>      <p>パス</p>    </li>  </ul></li><li>  displayError:Boolean  <ul>    <li> (オプション) <p>パスが存在しない場合、例外メッセージを表示する場合はtrueを設定します。</p>    </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  Boolean  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+  </td>
+  <td class="msource">
+    NX.util.FileSystem
+  </td>
+</tr><tr class="method-row inherited expandable">
+  <td class="micon">
+    <a href="#expand" class="exi">&nbsp;</a>
+  </td>
+  <td class="sig">
+    <a id="NX.util.FileSystem-fstat"></a>
+    <b>fstat</b>() : undefined
     <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul></ul><strong>戻り値:</strong><ul>  <li>  undefined  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
   </td>
   <td class="msource">
-    FileSystem
+    NX.util.FileSystem
+  </td>
+</tr><tr class="method-row inherited expandable">
+  <td class="micon">
+    <a href="#expand" class="exi">&nbsp;</a>
+  </td>
+  <td class="sig">
+    <a id="NX.util.FileSystem-fstatSync"></a>
+    <b>fstatSync</b>() : undefined
+    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul></ul><strong>戻り値:</strong><ul>  <li>  undefined  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+  </td>
+  <td class="msource">
+    NX.util.FileSystem
   </td>
 </tr><tr class="method-row inherited expandable">
   <td class="micon">
@@ -51,11 +147,23 @@
   </td>
   <td class="sig">
     <a id="NX.util.FileSystem-isReadable"></a>
-    <b>isReadable</b>() : undefined
-    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul></ul><strong>戻り値:</strong><ul>  <li>  undefined  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+    <b>isReadable</b>(String path) : Boolean
+    <div class="mdesc"><p>パスの読み取りが可能か検査します。</p><div class="long"><div class="params"><strong>パラメータ:</strong><ul><li>  path:String  <ul>    <li>      <p>パス</p>    </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  Boolean  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
   </td>
   <td class="msource">
-    FileSystem
+    NX.util.FileSystem
+  </td>
+</tr><tr class="method-row inherited expandable">
+  <td class="micon">
+    <a href="#expand" class="exi">&nbsp;</a>
+  </td>
+  <td class="sig">
+    <a id="NX.util.FileSystem-isWritable"></a>
+    <b>isWritable</b>(String path) : Boolean
+    <div class="mdesc"><p>パスの書き込みが可能か検査します。</p><div class="long"><div class="params"><strong>パラメータ:</strong><ul><li>  path:String  <ul>    <li>      <p>パス</p>    </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  Boolean  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+  </td>
+  <td class="msource">
+    NX.util.FileSystem
   </td>
 </tr><tr class="method-row inherited expandable">
   <td class="micon">
@@ -63,11 +171,461 @@
   </td>
   <td class="sig">
     <a id="NX.util.FileSystem-iterate"></a>
-    <b>iterate</b>() : undefined
+    <b>iterate</b>(String path, Function callback, [Object scope]) : void
+    <div class="mdesc"><p>パス以下のディレクトリとファイルを繰り返し処理します。</p><div class="long"><div class="params"><strong>パラメータ:</strong><ul><li>  path:String  <ul>    <li>      <p>パス</p>    </li>  </ul></li><li>  callback:Function  <ul>    <li>      <p>コールバック関数</p>    </li>  </ul></li><li>  scope:Object  <ul>    <li> (オプション) <p>繰り返されるコールバック関数内のスコープオブジェクトを指定します。</p>    </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  void  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+  </td>
+  <td class="msource">
+    NX.util.FileSystem
+  </td>
+</tr><tr class="method-row inherited expandable">
+  <td class="micon">
+    <a href="#expand" class="exi">&nbsp;</a>
+  </td>
+  <td class="sig">
+    <a id="NX.util.FileSystem-link"></a>
+    <b>link</b>() : undefined
     <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul></ul><strong>戻り値:</strong><ul>  <li>  undefined  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
   </td>
   <td class="msource">
-    FileSystem
+    NX.util.FileSystem
+  </td>
+</tr><tr class="method-row inherited expandable">
+  <td class="micon">
+    <a href="#expand" class="exi">&nbsp;</a>
+  </td>
+  <td class="sig">
+    <a id="NX.util.FileSystem-linkSync"></a>
+    <b>linkSync</b>() : undefined
+    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul></ul><strong>戻り値:</strong><ul>  <li>  undefined  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+  </td>
+  <td class="msource">
+    NX.util.FileSystem
+  </td>
+</tr><tr class="method-row inherited expandable">
+  <td class="micon">
+    <a href="#expand" class="exi">&nbsp;</a>
+  </td>
+  <td class="sig">
+    <a id="NX.util.FileSystem-lstat"></a>
+    <b>lstat</b>() : undefined
+    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul></ul><strong>戻り値:</strong><ul>  <li>  undefined  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+  </td>
+  <td class="msource">
+    NX.util.FileSystem
+  </td>
+</tr><tr class="method-row inherited expandable">
+  <td class="micon">
+    <a href="#expand" class="exi">&nbsp;</a>
+  </td>
+  <td class="sig">
+    <a id="NX.util.FileSystem-lstatSync"></a>
+    <b>lstatSync</b>() : undefined
+    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul></ul><strong>戻り値:</strong><ul>  <li>  undefined  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+  </td>
+  <td class="msource">
+    NX.util.FileSystem
+  </td>
+</tr><tr class="method-row inherited expandable">
+  <td class="micon">
+    <a href="#expand" class="exi">&nbsp;</a>
+  </td>
+  <td class="sig">
+    <a id="NX.util.FileSystem-mkdir"></a>
+    <b>mkdir</b>() : undefined
+    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul></ul><strong>戻り値:</strong><ul>  <li>  undefined  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+  </td>
+  <td class="msource">
+    NX.util.FileSystem
+  </td>
+</tr><tr class="method-row inherited expandable">
+  <td class="micon">
+    <a href="#expand" class="exi">&nbsp;</a>
+  </td>
+  <td class="sig">
+    <a id="NX.util.FileSystem-mkdirSync"></a>
+    <b>mkdirSync</b>() : undefined
+    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul></ul><strong>戻り値:</strong><ul>  <li>  undefined  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+  </td>
+  <td class="msource">
+    NX.util.FileSystem
+  </td>
+</tr><tr class="method-row inherited expandable">
+  <td class="micon">
+    <a href="#expand" class="exi">&nbsp;</a>
+  </td>
+  <td class="sig">
+    <a id="NX.util.FileSystem-open"></a>
+    <b>open</b>() : undefined
+    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul></ul><strong>戻り値:</strong><ul>  <li>  undefined  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+  </td>
+  <td class="msource">
+    NX.util.FileSystem
+  </td>
+</tr><tr class="method-row inherited expandable">
+  <td class="micon">
+    <a href="#expand" class="exi">&nbsp;</a>
+  </td>
+  <td class="sig">
+    <a id="NX.util.FileSystem-openSync"></a>
+    <b>openSync</b>() : undefined
+    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul></ul><strong>戻り値:</strong><ul>  <li>  undefined  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+  </td>
+  <td class="msource">
+    NX.util.FileSystem
+  </td>
+</tr><tr class="method-row inherited expandable">
+  <td class="micon">
+    <a href="#expand" class="exi">&nbsp;</a>
+  </td>
+  <td class="sig">
+    <a id="NX.util.FileSystem-pathinfo"></a>
+    <b>pathinfo</b>(String path, [String options]) : Mixed value
+    <div class="mdesc"><p>pathinfo()は、pathに関する情報を有するオブジェクトを返します。</p><div class="long"><div class="params"><strong>パラメータ:</strong><ul><li>  path:String  <ul>    <li>      <p>調べたいパス</p>    </li>  </ul></li><li>  options:String  <ul>    <li> (オプション) <p>どの要素を返すのかをオプションのパラメータoptionsで指定します。</p>
+
+<p><div class="long">
+これは'PATHINFO<em>DIRNAME'、'PATHINFO</em>BASENAME'、'PATHINFO<em>EXTENSION'および'PATHINFO</em>FILENAME'の組み合わせとなります。
+デフォルトではすべての要素を返します。</p>    </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  Mixed value  <ul>    <li>    <p>以下の要素を含むオブジェクトを返します。dirname(ディレクトリ名)、basename(ファイル名)そして、もし存在すればextension(拡張子)。</p>
+
+<p>optionsを使用すると、すべての要素を選択しない限りこの関数の返り値は文字列となります。</p>    </li>  </ul>  </li></ul></div></div></div>
+  </td>
+  <td class="msource">
+    NX.util.FileSystem
+  </td>
+</tr><tr class="method-row inherited expandable">
+  <td class="micon">
+    <a href="#expand" class="exi">&nbsp;</a>
+  </td>
+  <td class="sig">
+    <a id="NX.util.FileSystem-read"></a>
+    <b>read</b>() : undefined
+    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul></ul><strong>戻り値:</strong><ul>  <li>  undefined  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+  </td>
+  <td class="msource">
+    NX.util.FileSystem
+  </td>
+</tr><tr class="method-row inherited expandable">
+  <td class="micon">
+    <a href="#expand" class="exi">&nbsp;</a>
+  </td>
+  <td class="sig">
+    <a id="NX.util.FileSystem-readFile"></a>
+    <b>readFile</b>() : undefined
+    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul></ul><strong>戻り値:</strong><ul>  <li>  undefined  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+  </td>
+  <td class="msource">
+    NX.util.FileSystem
+  </td>
+</tr><tr class="method-row inherited expandable">
+  <td class="micon">
+    <a href="#expand" class="exi">&nbsp;</a>
+  </td>
+  <td class="sig">
+    <a id="NX.util.FileSystem-readFileSync"></a>
+    <b>readFileSync</b>() : undefined
+    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul></ul><strong>戻り値:</strong><ul>  <li>  undefined  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+  </td>
+  <td class="msource">
+    NX.util.FileSystem
+  </td>
+</tr><tr class="method-row inherited expandable">
+  <td class="micon">
+    <a href="#expand" class="exi">&nbsp;</a>
+  </td>
+  <td class="sig">
+    <a id="NX.util.FileSystem-readSync"></a>
+    <b>readSync</b>() : undefined
+    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul></ul><strong>戻り値:</strong><ul>  <li>  undefined  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+  </td>
+  <td class="msource">
+    NX.util.FileSystem
+  </td>
+</tr><tr class="method-row inherited expandable">
+  <td class="micon">
+    <a href="#expand" class="exi">&nbsp;</a>
+  </td>
+  <td class="sig">
+    <a id="NX.util.FileSystem-readdir"></a>
+    <b>readdir</b>() : undefined
+    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul></ul><strong>戻り値:</strong><ul>  <li>  undefined  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+  </td>
+  <td class="msource">
+    NX.util.FileSystem
+  </td>
+</tr><tr class="method-row inherited expandable">
+  <td class="micon">
+    <a href="#expand" class="exi">&nbsp;</a>
+  </td>
+  <td class="sig">
+    <a id="NX.util.FileSystem-readdirSync"></a>
+    <b>readdirSync</b>() : undefined
+    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul></ul><strong>戻り値:</strong><ul>  <li>  undefined  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+  </td>
+  <td class="msource">
+    NX.util.FileSystem
+  </td>
+</tr><tr class="method-row inherited expandable">
+  <td class="micon">
+    <a href="#expand" class="exi">&nbsp;</a>
+  </td>
+  <td class="sig">
+    <a id="NX.util.FileSystem-readlink"></a>
+    <b>readlink</b>() : undefined
+    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul></ul><strong>戻り値:</strong><ul>  <li>  undefined  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+  </td>
+  <td class="msource">
+    NX.util.FileSystem
+  </td>
+</tr><tr class="method-row inherited expandable">
+  <td class="micon">
+    <a href="#expand" class="exi">&nbsp;</a>
+  </td>
+  <td class="sig">
+    <a id="NX.util.FileSystem-readlinkSync"></a>
+    <b>readlinkSync</b>() : undefined
+    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul></ul><strong>戻り値:</strong><ul>  <li>  undefined  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+  </td>
+  <td class="msource">
+    NX.util.FileSystem
+  </td>
+</tr><tr class="method-row inherited expandable">
+  <td class="micon">
+    <a href="#expand" class="exi">&nbsp;</a>
+  </td>
+  <td class="sig">
+    <a id="NX.util.FileSystem-realpath"></a>
+    <b>realpath</b>() : undefined
+    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul></ul><strong>戻り値:</strong><ul>  <li>  undefined  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+  </td>
+  <td class="msource">
+    NX.util.FileSystem
+  </td>
+</tr><tr class="method-row inherited expandable">
+  <td class="micon">
+    <a href="#expand" class="exi">&nbsp;</a>
+  </td>
+  <td class="sig">
+    <a id="NX.util.FileSystem-realpathSync"></a>
+    <b>realpathSync</b>() : undefined
+    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul></ul><strong>戻り値:</strong><ul>  <li>  undefined  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+  </td>
+  <td class="msource">
+    NX.util.FileSystem
+  </td>
+</tr><tr class="method-row inherited expandable">
+  <td class="micon">
+    <a href="#expand" class="exi">&nbsp;</a>
+  </td>
+  <td class="sig">
+    <a id="NX.util.FileSystem-rename"></a>
+    <b>rename</b>() : undefined
+    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul></ul><strong>戻り値:</strong><ul>  <li>  undefined  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+  </td>
+  <td class="msource">
+    NX.util.FileSystem
+  </td>
+</tr><tr class="method-row inherited expandable">
+  <td class="micon">
+    <a href="#expand" class="exi">&nbsp;</a>
+  </td>
+  <td class="sig">
+    <a id="NX.util.FileSystem-renameSync"></a>
+    <b>renameSync</b>() : undefined
+    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul></ul><strong>戻り値:</strong><ul>  <li>  undefined  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+  </td>
+  <td class="msource">
+    NX.util.FileSystem
+  </td>
+</tr><tr class="method-row inherited expandable">
+  <td class="micon">
+    <a href="#expand" class="exi">&nbsp;</a>
+  </td>
+  <td class="sig">
+    <a id="NX.util.FileSystem-rmdir"></a>
+    <b>rmdir</b>() : undefined
+    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul></ul><strong>戻り値:</strong><ul>  <li>  undefined  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+  </td>
+  <td class="msource">
+    NX.util.FileSystem
+  </td>
+</tr><tr class="method-row inherited expandable">
+  <td class="micon">
+    <a href="#expand" class="exi">&nbsp;</a>
+  </td>
+  <td class="sig">
+    <a id="NX.util.FileSystem-rmdirSync"></a>
+    <b>rmdirSync</b>() : undefined
+    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul></ul><strong>戻り値:</strong><ul>  <li>  undefined  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+  </td>
+  <td class="msource">
+    NX.util.FileSystem
+  </td>
+</tr><tr class="method-row inherited expandable">
+  <td class="micon">
+    <a href="#expand" class="exi">&nbsp;</a>
+  </td>
+  <td class="sig">
+    <a id="NX.util.FileSystem-stat"></a>
+    <b>stat</b>() : undefined
+    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul></ul><strong>戻り値:</strong><ul>  <li>  undefined  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+  </td>
+  <td class="msource">
+    NX.util.FileSystem
+  </td>
+</tr><tr class="method-row inherited expandable">
+  <td class="micon">
+    <a href="#expand" class="exi">&nbsp;</a>
+  </td>
+  <td class="sig">
+    <a id="NX.util.FileSystem-statSync"></a>
+    <b>statSync</b>() : undefined
+    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul></ul><strong>戻り値:</strong><ul>  <li>  undefined  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+  </td>
+  <td class="msource">
+    NX.util.FileSystem
+  </td>
+</tr><tr class="method-row inherited expandable">
+  <td class="micon">
+    <a href="#expand" class="exi">&nbsp;</a>
+  </td>
+  <td class="sig">
+    <a id="NX.util.FileSystem-symlink"></a>
+    <b>symlink</b>() : undefined
+    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul></ul><strong>戻り値:</strong><ul>  <li>  undefined  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+  </td>
+  <td class="msource">
+    NX.util.FileSystem
+  </td>
+</tr><tr class="method-row inherited expandable">
+  <td class="micon">
+    <a href="#expand" class="exi">&nbsp;</a>
+  </td>
+  <td class="sig">
+    <a id="NX.util.FileSystem-symlinkSync"></a>
+    <b>symlinkSync</b>() : undefined
+    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul></ul><strong>戻り値:</strong><ul>  <li>  undefined  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+  </td>
+  <td class="msource">
+    NX.util.FileSystem
+  </td>
+</tr><tr class="method-row inherited expandable">
+  <td class="micon">
+    <a href="#expand" class="exi">&nbsp;</a>
+  </td>
+  <td class="sig">
+    <a id="NX.util.FileSystem-truncate"></a>
+    <b>truncate</b>() : undefined
+    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul></ul><strong>戻り値:</strong><ul>  <li>  undefined  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+  </td>
+  <td class="msource">
+    NX.util.FileSystem
+  </td>
+</tr><tr class="method-row inherited expandable">
+  <td class="micon">
+    <a href="#expand" class="exi">&nbsp;</a>
+  </td>
+  <td class="sig">
+    <a id="NX.util.FileSystem-truncateSync"></a>
+    <b>truncateSync</b>() : undefined
+    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul></ul><strong>戻り値:</strong><ul>  <li>  undefined  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+  </td>
+  <td class="msource">
+    NX.util.FileSystem
+  </td>
+</tr><tr class="method-row inherited expandable">
+  <td class="micon">
+    <a href="#expand" class="exi">&nbsp;</a>
+  </td>
+  <td class="sig">
+    <a id="NX.util.FileSystem-unlink"></a>
+    <b>unlink</b>() : undefined
+    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul></ul><strong>戻り値:</strong><ul>  <li>  undefined  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+  </td>
+  <td class="msource">
+    NX.util.FileSystem
+  </td>
+</tr><tr class="method-row inherited expandable">
+  <td class="micon">
+    <a href="#expand" class="exi">&nbsp;</a>
+  </td>
+  <td class="sig">
+    <a id="NX.util.FileSystem-unlinkSync"></a>
+    <b>unlinkSync</b>() : undefined
+    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul></ul><strong>戻り値:</strong><ul>  <li>  undefined  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+  </td>
+  <td class="msource">
+    NX.util.FileSystem
+  </td>
+</tr><tr class="method-row inherited expandable">
+  <td class="micon">
+    <a href="#expand" class="exi">&nbsp;</a>
+  </td>
+  <td class="sig">
+    <a id="NX.util.FileSystem-unwatchFile"></a>
+    <b>unwatchFile</b>() : undefined
+    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul></ul><strong>戻り値:</strong><ul>  <li>  undefined  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+  </td>
+  <td class="msource">
+    NX.util.FileSystem
+  </td>
+</tr><tr class="method-row inherited expandable">
+  <td class="micon">
+    <a href="#expand" class="exi">&nbsp;</a>
+  </td>
+  <td class="sig">
+    <a id="NX.util.FileSystem-watchFile"></a>
+    <b>watchFile</b>() : undefined
+    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul></ul><strong>戻り値:</strong><ul>  <li>  undefined  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+  </td>
+  <td class="msource">
+    NX.util.FileSystem
+  </td>
+</tr><tr class="method-row inherited expandable">
+  <td class="micon">
+    <a href="#expand" class="exi">&nbsp;</a>
+  </td>
+  <td class="sig">
+    <a id="NX.util.FileSystem-write"></a>
+    <b>write</b>() : undefined
+    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul></ul><strong>戻り値:</strong><ul>  <li>  undefined  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+  </td>
+  <td class="msource">
+    NX.util.FileSystem
+  </td>
+</tr><tr class="method-row inherited expandable">
+  <td class="micon">
+    <a href="#expand" class="exi">&nbsp;</a>
+  </td>
+  <td class="sig">
+    <a id="NX.util.FileSystem-writeFile"></a>
+    <b>writeFile</b>() : undefined
+    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul></ul><strong>戻り値:</strong><ul>  <li>  undefined  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+  </td>
+  <td class="msource">
+    NX.util.FileSystem
+  </td>
+</tr><tr class="method-row inherited expandable">
+  <td class="micon">
+    <a href="#expand" class="exi">&nbsp;</a>
+  </td>
+  <td class="sig">
+    <a id="NX.util.FileSystem-writeFileSync"></a>
+    <b>writeFileSync</b>() : undefined
+    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul></ul><strong>戻り値:</strong><ul>  <li>  undefined  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+  </td>
+  <td class="msource">
+    NX.util.FileSystem
+  </td>
+</tr><tr class="method-row inherited expandable">
+  <td class="micon">
+    <a href="#expand" class="exi">&nbsp;</a>
+  </td>
+  <td class="sig">
+    <a id="NX.util.FileSystem-writeSync"></a>
+    <b>writeSync</b>() : undefined
+    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul></ul><strong>戻り値:</strong><ul>  <li>  undefined  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+  </td>
+  <td class="msource">
+    NX.util.FileSystem
   </td>
 </tr>
 </table></div>
