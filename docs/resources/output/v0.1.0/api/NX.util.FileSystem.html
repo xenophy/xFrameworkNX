@@ -325,8 +325,10 @@ pathがシンボリックリンクの場合、シンボリックリンクでは�
   </td>
   <td class="sig">
     <a id="NX.util.FileSystem-mkdir"></a>
-    <b>mkdir</b>(未定義 path, 未定義 suffix) : String
-    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul><li>  path:未定義  <ul>    <li>          </li>  </ul></li><li>  suffix:未定義  <ul>    <li>          </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  String  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+    <b>mkdir</b>(String path, Number mode, [Function callback]) : void
+    <div class="mdesc"><p>非同期で指定したディレクトリを作成します。</p><div class="long"><div class="params"><strong>パラメータ:</strong><ul><li>  path:String  <ul>    <li>      <p>ファイルへのパス</p>    </li>  </ul></li><li>  mode:Number  <ul>    <li>      <p>modeは自動的には8進数と見なされないので注意してください。
+このため、("g+w"のような)文字列は正常に動作しません。
+意図した操作を行うには、modeの前にゼロ(0)を付ける必要があります。</p>    </li>  </ul></li><li>  callback:Function  <ul>    <li> (オプション) <p>処理後のコールバック関数</p>    </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  void  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
   </td>
   <td class="msource">
     NX.util.FileSystem
@@ -337,8 +339,10 @@ pathがシンボリックリンクの場合、シンボリックリンクでは�
   </td>
   <td class="sig">
     <a id="NX.util.FileSystem-mkdirSync"></a>
-    <b>mkdirSync</b>(未定義 path, 未定義 suffix) : String
-    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul><li>  path:未定義  <ul>    <li>          </li>  </ul></li><li>  suffix:未定義  <ul>    <li>          </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  String  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+    <b>mkdirSync</b>(String path, Number mode) : void
+    <div class="mdesc"><p>同期で指定したディレクトリを作成します。</p><div class="long"><div class="params"><strong>パラメータ:</strong><ul><li>  path:String  <ul>    <li>      <p>ファイルへのパス</p>    </li>  </ul></li><li>  mode:Number  <ul>    <li>      <p>modeは自動的には8進数と見なされないので注意してください。
+このため、("g+w"のような)文字列は正常に動作しません。
+意図した操作を行うには、modeの前にゼロ(0)を付ける必要があります。</p>    </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  void  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
   </td>
   <td class="msource">
     NX.util.FileSystem
@@ -439,8 +443,16 @@ pathがシンボリックリンクの場合、シンボリックリンクでは�
   </td>
   <td class="sig">
     <a id="NX.util.FileSystem-readdir"></a>
-    <b>readdir</b>(未定義 path, 未定義 suffix) : String
-    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul><li>  path:未定義  <ul>    <li>          </li>  </ul></li><li>  suffix:未定義  <ul>    <li>          </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  String  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+    <b>readdir</b>(String path, [Function callback]) : void
+    <div class="mdesc"><p>非同期でディレクトリから次のファイルのファイル名を返します。</p>
+
+<p><div class="long">
+ファイル名はファイルシステム上に格納されている順番で返されます。</p><div class="params"><strong>パラメータ:</strong><ul><li>  path:String  <ul>    <li>      <p>ディレクトリのパス</p>    </li>  </ul></li><li>  callback:Function  <ul>    <li> (オプション) <p>処理後のコールバック関数</p>
+
+<p><br />
+第1引数(err):エラーメッセージ</p>
+
+<p>第2引数(files):'.' と '..' を除くディレクトリ内のファイル名の配列</p>    </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  void  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
   </td>
   <td class="msource">
     NX.util.FileSystem
@@ -451,8 +463,11 @@ pathがシンボリックリンクの場合、シンボリックリンクでは�
   </td>
   <td class="sig">
     <a id="NX.util.FileSystem-readdirSync"></a>
-    <b>readdirSync</b>(未定義 path, 未定義 suffix) : String
-    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul><li>  path:未定義  <ul>    <li>          </li>  </ul></li><li>  suffix:未定義  <ul>    <li>          </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  String  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+    <b>readdirSync</b>(String path) : Array
+    <div class="mdesc"><p>同期でディレクトリから次のファイルのファイル名を返します。</p>
+
+<p><div class="long">
+ファイル名はファイルシステム上に格納されている順番で返されます。</p><div class="params"><strong>パラメータ:</strong><ul><li>  path:String  <ul>    <li>      <p>ディレクトリのパス</p>    </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  Array  <ul>    <li>    <p>'.' と '..' を除くディレクトリ内のファイル名の配列</p>    </li>  </ul>  </li></ul></div></div></div>
   </td>
   <td class="msource">
     NX.util.FileSystem
@@ -545,8 +560,11 @@ pathがシンボリックリンクの場合、シンボリックリンクでは�
   </td>
   <td class="sig">
     <a id="NX.util.FileSystem-rmdir"></a>
-    <b>rmdir</b>(未定義 path, 未定義 suffix) : String
-    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul><li>  path:未定義  <ul>    <li>          </li>  </ul></li><li>  suffix:未定義  <ul>    <li>          </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  String  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+    <b>rmdir</b>(String path, [Function callback]) : void
+    <div class="mdesc"><p>非同期でdirnameで指定されたディレクトリを削除しようと試みます。</p>
+
+<p><div class="long">
+ディレクトリは空でなくてはならず、また適切なパーミッションが設定されていなければなりません。</p><div class="params"><strong>パラメータ:</strong><ul><li>  path:String  <ul>    <li>      <p>ディレクトリへのパス</p>    </li>  </ul></li><li>  callback:Function  <ul>    <li> (オプション) <p>処理後のコールバック関数</p>    </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  void  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
   </td>
   <td class="msource">
     NX.util.FileSystem
@@ -557,8 +575,11 @@ pathがシンボリックリンクの場合、シンボリックリンクでは�
   </td>
   <td class="sig">
     <a id="NX.util.FileSystem-rmdirSync"></a>
-    <b>rmdirSync</b>(未定義 path, 未定義 suffix) : String
-    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul><li>  path:未定義  <ul>    <li>          </li>  </ul></li><li>  suffix:未定義  <ul>    <li>          </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  String  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+    <b>rmdirSync</b>(String path) : void
+    <div class="mdesc"><p>同期でdirnameで指定されたディレクトリを削除しようと試みます。</p>
+
+<p><div class="long">
+ディレクトリは空でなくてはならず、また適切なパーミッションが設定されていなければなりません。</p><div class="params"><strong>パラメータ:</strong><ul><li>  path:String  <ul>    <li>      <p>ディレクトリへのパス</p>    </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  void  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
   </td>
   <td class="msource">
     NX.util.FileSystem
@@ -686,8 +707,8 @@ pathがシンボリックリンクの場合、シンボリックリンクでは�
   </td>
   <td class="sig">
     <a id="NX.util.FileSystem-unlink"></a>
-    <b>unlink</b>(未定義 path, 未定義 suffix) : String
-    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul><li>  path:未定義  <ul>    <li>          </li>  </ul></li><li>  suffix:未定義  <ul>    <li>          </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  String  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+    <b>unlink</b>(String path, [Function callback]) : void
+    <div class="mdesc"><p>非同期でpathを削除します。Unix C言語の関数unlink()と動作は同じです。</p><div class="long"><div class="params"><strong>パラメータ:</strong><ul><li>  path:String  <ul>    <li>      <p>ファイルへのパス</p>    </li>  </ul></li><li>  callback:Function  <ul>    <li> (オプション) <p>処理後のコールバック関数</p>    </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  void  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
   </td>
   <td class="msource">
     NX.util.FileSystem
@@ -698,8 +719,8 @@ pathがシンボリックリンクの場合、シンボリックリンクでは�
   </td>
   <td class="sig">
     <a id="NX.util.FileSystem-unlinkSync"></a>
-    <b>unlinkSync</b>(未定義 path, 未定義 suffix) : String
-    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul><li>  path:未定義  <ul>    <li>          </li>  </ul></li><li>  suffix:未定義  <ul>    <li>          </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  String  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+    <b>unlinkSync</b>(String path) : void
+    <div class="mdesc"><p>同期でpathを削除します。Unix C言語の関数unlink()と動作は同じです。</p><div class="long"><div class="params"><strong>パラメータ:</strong><ul><li>  path:String  <ul>    <li>      <p>ファイルへのパス</p>    </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  void  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
   </td>
   <td class="msource">
     NX.util.FileSystem

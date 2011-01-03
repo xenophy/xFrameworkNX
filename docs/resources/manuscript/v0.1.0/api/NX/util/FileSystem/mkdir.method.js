@@ -1,4 +1,4 @@
 {
-    "param" : ["path", "suffix"],
-    "return": "String"
+    "param" : ["path", "mode", "callback"],
+    "return": "void"
 }
