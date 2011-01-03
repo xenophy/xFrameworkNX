@@ -1,6 +1,61 @@
 <div class="api-doc"><div class="cls">
   <h1>NX.util.FileSystem クラス</h1>
-  <div class="desc"></div>
+  <div class="desc"><p>File I/O は POSIX 標準の関数に対する単純なラッパーとして提供されます。</p>
+
+<p>このクラスは、ビルトインモジュールのFile Systemを継承したクラスになります。</p>
+
+<p>全てのメソッドは非同期と同期の形式があります。</p>
+
+<p>非同期の形式は常に最後の引数として完了コールバックを受け取ります。</p>
+
+<p>引数として渡される完了コールバックはメソッドに依存しますが、最初の引数は常に例外のために予約されています。</p>
+
+<p>操作が成功で完了すると最初の引数はnullまたはundefinedとなります。</p>
+
+<p><br />
+非同期バージョンの例です:</p>
+
+<pre><code>NX.fs.unlink('/tmp/hello', function (err) {
+    if (err) throw err;
+    console.log('successfully deleted /tmp/hello');
+});
+</code></pre>
+
+<p>同期バージョンです:</p>
+
+<pre><code>NX.fs.unlinkSync('/tmp/hello');
+console.log('successfully deleted /tmp/hello');
+</code></pre>
+
+<p>非同期メソッドでは順序の保証はありません。
+以下のような傾向のエラーがあります。</p>
+
+<pre><code>NX.fs.rename('/tmp/hello', '/tmp/world', function (err) {
+    if (err) throw err;
+    console.log('renamed complete');
+});
+
+NX.fs.stat('/tmp/world', function (err, stats) {
+    if (err) throw err;
+    console.log('stats: ' + JSON.stringify(stats));
+});
+</code></pre>
+
+<p>statはrenameより先に実行される可能性があります。
+正しい方法はコールバックをチェーンすることです。</p>
+
+<pre><code>NX.fs.rename('/tmp/hello', '/tmp/world', function (err) {
+    if (err) throw err;
+    NX.fs.stat('/tmp/world', function (err, stats) {
+        if (err) throw err;
+        console.log('stats: ' + JSON.stringify(stats));
+    });
+});
+</code></pre>
+
+<p>忙しいプロセスでは、プログラマはこれらの非同期バージョンを使うことが強く推奨されます。</p>
+
+<p>同期バージョンはそれが完了するまでプロセス全体をブロック(全ての接続を停止します)します。</p></div>
 </div>
 <a id="NX.util.FileSystem-methods"></a>
 <h2>メソッド</h2>
@@ -428,8 +483,8 @@ pathがシンボリックリンクの場合、シンボリックリンクでは�
   </td>
   <td class="sig">
     <a id="NX.util.FileSystem-read"></a>
-    <b>read</b>(未定義 path, 未定義 suffix) : String
-    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul><li>  path:未定義  <ul>    <li>          </li>  </ul></li><li>  suffix:未定義  <ul>    <li>          </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  String  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+    <b>read</b>(fs.ReadStream/fs.WriteStream fd, Mixed buffer, Number offset, Number length, Number position, [Function callback]) : void
+    <div class="mdesc"><p>非同期でfd で指定されたファイルからデータを読み込みます。</p><div class="long"><div class="params"><strong>パラメータ:</strong><ul><li>  fd:fs.ReadStream/fs.WriteStream  <ul>    <li>      <p>ファイルストリーム</p>    </li>  </ul></li><li>  buffer:Mixed  <ul>    <li>      <p>バッファ</p>    </li>  </ul></li><li>  offset:Number  <ul>    <li>      <p>バッファ内のオフセット値</p>    </li>  </ul></li><li>  length:Number  <ul>    <li>      <p>読み込むバイト数を指定する整数</p>    </li>  </ul></li><li>  position:Number  <ul>    <li>      <p>データが書き込まれる位置</p>    </li>  </ul></li><li>  callback:Function  <ul>    <li> (オプション) <p>処理後のコールバック関数</p>    </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  void  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
   </td>
   <td class="msource">
     NX.util.FileSystem
@@ -440,8 +495,19 @@ pathがシンボリックリンクの場合、シンボリックリンクでは�
   </td>
   <td class="sig">
     <a id="NX.util.FileSystem-readFile"></a>
-    <b>readFile</b>(未定義 path, 未定義 suffix) : String
-    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul><li>  path:未定義  <ul>    <li>          </li>  </ul></li><li>  suffix:未定義  <ul>    <li>          </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  String  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+    <b>readFile</b>(String filename, String encoding, [Function callback]) : void
+    <div class="mdesc"><p>ファイル全体の内容を非同期に読み込みます。</p>
+
+<p><div class="long">
+例:</p>
+
+<pre><code>NX.fs.readFile('/etc/passwd', function (err, data) {
+    if (err) throw err;
+    console.log(data);
+});
+</code></pre><div class="params"><strong>パラメータ:</strong><ul><li>  filename:String  <ul>    <li>      <p>パス</p>    </li>  </ul></li><li>  encoding:String  <ul>    <li>      <p>エンコーディング</p>
+
+<p><strong>(初期値:'utf8')</strong></p>    </li>  </ul></li><li>  callback:Function  <ul>    <li> (オプション) <p>処理後のコールバック関数</p>    </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  void  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
   </td>
   <td class="msource">
     NX.util.FileSystem
@@ -452,8 +518,11 @@ pathがシンボリックリンクの場合、シンボリックリンクでは�
   </td>
   <td class="sig">
     <a id="NX.util.FileSystem-readFileSync"></a>
-    <b>readFileSync</b>(未定義 path, 未定義 suffix) : String
-    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul><li>  path:未定義  <ul>    <li>          </li>  </ul></li><li>  suffix:未定義  <ul>    <li>          </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  String  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+    <b>readFileSync</b>(String filename, String encoding) : Mixed value
+    <div class="mdesc"><p>ファイル全体の内容を同期に読み込みます。</p><div class="long"><div class="params"><strong>パラメータ:</strong><ul><li>  filename:String  <ul>    <li>      <p>パス</p>    </li>  </ul></li><li>  encoding:String  <ul>    <li>      <p>エンコーディング</p>
+
+<p><strong>(初期値:'utf8')</strong></p>    </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  Mixed value  <ul>    <li>    <p>encoding が指定されるとこの関数は文字列を返します。
+そうでなければバッファを返します。</p>    </li>  </ul>  </li></ul></div></div></div>
   </td>
   <td class="msource">
     NX.util.FileSystem
@@ -464,8 +533,8 @@ pathがシンボリックリンクの場合、シンボリックリンクでは�
   </td>
   <td class="sig">
     <a id="NX.util.FileSystem-readSync"></a>
-    <b>readSync</b>(未定義 path, 未定義 suffix) : String
-    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul><li>  path:未定義  <ul>    <li>          </li>  </ul></li><li>  suffix:未定義  <ul>    <li>          </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  String  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+    <b>readSync</b>(fs.ReadStream/fs.WriteStream fd, Mixed buffer, Number offset, Number length, Number position) : void
+    <div class="mdesc"><p>同期でfd で指定されたファイルからデータを読み込みます。</p><div class="long"><div class="params"><strong>パラメータ:</strong><ul><li>  fd:fs.ReadStream/fs.WriteStream  <ul>    <li>      <p>ファイルストリーム</p>    </li>  </ul></li><li>  buffer:Mixed  <ul>    <li>      <p>バッファ</p>    </li>  </ul></li><li>  offset:Number  <ul>    <li>      <p>バッファ内のオフセット値</p>    </li>  </ul></li><li>  length:Number  <ul>    <li>      <p>読み込むバイト数を指定する整数</p>    </li>  </ul></li><li>  position:Number  <ul>    <li>      <p>データが書き込まれる位置</p>    </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  void  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
   </td>
   <td class="msource">
     NX.util.FileSystem
@@ -804,7 +873,8 @@ pathがシンボリックリンクの場合、シンボリックリンクでは�
 position はデータが書き込まれる位置をファイルの先頭からのオフセットで示します。
 positionがnullの場合、データは現在の位置から書き込まれます。</p>
 
-<p>コールバックは2つの引数が与えられる(err,written)で、writtenは書き込まれたバイト数を示します。</p><div class="params"><strong>パラメータ:</strong><ul><li>  fd:fs.ReadStream/fs.WriteStream  <ul>    <li>      <p>ファイルストリーム</p>    </li>  </ul></li><li>  buffer:Mixed  <ul>    <li>      <p>バッファ</p>    </li>  </ul></li><li>  offset:Number  <ul>    <li>      <p>オフセット値</p>    </li>  </ul></li><li>  length:Number  <ul>    <li>      <p>長さ</p>    </li>  </ul></li><li>  position:Number  <ul>    <li>      <p>データが書き込まれる位置</p>    </li>  </ul></li><li>  callback:Function  <ul>    <li> (オプション) <p>処理後のコールバック関数</p>    </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  void  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+<p>コールバックは2つの引数が与えられる(err,written)で、writtenは書き込まれたバイト数を示します。</p><div class="params"><strong>パラメータ:</strong><ul><li>  fd:fs.ReadStream/fs.WriteStream  <ul>    <li>      <p>ファイルストリーム</p>    </li>  </ul></li><li>  buffer:Mixed  <ul>    <li>      <p>バッファ</p>    </li>  </ul></li><li>  offset:Number  <ul>    <li>      <p>バッファ内のオフセット値</p>    </li>  </ul></li><li>  length:Number  <ul>    <li>      <p>書き込むバイト数を指定する整数</p>    </li>  </ul></li><li>  position:Number  <ul>    <li>      <p>ファイルの読み込みを開始する位置を指定する整数です。
+position が null の場合、データは現在の位置から読み込まれます。</p>    </li>  </ul></li><li>  callback:Function  <ul>    <li> (オプション) <p>処理後のコールバック関数</p>    </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  void  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
   </td>
   <td class="msource">
     NX.util.FileSystem
