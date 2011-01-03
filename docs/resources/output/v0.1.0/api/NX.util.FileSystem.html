@@ -628,8 +628,8 @@ pathがシンボリックリンクの場合、シンボリックリンクでは�
   </td>
   <td class="sig">
     <a id="NX.util.FileSystem-symlink"></a>
-    <b>symlink</b>(未定義 path, 未定義 suffix) : String
-    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul><li>  path:未定義  <ul>    <li>          </li>  </ul></li><li>  suffix:未定義  <ul>    <li>          </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  String  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+    <b>symlink</b>(String linkdata, String path, [Function callback]) : void
+    <div class="mdesc"><p>symlink()は、非同期で指定されたリンク名linkdataで既存のファイルpathへのシンボリックリンクを作成します。</p><div class="long"><div class="params"><strong>パラメータ:</strong><ul><li>  linkdata:String  <ul>    <li>      <p>リンクの名前</p>    </li>  </ul></li><li>  path:String  <ul>    <li>      <p>リンクの対象</p>    </li>  </ul></li><li>  callback:Function  <ul>    <li> (オプション) <p>処理後のコールバック関数</p>    </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  void  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
   </td>
   <td class="msource">
     NX.util.FileSystem
@@ -640,8 +640,8 @@ pathがシンボリックリンクの場合、シンボリックリンクでは�
   </td>
   <td class="sig">
     <a id="NX.util.FileSystem-symlinkSync"></a>
-    <b>symlinkSync</b>(未定義 path, 未定義 suffix) : String
-    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul><li>  path:未定義  <ul>    <li>          </li>  </ul></li><li>  suffix:未定義  <ul>    <li>          </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  String  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+    <b>symlinkSync</b>(String linkdata, String path) : void
+    <div class="mdesc"><p>symlinkSync()は、同期で指定されたリンク名linkdataで既存のファイルpathへのシンボリックリンクを作成します。</p><div class="long"><div class="params"><strong>パラメータ:</strong><ul><li>  linkdata:String  <ul>    <li>      <p>リンクの名前</p>    </li>  </ul></li><li>  path:String  <ul>    <li>      <p>リンクの対象</p>    </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  void  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
   </td>
   <td class="msource">
     NX.util.FileSystem
