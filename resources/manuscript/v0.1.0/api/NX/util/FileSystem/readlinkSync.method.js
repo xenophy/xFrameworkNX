@@ -1,4 +1,4 @@
 {
-    "param" : ["path", "suffix"],
+    "param" : ["path"],
     "return": "String"
 }
