@@ -55,8 +55,8 @@
   </td>
   <td class="sig">
     <a id="NX.util.FileSystem-close"></a>
-    <b>close</b>(未定義 path, 未定義 suffix) : String
-    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul><li>  path:未定義  <ul>    <li>          </li>  </ul></li><li>  suffix:未定義  <ul>    <li>          </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  String  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+    <b>close</b>(fs.WriteStream fd, [Function callback]) : void
+    <div class="mdesc"><p>非同期でオープンされたファイルストリームをクローズする。</p><div class="long"><div class="params"><strong>パラメータ:</strong><ul><li>  fd:fs.WriteStream  <ul>    <li>      <p>ファイルストリーム</p>    </li>  </ul></li><li>  callback:Function  <ul>    <li> (オプション) <p>処理後のコールバック関数</p>    </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  void  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
   </td>
   <td class="msource">
     NX.util.FileSystem
@@ -67,8 +67,8 @@
   </td>
   <td class="sig">
     <a id="NX.util.FileSystem-closeSync"></a>
-    <b>closeSync</b>(未定義 path, 未定義 suffix) : String
-    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul><li>  path:未定義  <ul>    <li>          </li>  </ul></li><li>  suffix:未定義  <ul>    <li>          </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  String  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+    <b>closeSync</b>(未定義 path) : void
+    <div class="mdesc"><p>同期でオープンされたファイルストリームをクローズする。</p><div class="long"><div class="params"><strong>パラメータ:</strong><ul><li>  path:未定義  <ul>    <li>          </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  void  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
   </td>
   <td class="msource">
     NX.util.FileSystem
@@ -353,8 +353,17 @@ pathがシンボリックリンクの場合、シンボリックリンクでは�
   </td>
   <td class="sig">
     <a id="NX.util.FileSystem-open"></a>
-    <b>open</b>(未定義 path, 未定義 suffix) : String
-    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul><li>  path:未定義  <ul>    <li>          </li>  </ul></li><li>  suffix:未定義  <ul>    <li>          </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  String  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+    <b>open</b>(String path, String flags, String mode, [Function callback]) : void
+    <div class="mdesc"><p>open()は、非同期でpathで指定されたリソースをストリームに結び付けます。</p><div class="long"><div class="params"><strong>パラメータ:</strong><ul><li>  path:String  <ul>    <li>      <p>パス</p>    </li>  </ul></li><li>  flags:String  <ul>    <li>      <p>'r'、'r+'、'w'、'w+'、'a'、あるいは 'a+'</p>    </li>  </ul></li><li>  mode:String  <ul>    <li>      <p>modeは自動的には8進数と見なされないので注意してください。
+このため、("g+w"のような)文字列は正常に動作しません。
+意図した操作を行うには、modeの前にゼロ(0)を付ける必要があります。</p>
+
+<p><strong>(初期値:0666)</strong></p>    </li>  </ul></li><li>  callback:Function  <ul>    <li> (オプション) <p>処理後のコールバック関数</p>
+
+<p><br />
+第1引数(err):エラーメッセージ</p>
+
+<p>第2引数(fd):ファイルストリーム</p>    </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  void  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
   </td>
   <td class="msource">
     NX.util.FileSystem
@@ -365,8 +374,12 @@ pathがシンボリックリンクの場合、シンボリックリンクでは�
   </td>
   <td class="sig">
     <a id="NX.util.FileSystem-openSync"></a>
-    <b>openSync</b>(未定義 path, 未定義 suffix) : String
-    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul><li>  path:未定義  <ul>    <li>          </li>  </ul></li><li>  suffix:未定義  <ul>    <li>          </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  String  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+    <b>openSync</b>(String path, String flags, String mode) : fs.ReadStream/fs.WriteStream
+    <div class="mdesc"><p>open()は、同期でpathで指定されたリソースをストリームに結び付けます。</p><div class="long"><div class="params"><strong>パラメータ:</strong><ul><li>  path:String  <ul>    <li>      <p>パス</p>    </li>  </ul></li><li>  flags:String  <ul>    <li>      <p>'r'、'r+'、'w'、'w+'、'a'、あるいは 'a+'</p>    </li>  </ul></li><li>  mode:String  <ul>    <li>      <p>modeは自動的には8進数と見なされないので注意してください。
+このため、("g+w"のような)文字列は正常に動作しません。
+意図した操作を行うには、modeの前にゼロ(0)を付ける必要があります。</p>
+
+<p><strong>(初期値:0666)</strong></p>    </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  fs.ReadStream/fs.WriteStream  <ul>    <li>    <p>ファイルストリーム</p>    </li>  </ul>  </li></ul></div></div></div>
   </td>
   <td class="msource">
     NX.util.FileSystem
