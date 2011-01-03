@@ -5,7 +5,6 @@
  *
  * http://xFrameworknx.com
  */
-
 #header {
   height: 44px;
 }
@@ -31,7 +30,16 @@
   border-top:1px solid #ddd;
   border-bottom:1px solid #ccc;
   padding-top:2px;
-  padding-bottom:1px;
+  padding-bottom:3px;
+}
+
+.category-node {
+  padding-left: 5px;
+  padding-bottom: 5px;
+}
+
+.category-node span {
+  font-weight: bold;
 }
 
 .category-node .x-tree-node-icon {
@@ -42,8 +50,23 @@
   display:none;
 }
 
+.x-tree-node .x-tree-selected a span {
+  background: transparent;
+  color: #1E4176;;
+  font-weight: bold;
+}
+
 .doc .x-tree-ec-icon {
-    display:none;
+  display:none;
+}
+
+.doc-deep1 .x-tree-node-indent {
+  display:none;
+}
+
+#doc-body .x-panel-body {
+  font-size: 14px;
+  padding: 20px;
 }
 
 #doc-body .loading-indicator {
@@ -63,13 +86,45 @@ div.doc .x-tree-node-icon {
   background-image:url(../images/icons/page_white_text.png) !important;
 }
 
-.x-tree-node-expanded .x-tree-node-icon {
+.man-root+ul .x-tree-node-expanded .x-tree-node-icon {
   background-image:url(../images/icons/book_open.png) !important;
 }
-.x-tree-node-collapsed .x-tree-node-icon {
+
+.man-root+ul .x-tree-node-collapsed .x-tree-node-icon {
   background-image:url(../images/icons/book.png) !important;
 }
 
+.api-root+ul .cls-node .x-tree-node-icon {
+  background-image:url(../images/icons/class.gif) !important;
+}
+
+.api-root+ul .pkg-node .x-tree-node-icon {
+  background-image:url(../images/icons/pkg.gif) !important;
+}
+
+.api-root+ul .prop-node .x-tree-node-icon {
+  background-image:url(../images/icons/prop.gif) !important;
+}
+
+.api-root+ul .method-node .x-tree-node-icon {
+  background-image:url(../images/icons/method.gif) !important;
+}
+
+.x-tree-no-lines .x-tree-elbow-end-plus {
+  background-image: url(http://extjs.cachefly.net/ext-3.3.1/resources/images/default/tree/elbow-plus-nl.gif);
+}
+
+.x-tree-no-lines .x-tree-elbow-end-minus {
+  background-image: url(http://extjs.cachefly.net/ext-3.3.1/resources/images/default/tree/elbow-minus-nl.gif);
+}
+
+.icon-expand-all {
+  background-image: url(http://extjs.cachefly.net/ext-3.3.1/docs/resources/expand-all.gif) !important;
+}
+
+.icon-collapse-all {
+  background-image: url(http://extjs.cachefly.net/ext-3.3.1/docs/resources/collapse-all.gif) !important;
+}
 
 /*
  * Local variables:

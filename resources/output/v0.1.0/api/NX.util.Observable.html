@@ -1,0 +1,208 @@
+<div class="api-doc"><div class="cls">
+  <h1>NX.util.Observable クラス</h1>
+  <div class="desc"><p>イベントを発行するインタフェースを持つ共通の基底クラスとして、提供されます。</p>
+
+<pre><code>Employee = NX.extend(NX.util.Observable, {
+    constructor: function(config){
+        this.name = config.name;
+        this.addEvents({
+            "fired" : true,
+            "quit" : true
+        });
+
+        this.listeners = config.listeners;
+
+        Employee.superclass.constructor.call(config)
+    }
+});
+</code></pre>
+
+<p>そして、次のように利用します。</p>
+
+<pre><code>var newEmployee = new Employee({
+    name: employeeName,
+    listeners: {
+        quit: function() {
+            alert(this.name + " has quit!");
+        }
+    }
+});
+</code></pre></div>
+</div>
+<a id="NX.util.Observable-methods"></a>
+<h2>メソッド</h2>
+<table cellspacing="0" class="member-table">
+<tr>
+  <th colspan="2" class="sig-header caption">メソッド</th>
+  <th class="sig-header defined">定義クラス</th>
+</tr>
+<tr class="method-row inherited expandable">
+  <td class="micon">
+    <a href="#expand" class="exi">&nbsp;</a>
+  </td>
+  <td class="sig">
+    <a id="NX.util.Observable-Observable.capture"></a>
+    <b>Observable.capture</b>() : undefined
+    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul></ul><strong>戻り値:</strong><ul>  <li>  undefined  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+  </td>
+  <td class="msource">
+    NX.util.Observable
+  </td>
+</tr><tr class="method-row inherited expandable">
+  <td class="micon">
+    <a href="#expand" class="exi">&nbsp;</a>
+  </td>
+  <td class="sig">
+    <a id="NX.util.Observable-Observable.observe"></a>
+    <b>Observable.observe</b>() : undefined
+    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul></ul><strong>戻り値:</strong><ul>  <li>  undefined  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+  </td>
+  <td class="msource">
+    NX.util.Observable
+  </td>
+</tr><tr class="method-row inherited expandable">
+  <td class="micon">
+    <a href="#expand" class="exi">&nbsp;</a>
+  </td>
+  <td class="sig">
+    <a id="NX.util.Observable-Observable.releaseCapture"></a>
+    <b>Observable.releaseCapture</b>() : undefined
+    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul></ul><strong>戻り値:</strong><ul>  <li>  undefined  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+  </td>
+  <td class="msource">
+    NX.util.Observable
+  </td>
+</tr><tr class="method-row inherited expandable">
+  <td class="micon">
+    <a href="#expand" class="exi">&nbsp;</a>
+  </td>
+  <td class="sig">
+    <a id="NX.util.Observable-addEvents"></a>
+    <b>addEvents</b>() : undefined
+    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul></ul><strong>戻り値:</strong><ul>  <li>  undefined  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+  </td>
+  <td class="msource">
+    NX.util.Observable
+  </td>
+</tr><tr class="method-row inherited expandable">
+  <td class="micon">
+    <a href="#expand" class="exi">&nbsp;</a>
+  </td>
+  <td class="sig">
+    <a id="NX.util.Observable-addListener"></a>
+    <b>addListener</b>() : undefined
+    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul></ul><strong>戻り値:</strong><ul>  <li>  undefined  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+  </td>
+  <td class="msource">
+    NX.util.Observable
+  </td>
+</tr><tr class="method-row inherited expandable">
+  <td class="micon">
+    <a href="#expand" class="exi">&nbsp;</a>
+  </td>
+  <td class="sig">
+    <a id="NX.util.Observable-clearListeners"></a>
+    <b>clearListeners</b>() : undefined
+    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul></ul><strong>戻り値:</strong><ul>  <li>  undefined  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+  </td>
+  <td class="msource">
+    NX.util.Observable
+  </td>
+</tr><tr class="method-row inherited expandable">
+  <td class="micon">
+    <a href="#expand" class="exi">&nbsp;</a>
+  </td>
+  <td class="sig">
+    <a id="NX.util.Observable-enableBubble"></a>
+    <b>enableBubble</b>() : undefined
+    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul></ul><strong>戻り値:</strong><ul>  <li>  undefined  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+  </td>
+  <td class="msource">
+    NX.util.Observable
+  </td>
+</tr><tr class="method-row inherited expandable">
+  <td class="micon">
+    <a href="#expand" class="exi">&nbsp;</a>
+  </td>
+  <td class="sig">
+    <a id="NX.util.Observable-fireEvent"></a>
+    <b>fireEvent</b>() : undefined
+    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul></ul><strong>戻り値:</strong><ul>  <li>  undefined  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+  </td>
+  <td class="msource">
+    NX.util.Observable
+  </td>
+</tr><tr class="method-row inherited expandable">
+  <td class="micon">
+    <a href="#expand" class="exi">&nbsp;</a>
+  </td>
+  <td class="sig">
+    <a id="NX.util.Observable-on"></a>
+    <b>on</b>() : undefined
+    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul></ul><strong>戻り値:</strong><ul>  <li>  undefined  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+  </td>
+  <td class="msource">
+    NX.util.Observable
+  </td>
+</tr><tr class="method-row inherited expandable">
+  <td class="micon">
+    <a href="#expand" class="exi">&nbsp;</a>
+  </td>
+  <td class="sig">
+    <a id="NX.util.Observable-relayEvents"></a>
+    <b>relayEvents</b>() : undefined
+    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul></ul><strong>戻り値:</strong><ul>  <li>  undefined  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+  </td>
+  <td class="msource">
+    NX.util.Observable
+  </td>
+</tr><tr class="method-row inherited expandable">
+  <td class="micon">
+    <a href="#expand" class="exi">&nbsp;</a>
+  </td>
+  <td class="sig">
+    <a id="NX.util.Observable-removeListener"></a>
+    <b>removeListener</b>() : undefined
+    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul></ul><strong>戻り値:</strong><ul>  <li>  undefined  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+  </td>
+  <td class="msource">
+    NX.util.Observable
+  </td>
+</tr><tr class="method-row inherited expandable">
+  <td class="micon">
+    <a href="#expand" class="exi">&nbsp;</a>
+  </td>
+  <td class="sig">
+    <a id="NX.util.Observable-resumeEvents"></a>
+    <b>resumeEvents</b>() : undefined
+    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul></ul><strong>戻り値:</strong><ul>  <li>  undefined  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+  </td>
+  <td class="msource">
+    NX.util.Observable
+  </td>
+</tr><tr class="method-row inherited expandable">
+  <td class="micon">
+    <a href="#expand" class="exi">&nbsp;</a>
+  </td>
+  <td class="sig">
+    <a id="NX.util.Observable-suspendEvents"></a>
+    <b>suspendEvents</b>() : undefined
+    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul></ul><strong>戻り値:</strong><ul>  <li>  undefined  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+  </td>
+  <td class="msource">
+    NX.util.Observable
+  </td>
+</tr><tr class="method-row inherited expandable">
+  <td class="micon">
+    <a href="#expand" class="exi">&nbsp;</a>
+  </td>
+  <td class="sig">
+    <a id="NX.util.Observable-un"></a>
+    <b>un</b>() : undefined
+    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul></ul><strong>戻り値:</strong><ul>  <li>  undefined  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+  </td>
+  <td class="msource">
+    NX.util.Observable
+  </td>
+</tr>
+</table></div>
