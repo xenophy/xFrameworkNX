@@ -134,6 +134,14 @@ Ext.MainPanel = Ext.extend(Ext.Panel, {
                     if(tr.hasClass('expandable')){
                         tr.toggleClass('expanded');
                     }
+                } else if(t = e.getTarget('a')) {
+
+                    var href = Ext.fly(t).getAttribute('href');
+
+                    window.open(href, href);
+
+                    e.stopEvent();
+                
                 }
 
             });
