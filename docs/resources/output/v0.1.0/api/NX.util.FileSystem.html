@@ -27,8 +27,10 @@
   </td>
   <td class="sig">
     <a id="NX.util.FileSystem-chmod"></a>
-    <b>chmod</b>(未定義 path, 未定義 suffix) : String
-    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul><li>  path:未定義  <ul>    <li>          </li>  </ul></li><li>  suffix:未定義  <ul>    <li>          </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  String  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+    <b>chmod</b>(String path, Number mode, [Function callback]) : void
+    <div class="mdesc"><p>非同期で指定されたファイルのモードをmodeで、指定したものに変更しようと試みます。</p><div class="long"><div class="params"><strong>パラメータ:</strong><ul><li>  path:String  <ul>    <li>      <p>ファイルへのパス</p>    </li>  </ul></li><li>  mode:Number  <ul>    <li>      <p>modeは自動的には8進数と見なされないので注意してください。
+このため、("g+w"のような)文字列は正常に動作しません。
+意図した操作を行うには、modeの前にゼロ(0)を付ける必要があります。</p>    </li>  </ul></li><li>  callback:Function  <ul>    <li> (オプション) <p>処理後のコールバック関数</p>    </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  void  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
   </td>
   <td class="msource">
     NX.util.FileSystem
@@ -39,8 +41,10 @@
   </td>
   <td class="sig">
     <a id="NX.util.FileSystem-chmodSync"></a>
-    <b>chmodSync</b>(未定義 path, 未定義 suffix) : String
-    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul><li>  path:未定義  <ul>    <li>          </li>  </ul></li><li>  suffix:未定義  <ul>    <li>          </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  String  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+    <b>chmodSync</b>(String path, Number mode) : void
+    <div class="mdesc"><p>同期で指定されたファイルのモードをmodeで、指定したものに変更しようと試みます。</p><div class="long"><div class="params"><strong>パラメータ:</strong><ul><li>  path:String  <ul>    <li>      <p>ファイルへのパス</p>    </li>  </ul></li><li>  mode:Number  <ul>    <li>      <p>modeは自動的には8進数と見なされないので注意してください。
+このため、("g+w"のような)文字列は正常に動作しません。
+意図した操作を行うには、modeの前にゼロ(0)を付ける必要があります。</p>    </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  void  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
   </td>
   <td class="msource">
     NX.util.FileSystem
