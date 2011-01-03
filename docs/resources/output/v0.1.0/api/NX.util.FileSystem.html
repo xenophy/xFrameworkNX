@@ -79,8 +79,23 @@
   </td>
   <td class="sig">
     <a id="NX.util.FileSystem-createReadStream"></a>
-    <b>createReadStream</b>(未定義 path, 未定義 suffix) : String
-    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul><li>  path:未定義  <ul>    <li>          </li>  </ul></li><li>  suffix:未定義  <ul>    <li>          </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  String  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+    <b>createReadStream</b>(String path, [Object options]) : fs.WriteStream
+    <div class="mdesc"><p>新しい ReadStream オブジェクトを返します。</p><div class="long"><div class="params"><strong>パラメータ:</strong><ul><li>  path:String  <ul>    <li>      <p>パス</p>    </li>  </ul></li><li>  options:Object  <ul>    <li> (オプション) <pre><code>{
+    flags: 'r',
+    encoding: null,
+    mode: 0666,
+    bufferSize: 4096
+}
+</code></pre>
+
+<p>ファイル全体を読み込む代わりに一部の範囲を読み込むため、optionsにstartおよびendを含めることができます。startとendはどちらも包含的で0から始まります。
+使う際にはいつでも、両方を同時に指定しなければなりません。</p>
+
+<p><br />
+100バイトの長さを持つファイルの最後の10バイトを読み込む例:</p>
+
+<pre><code>NX.fs.createReadStream('sample.txt', {start: 90, end: 99});
+</code></pre>    </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  fs.WriteStream  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
   </td>
   <td class="msource">
     NX.util.FileSystem
@@ -91,8 +106,13 @@
   </td>
   <td class="sig">
     <a id="NX.util.FileSystem-createWriteStream"></a>
-    <b>createWriteStream</b>(未定義 path, 未定義 suffix) : String
-    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul><li>  path:未定義  <ul>    <li>          </li>  </ul></li><li>  suffix:未定義  <ul>    <li>          </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  String  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+    <b>createWriteStream</b>(String path, [Object options]) : fs.WriteStream
+    <div class="mdesc"><p>新しいWriteStreamオブジェクトを返します。</p><div class="long"><div class="params"><strong>パラメータ:</strong><ul><li>  path:String  <ul>    <li>      <p>パス</p>    </li>  </ul></li><li>  options:Object  <ul>    <li> (オプション) <pre><code>{
+    flags: 'w',
+    encoding: null,
+    mode: 0666
+}
+</code></pre>    </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  fs.WriteStream  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
   </td>
   <td class="msource">
     NX.util.FileSystem
@@ -744,8 +764,8 @@ pathがシンボリックリンクの場合、シンボリックリンクでは�
   </td>
   <td class="sig">
     <a id="NX.util.FileSystem-unwatchFile"></a>
-    <b>unwatchFile</b>(未定義 path, 未定義 suffix) : String
-    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul><li>  path:未定義  <ul>    <li>          </li>  </ul></li><li>  suffix:未定義  <ul>    <li>          </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  String  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+    <b>unwatchFile</b>(String filename) : void
+    <div class="mdesc"><p>filenameの変更に対する監視を終了します。</p><div class="long"><div class="params"><strong>パラメータ:</strong><ul><li>  filename:String  <ul>    <li>      <p>パス</p>    </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  void  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
   </td>
   <td class="msource">
     NX.util.FileSystem
@@ -756,8 +776,17 @@ pathがシンボリックリンクの場合、シンボリックリンクでは�
   </td>
   <td class="sig">
     <a id="NX.util.FileSystem-watchFile"></a>
-    <b>watchFile</b>(未定義 path, 未定義 suffix) : String
-    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul><li>  path:未定義  <ul>    <li>          </li>  </ul></li><li>  suffix:未定義  <ul>    <li>          </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  String  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+    <b>watchFile</b>(String filename, [Function listener]) : void
+    <div class="mdesc"><p>filename の変更を監視します。
+コールバックの listener はファイルが変更される度に呼び出されます。</p><div class="long"><div class="params"><strong>パラメータ:</strong><ul><li>  filename:String  <ul>    <li>      <p>パス</p>    </li>  </ul></li><li>  listener:Function  <ul>    <li> (オプション) <p>現在の状態オブジェクトと前の状態オブジェクトの 2 つの引数を受け取ります:</p>
+
+<pre><code>NX.fs.watchFile(f, function (curr, prev) {
+    console.log('the current mtime is: ' + curr.mtime);
+    console.log('the previous mtime was: ' + prev.mtime);
+});
+</code></pre>
+
+<p>これらの状態オブジェクトは fs.Stat のインスタンスです。</p>    </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  void  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
   </td>
   <td class="msource">
     NX.util.FileSystem
