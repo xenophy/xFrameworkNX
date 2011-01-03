@@ -1,5 +1,5 @@
-
 {
-    "type" : "Observable"
+    "param" : ["eventName", "args"],
+    "return": "Boolean"
 }
 

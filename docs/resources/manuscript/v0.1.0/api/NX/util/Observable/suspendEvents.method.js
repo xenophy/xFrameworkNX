@@ -1,5 +1,7 @@
-
 {
-    "type" : "Observable"
+    "param" : ["queueSuspended"],
+    "return": "void"
 }
+
+
 

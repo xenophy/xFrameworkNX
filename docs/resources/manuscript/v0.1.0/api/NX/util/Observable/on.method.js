@@ -1,5 +1,5 @@
-
 {
-    "type" : "Observable"
+    "param" : ["eventName", "handler", "scope", "options"],
+    "return": "void"
 }
 

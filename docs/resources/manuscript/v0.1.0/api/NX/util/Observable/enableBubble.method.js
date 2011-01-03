@@ -1,5 +1,4 @@
-
 {
-    "type" : "Observable"
+    "param" : ["events"],
+    "return": "void"
 }
-

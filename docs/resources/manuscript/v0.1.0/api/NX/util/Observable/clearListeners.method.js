@@ -1,5 +1,6 @@
-
 {
-    "type" : "Observable"
+    "param" : [],
+    "return": "void"
 }
+
 

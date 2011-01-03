@@ -126,8 +126,38 @@ NX.data.Connection.on('beforerequest', function(con, options) {
   </td>
   <td class="sig">
     <a id="NX.util.Observable-addListener"></a>
-    <b>addListener</b>() : undefined
-    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul></ul><strong>戻り値:</strong><ul>  <li>  undefined  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+    <b>addListener</b>(String eventName, Function handler, [Object scope], [Object options]) : void
+    <div class="mdesc"><p>このオブジェクトにイベントハンドラを設定します。</p>
+
+<p><div class="long">
+第１引数のイベント名のイベントが発火した場合、引数の関数が実行されます。
+一度に複数のハンドラを加えることが可能です 。</p><div class="params"><strong>パラメータ:</strong><ul><li>  eventName:String  <ul>    <li>      <p>リスンするイベント名</p>    </li>  </ul></li><li>  handler:Function  <ul>    <li>      <p>イベントによって呼び出される関数</p>    </li>  </ul></li><li>  scope:Object  <ul>    <li> (オプション) <p>スコープオブジェクト。
+指定しない場合、イベント発火したオブジェクト</p>    </li>  </ul></li><li>  options:Object  <ul>    <li> (オプション) <p>ハンドラ設定プロパティを含んでいるオブジェクト</p>
+
+<p><br />
+<strong>scope : Object</strong></p>
+
+<p>スコープ。指定しない場合、イベント発火したオブジェクト
+<br /></p>
+
+<p><strong>delay : Number</strong></p>
+
+<p>ハンドラの起動を遅らせる(ミリ秒単位)
+<br /></p>
+
+<p><strong>single : Boolean</strong></p>
+
+<p>trueの場合、一度イベントによってハンドラが実行された後、そのハンドラを無効にするハンドラを追加します。
+<br /></p>
+
+<p><strong>buffer : Number</strong></p>
+
+<p>ハンドラの起動を遅らせて(ミリ秒単位)、Ext.util.DelayedTaskによって実行を予約されます。 もし、遅らせている最中に再度イベントが発火した場合、遅らされているハンドラは実行されず、新しいハンドラが実行されます。
+<br /></p>
+
+<p><strong>target : Observable</strong></p>
+
+<p>子クラスからのバブリングではなくターゲットのObservableなオブジェクトで発火した場合に、ハンドラをコールします。</p>    </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  void  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
   </td>
   <td class="msource">
     NX.util.Observable
@@ -138,8 +168,8 @@ NX.data.Connection.on('beforerequest', function(con, options) {
   </td>
   <td class="sig">
     <a id="NX.util.Observable-clearListeners"></a>
-    <b>clearListeners</b>() : undefined
-    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul></ul><strong>戻り値:</strong><ul>  <li>  undefined  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+    <b>clearListeners</b>() : void
+    <div class="mdesc"><p>このオブジェクトから、イベントリスナーを全て削除します。</p><div class="long"><div class="params"><strong>パラメータ:</strong><ul></ul><strong>戻り値:</strong><ul>  <li>  void  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
   </td>
   <td class="msource">
     NX.util.Observable
@@ -150,8 +180,12 @@ NX.data.Connection.on('beforerequest', function(con, options) {
   </td>
   <td class="sig">
     <a id="NX.util.Observable-enableBubble"></a>
-    <b>enableBubble</b>() : undefined
-    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul></ul><strong>戻り値:</strong><ul>  <li>  undefined  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+    <b>enableBubble</b>(Object events) : void
+    <div class="mdesc"><p>イベントのバブリングを有効にします。</p>
+
+<p><div class="long">
+コンテナに内包されている一番子供のコンテナに設定することで、親コンテナへイベントがリレーします。
+イベントがfalseになった時点でバブリングが停止します。</p><div class="params"><strong>パラメータ:</strong><ul><li>  events:Object  <ul>    <li>      <p>イベントオブジェクト</p>    </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  void  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
   </td>
   <td class="msource">
     NX.util.Observable
@@ -162,8 +196,8 @@ NX.data.Connection.on('beforerequest', function(con, options) {
   </td>
   <td class="sig">
     <a id="NX.util.Observable-fireEvent"></a>
-    <b>fireEvent</b>() : undefined
-    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul></ul><strong>戻り値:</strong><ul>  <li>  undefined  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+    <b>fireEvent</b>(String eventName, Mixed args) : Boolean
+    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul><li>  eventName:String  <ul>    <li>      <p>発火させるイベント名</p>    </li>  </ul></li><li>  args:Mixed  <ul>    <li>      <p>ハンドラに渡す引数</p>    </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  Boolean  <ul>    <li>    <p>falseを返したハンドラがあればfalse, そうでなければtrueを返します。</p>    </li>  </ul>  </li></ul></div></div></div>
   </td>
   <td class="msource">
     NX.util.Observable
@@ -174,8 +208,39 @@ NX.data.Connection.on('beforerequest', function(con, options) {
   </td>
   <td class="sig">
     <a id="NX.util.Observable-on"></a>
-    <b>on</b>() : undefined
-    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul></ul><strong>戻り値:</strong><ul>  <li>  undefined  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+    <b>on</b>(String eventName, Function handler, [Object scope], [Object options]) : void
+    <div class="mdesc"><p>(addListenerのエイリアス)
+このオブジェクトにイベントハンドラを設定します。</p>
+
+<p><div class="long">
+第１引数のイベント名のイベントが発火した場合、引数の関数が実行されます。
+一度に複数のハンドラを加えることが可能です 。</p><div class="params"><strong>パラメータ:</strong><ul><li>  eventName:String  <ul>    <li>      <p>リスンするイベント名</p>    </li>  </ul></li><li>  handler:Function  <ul>    <li>      <p>イベントによって呼び出される関数</p>    </li>  </ul></li><li>  scope:Object  <ul>    <li> (オプション) <p>スコープオブジェクト。
+指定しない場合、イベント発火したオブジェクト</p>    </li>  </ul></li><li>  options:Object  <ul>    <li> (オプション) <p>ハンドラ設定プロパティを含んでいるオブジェクト</p>
+
+<p><br />
+<strong>scope : Object</strong></p>
+
+<p>スコープ。指定しない場合、イベント発火したオブジェクト
+<br /></p>
+
+<p><strong>delay : Number</strong></p>
+
+<p>ハンドラの起動を遅らせる(ミリ秒単位)
+<br /></p>
+
+<p><strong>single : Boolean</strong></p>
+
+<p>trueの場合、一度イベントによってハンドラが実行された後、そのハンドラを無効にするハンドラを追加します。
+<br /></p>
+
+<p><strong>buffer : Number</strong></p>
+
+<p>ハンドラの起動を遅らせて(ミリ秒単位)、Ext.util.DelayedTaskによって実行を予約されます。 もし、遅らせている最中に再度イベントが発火した場合、遅らされているハンドラは実行されず、新しいハンドラが実行されます。
+<br /></p>
+
+<p><strong>target : Observable</strong></p>
+
+<p>子クラスからのバブリングではなくターゲットのObservableなオブジェクトで発火した場合に、ハンドラをコールします。</p>    </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  void  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
   </td>
   <td class="msource">
     NX.util.Observable
@@ -186,8 +251,8 @@ NX.data.Connection.on('beforerequest', function(con, options) {
   </td>
   <td class="sig">
     <a id="NX.util.Observable-relayEvents"></a>
-    <b>relayEvents</b>() : undefined
-    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul></ul><strong>戻り値:</strong><ul>  <li>  undefined  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+    <b>relayEvents</b>(Object o, Array events) : void
+    <div class="mdesc"><p>イベントをリレーします。</p><div class="long"><div class="params"><strong>パラメータ:</strong><ul><li>  o:Object  <ul>    <li>      <p>イベントのリレーをするオブジェクト</p>    </li>  </ul></li><li>  events:Array  <ul>    <li>      <p>イベント名の配列</p>    </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  void  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
   </td>
   <td class="msource">
     NX.util.Observable
@@ -198,8 +263,11 @@ NX.data.Connection.on('beforerequest', function(con, options) {
   </td>
   <td class="sig">
     <a id="NX.util.Observable-removeListener"></a>
-    <b>removeListener</b>() : undefined
-    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul></ul><strong>戻り値:</strong><ul>  <li>  undefined  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+    <b>removeListener</b>(String eventName, Function handler, [Object scope]) : void
+    <div class="mdesc"><p>このオブジェクトから、指定したイベントハンドラを削除します。</p><div class="long"><div class="params"><strong>パラメータ:</strong><ul><li>  eventName:String  <ul>    <li>      <p>ハンドラが設定されたイベント</p>    </li>  </ul></li><li>  handler:Function  <ul>    <li>      <p>削除されるハンドラ。</p>
+
+<p><div class="long">
+これはaddListenerによってコールされる関数の参照と違いありません。</p>    </li>  </ul></li><li>  scope:Object  <ul>    <li> (オプション) <p>スコープはハンドラに元々指定されていたものです。</p>    </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  void  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
   </td>
   <td class="msource">
     NX.util.Observable
@@ -210,8 +278,11 @@ NX.data.Connection.on('beforerequest', function(con, options) {
   </td>
   <td class="sig">
     <a id="NX.util.Observable-resumeEvents"></a>
-    <b>resumeEvents</b>() : undefined
-    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul></ul><strong>戻り値:</strong><ul>  <li>  undefined  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+    <b>resumeEvents</b>() : void
+    <div class="mdesc"><p>イベントの発生を再開します。</p>
+
+<p><div class="long">
+もし、suspendEventsの引数でqueueSuspendedをtrueとした場合、イベント停止時に発火したイベントのハンドラは再会時に次々と実行されます。</p><div class="params"><strong>パラメータ:</strong><ul></ul><strong>戻り値:</strong><ul>  <li>  void  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
   </td>
   <td class="msource">
     NX.util.Observable
@@ -222,8 +293,11 @@ NX.data.Connection.on('beforerequest', function(con, options) {
   </td>
   <td class="sig">
     <a id="NX.util.Observable-suspendEvents"></a>
-    <b>suspendEvents</b>() : undefined
-    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul></ul><strong>戻り値:</strong><ul>  <li>  undefined  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+    <b>suspendEvents</b>(Boolean queueSuspended) : void
+    <div class="mdesc"><p>イベントの発生を停止します。</p>
+
+<p><div class="long">
+(参照:resumeEvents)</p><div class="params"><strong>パラメータ:</strong><ul><li>  queueSuspended:Boolean  <ul>    <li>      <p>trueを設定した場合、停止させたイベントをresumeEventsコール時に実行されるキューに保存します。</p>    </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  void  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
   </td>
   <td class="msource">
     NX.util.Observable
@@ -234,8 +308,12 @@ NX.data.Connection.on('beforerequest', function(con, options) {
   </td>
   <td class="sig">
     <a id="NX.util.Observable-un"></a>
-    <b>un</b>() : undefined
-    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul></ul><strong>戻り値:</strong><ul>  <li>  undefined  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+    <b>un</b>(String eventName, Function handler, [Object scope]) : void
+    <div class="mdesc"><p>(removeListenerのエイリアス)
+このオブジェクトから、指定したイベントハンドラを削除します。</p><div class="long"><div class="params"><strong>パラメータ:</strong><ul><li>  eventName:String  <ul>    <li>      <p>ハンドラが設定されたイベント</p>    </li>  </ul></li><li>  handler:Function  <ul>    <li>      <p>削除されるハンドラ。</p>
+
+<p><div class="long">
+これはaddListenerによってコールされる関数の参照と違いありません。</p>    </li>  </ul></li><li>  scope:Object  <ul>    <li> (オプション) <p>スコープはハンドラに元々指定されていたものです。</p>    </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  void  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
   </td>
   <td class="msource">
     NX.util.Observable
