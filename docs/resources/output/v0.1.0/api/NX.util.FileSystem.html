@@ -127,8 +127,34 @@
   </td>
   <td class="sig">
     <a id="NX.util.FileSystem-fstat"></a>
-    <b>fstat</b>(未定義 path, 未定義 suffix) : String
-    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul><li>  path:未定義  <ul>    <li>          </li>  </ul></li><li>  suffix:未定義  <ul>    <li>          </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  String  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+    <b>fstat</b>(String path, [Function callback]) : void
+    <div class="mdesc"><p>pathで指定されたファイルについての統計情報を取得します。
+<div class="long">
+pathがシンボリックリンクの場合、シンボリックリンクではなくファイルの実体の統計情報が返されます。</p>
+
+<p>lstat()はシンボリックリンクの統計情報を返すという違いを除いてstat()と等価です。</p><div class="params"><strong>パラメータ:</strong><ul><li>  path:String  <ul>    <li>      <p>ファイルへのパス</p>    </li>  </ul></li><li>  callback:Function  <ul>    <li> (オプション) <p>処理後のコールバック関数</p>
+
+<p><br />
+第1引数(err):エラーメッセージ</p>
+
+<p>第2引数(stats):次のようなオブジェクトを返します。</p>
+
+<pre><code>{
+    dev: 2049,
+    ino: 305352,
+    mode: 16877,
+    nlink: 12,
+    uid: 1000,
+    gid: 1000,
+    rdev: 0,
+    size: 4096,
+    blksize: 4096,
+    blocks: 8,
+    atime: '2009-06-29T11:11:55Z',
+    mtime: '2009-06-29T11:11:40Z',
+    ctime: '2009-06-29T11:11:40Z'
+}
+</code></pre>    </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  void  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
   </td>
   <td class="msource">
     NX.util.FileSystem
@@ -139,8 +165,27 @@
   </td>
   <td class="sig">
     <a id="NX.util.FileSystem-fstatSync"></a>
-    <b>fstatSync</b>(未定義 path, 未定義 suffix) : String
-    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul><li>  path:未定義  <ul>    <li>          </li>  </ul></li><li>  suffix:未定義  <ul>    <li>          </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  String  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+    <b>fstatSync</b>(String path) : fs.Stats
+    <div class="mdesc"><p>pathで指定されたファイルについての統計情報を取得します。
+<div class="long">
+pathがシンボリックリンクの場合、シンボリックリンクではなくファイルの実体の統計情報が返されます。</p>
+
+<p>lstat()はシンボリックリンクの統計情報を返すという違いを除いてstat()と等価です。</p><div class="params"><strong>パラメータ:</strong><ul><li>  path:String  <ul>    <li>      <p>ファイルへのパス</p>    </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  fs.Stats  <ul>    <li>    <pre><code>{
+    dev: 2049,
+    ino: 305352,
+    mode: 16877,
+    nlink: 12,
+    uid: 1000,
+    gid: 1000,
+    rdev: 0,
+    size: 4096,
+    blksize: 4096,
+    blocks: 8,
+    atime: '2009-06-29T11:11:55Z',
+    mtime: '2009-06-29T11:11:40Z',
+    ctime: '2009-06-29T11:11:40Z'
+}
+</code></pre>    </li>  </ul>  </li></ul></div></div></div>
   </td>
   <td class="msource">
     NX.util.FileSystem
@@ -187,8 +232,8 @@
   </td>
   <td class="sig">
     <a id="NX.util.FileSystem-link"></a>
-    <b>link</b>(未定義 path, 未定義 suffix) : String
-    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul><li>  path:未定義  <ul>    <li>          </li>  </ul></li><li>  suffix:未定義  <ul>    <li>          </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  String  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+    <b>link</b>(String srcpath, String dstpath, [Function callback]) : void
+    <div class="mdesc"><p>link() は非同期でハードリンクを作成します。</p><div class="long"><div class="params"><strong>パラメータ:</strong><ul><li>  srcpath:String  <ul>    <li>      <p>リンクの対象</p>    </li>  </ul></li><li>  dstpath:String  <ul>    <li>      <p>リンクの名前</p>    </li>  </ul></li><li>  callback:Function  <ul>    <li> (オプション) <p>処理後のコールバック関数</p>    </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  void  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
   </td>
   <td class="msource">
     NX.util.FileSystem
@@ -199,8 +244,8 @@
   </td>
   <td class="sig">
     <a id="NX.util.FileSystem-linkSync"></a>
-    <b>linkSync</b>(未定義 path, 未定義 suffix) : String
-    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul><li>  path:未定義  <ul>    <li>          </li>  </ul></li><li>  suffix:未定義  <ul>    <li>          </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  String  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+    <b>linkSync</b>(String srcpath, String dstpath) : void
+    <div class="mdesc"><p>linkSync() は同期でハードリンクを作成します。</p><div class="long"><div class="params"><strong>パラメータ:</strong><ul><li>  srcpath:String  <ul>    <li>      <p>リンクの対象</p>    </li>  </ul></li><li>  dstpath:String  <ul>    <li>      <p>リンクの名前</p>    </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  void  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
   </td>
   <td class="msource">
     NX.util.FileSystem
@@ -211,8 +256,34 @@
   </td>
   <td class="sig">
     <a id="NX.util.FileSystem-lstat"></a>
-    <b>lstat</b>(未定義 path, 未定義 suffix) : String
-    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul><li>  path:未定義  <ul>    <li>          </li>  </ul></li><li>  suffix:未定義  <ul>    <li>          </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  String  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+    <b>lstat</b>(String path, [Function callback]) : void
+    <div class="mdesc"><p>pathで指定されたファイルについての統計情報を取得します。
+<div class="long">
+pathがシンボリックリンクの場合、シンボリックリンクではなくファイルの実体の統計情報が返されます。</p>
+
+<p>lstat()はシンボリックリンクの統計情報を返すという違いを除いてstat()と等価です。</p><div class="params"><strong>パラメータ:</strong><ul><li>  path:String  <ul>    <li>      <p>ファイルへのパス</p>    </li>  </ul></li><li>  callback:Function  <ul>    <li> (オプション) <p>処理後のコールバック関数</p>
+
+<p><br />
+第1引数(err):エラーメッセージ</p>
+
+<p>第2引数(stats):次のようなオブジェクトを返します。</p>
+
+<pre><code>{
+    dev: 2049,
+    ino: 305352,
+    mode: 16877,
+    nlink: 12,
+    uid: 1000,
+    gid: 1000,
+    rdev: 0,
+    size: 4096,
+    blksize: 4096,
+    blocks: 8,
+    atime: '2009-06-29T11:11:55Z',
+    mtime: '2009-06-29T11:11:40Z',
+    ctime: '2009-06-29T11:11:40Z'
+}
+</code></pre>    </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  void  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
   </td>
   <td class="msource">
     NX.util.FileSystem
@@ -223,8 +294,27 @@
   </td>
   <td class="sig">
     <a id="NX.util.FileSystem-lstatSync"></a>
-    <b>lstatSync</b>(未定義 path, 未定義 suffix) : String
-    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul><li>  path:未定義  <ul>    <li>          </li>  </ul></li><li>  suffix:未定義  <ul>    <li>          </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  String  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+    <b>lstatSync</b>(String path) : fs.Stats
+    <div class="mdesc"><p>pathで指定されたファイルについての統計情報を取得します。
+<div class="long">
+pathがシンボリックリンクの場合、シンボリックリンクではなくファイルの実体の統計情報が返されます。</p>
+
+<p>lstat()はシンボリックリンクの統計情報を返すという違いを除いてstat()と等価です。</p><div class="params"><strong>パラメータ:</strong><ul><li>  path:String  <ul>    <li>      <p>ファイルへのパス</p>    </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  fs.Stats  <ul>    <li>    <pre><code>{
+    dev: 2049,
+    ino: 305352,
+    mode: 16877,
+    nlink: 12,
+    uid: 1000,
+    gid: 1000,
+    rdev: 0,
+    size: 4096,
+    blksize: 4096,
+    blocks: 8,
+    atime: '2009-06-29T11:11:55Z',
+    mtime: '2009-06-29T11:11:40Z',
+    ctime: '2009-06-29T11:11:40Z'
+}
+</code></pre>    </li>  </ul>  </li></ul></div></div></div>
   </td>
   <td class="msource">
     NX.util.FileSystem
