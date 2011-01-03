@@ -716,8 +716,8 @@ pathがシンボリックリンクの場合、シンボリックリンクでは�
   </td>
   <td class="sig">
     <a id="NX.util.FileSystem-truncate"></a>
-    <b>truncate</b>(fs.WriteStream fd, Number len, [Function callback]) : void
-    <div class="mdesc"><p>非同期でファイルストリームから指定長のバイトを削除します。</p><div class="long"><div class="params"><strong>パラメータ:</strong><ul><li>  fd:fs.WriteStream  <ul>    <li>      <p>ファイルストリーム</p>    </li>  </ul></li><li>  len:Number  <ul>    <li>      <p>長さ</p>    </li>  </ul></li><li>  callback:Function  <ul>    <li> (オプション) <p>処理後のコールバック関数</p>    </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  void  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+    <b>truncate</b>(fs.ReadStream/fs.WriteStream fd, Number len, [Function callback]) : void
+    <div class="mdesc"><p>非同期でファイルストリームから指定長のバイトを削除します。</p><div class="long"><div class="params"><strong>パラメータ:</strong><ul><li>  fd:fs.ReadStream/fs.WriteStream  <ul>    <li>      <p>ファイルストリーム</p>    </li>  </ul></li><li>  len:Number  <ul>    <li>      <p>長さ</p>    </li>  </ul></li><li>  callback:Function  <ul>    <li> (オプション) <p>処理後のコールバック関数</p>    </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  void  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
   </td>
   <td class="msource">
     NX.util.FileSystem
@@ -797,8 +797,14 @@ pathがシンボリックリンクの場合、シンボリックリンクでは�
   </td>
   <td class="sig">
     <a id="NX.util.FileSystem-write"></a>
-    <b>write</b>(未定義 path, 未定義 suffix) : String
-    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul><li>  path:未定義  <ul>    <li>          </li>  </ul></li><li>  suffix:未定義  <ul>    <li>          </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  String  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+    <b>write</b>(fs.ReadStream/fs.WriteStream fd, Mixed buffer, Number offset, Number length, Number position, [Function callback]) : void
+    <div class="mdesc"><p>fdで指定されたファイルにbufferを非同期で書き込みます。</p>
+
+<p><div class="long">
+position はデータが書き込まれる位置をファイルの先頭からのオフセットで示します。
+positionがnullの場合、データは現在の位置から書き込まれます。</p>
+
+<p>コールバックは2つの引数が与えられる(err,written)で、writtenは書き込まれたバイト数を示します。</p><div class="params"><strong>パラメータ:</strong><ul><li>  fd:fs.ReadStream/fs.WriteStream  <ul>    <li>      <p>ファイルストリーム</p>    </li>  </ul></li><li>  buffer:Mixed  <ul>    <li>      <p>バッファ</p>    </li>  </ul></li><li>  offset:Number  <ul>    <li>      <p>オフセット値</p>    </li>  </ul></li><li>  length:Number  <ul>    <li>      <p>長さ</p>    </li>  </ul></li><li>  position:Number  <ul>    <li>      <p>データが書き込まれる位置</p>    </li>  </ul></li><li>  callback:Function  <ul>    <li> (オプション) <p>処理後のコールバック関数</p>    </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  void  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
   </td>
   <td class="msource">
     NX.util.FileSystem
@@ -809,8 +815,21 @@ pathがシンボリックリンクの場合、シンボリックリンクでは�
   </td>
   <td class="sig">
     <a id="NX.util.FileSystem-writeFile"></a>
-    <b>writeFile</b>(未定義 path, 未定義 suffix) : String
-    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul><li>  path:未定義  <ul>    <li>          </li>  </ul></li><li>  suffix:未定義  <ul>    <li>          </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  String  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+    <b>writeFile</b>(String filename, Mixed data, String encoding, [Function callback]) : void
+    <div class="mdesc"><p>非同期でデータをファイルに書き込みます。</p>
+
+<p><div class="long">
+dataは文字列またはバッファです。</p>
+
+<p>例:</p>
+
+<pre><code>NX.fs.writeFile('message.txt', 'Hello Node', function (err) {
+    if (err) throw err;
+    console.log('It\'s saved!');
+});
+</code></pre><div class="params"><strong>パラメータ:</strong><ul><li>  filename:String  <ul>    <li>      <p>パス</p>    </li>  </ul></li><li>  data:Mixed  <ul>    <li>      <p>文字列またはバッファ</p>    </li>  </ul></li><li>  encoding:String  <ul>    <li>      <p>エンコーディング</p>
+
+<p><strong>(初期値:'utf8')</strong></p>    </li>  </ul></li><li>  callback:Function  <ul>    <li> (オプション) <p>処理後のコールバック関数</p>    </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  void  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
   </td>
   <td class="msource">
     NX.util.FileSystem
@@ -821,8 +840,21 @@ pathがシンボリックリンクの場合、シンボリックリンクでは�
   </td>
   <td class="sig">
     <a id="NX.util.FileSystem-writeFileSync"></a>
-    <b>writeFileSync</b>(未定義 path, 未定義 suffix) : String
-    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul><li>  path:未定義  <ul>    <li>          </li>  </ul></li><li>  suffix:未定義  <ul>    <li>          </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  String  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+    <b>writeFileSync</b>(String filename, Mixed data, String encoding) : void
+    <div class="mdesc"><p>同期でデータをファイルに書き込みます。</p>
+
+<p><div class="long">
+dataは文字列またはバッファです。</p>
+
+<p>例:</p>
+
+<pre><code>NX.fs.writeFile('message.txt', 'Hello Node', function (err) {
+    if (err) throw err;
+    console.log('It\'s saved!');
+});
+</code></pre><div class="params"><strong>パラメータ:</strong><ul><li>  filename:String  <ul>    <li>      <p>パス</p>    </li>  </ul></li><li>  data:Mixed  <ul>    <li>      <p>文字列またはバッファ</p>    </li>  </ul></li><li>  encoding:String  <ul>    <li>      <p>エンコーディング</p>
+
+<p><strong>(初期値:'utf8')</strong></p>    </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  void  <ul>    <li>    <p>書き込まれたバイト数</p>    </li>  </ul>  </li></ul></div></div></div>
   </td>
   <td class="msource">
     NX.util.FileSystem
@@ -833,8 +865,12 @@ pathがシンボリックリンクの場合、シンボリックリンクでは�
   </td>
   <td class="sig">
     <a id="NX.util.FileSystem-writeSync"></a>
-    <b>writeSync</b>(未定義 path, 未定義 suffix) : String
-    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul><li>  path:未定義  <ul>    <li>          </li>  </ul></li><li>  suffix:未定義  <ul>    <li>          </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  String  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+    <b>writeSync</b>(fs.ReadStream/fs.WriteStream fd, Mixed buffer, Number offset, Number length, Number position) : Number
+    <div class="mdesc"><p>fdで指定されたファイルにbufferを同期で書き込みます。</p>
+
+<p><div class="long">
+position はデータが書き込まれる位置をファイルの先頭からのオフセットで示します。
+positionがnullの場合、データは現在の位置から書き込まれます。</p><div class="params"><strong>パラメータ:</strong><ul><li>  fd:fs.ReadStream/fs.WriteStream  <ul>    <li>      <p>ファイルストリーム</p>    </li>  </ul></li><li>  buffer:Mixed  <ul>    <li>      <p>バッファ</p>    </li>  </ul></li><li>  offset:Number  <ul>    <li>      <p>オフセット値</p>    </li>  </ul></li><li>  length:Number  <ul>    <li>      <p>長さ</p>    </li>  </ul></li><li>  position:Number  <ul>    <li>      <p>データが書き込まれる位置</p>    </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  Number  <ul>    <li>    <p>書き込まれたバイト数</p>    </li>  </ul>  </li></ul></div></div></div>
   </td>
   <td class="msource">
     NX.util.FileSystem
