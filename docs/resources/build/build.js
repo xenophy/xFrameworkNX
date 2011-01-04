@@ -285,8 +285,14 @@ var genApiNode = function(rootPath, targetPath, deploy, outputDir) {
             // プロパティ一覧取得
             NX.each(clsData._prop, function(v) {
 
-                var mdfile = tp + '/' + v.name + '.prop.mdown';
-                var infofile = tp + '/' + v.name + '.prop.js';
+                var ttp = tp;
+
+                if(v.extended) {
+                    ttp = path.normalize(targetFullPath + v.cls.replace(/\./g, "/"));
+                }
+
+                var mdfile = ttp + '/' + v.name + '.prop.mdown';
+                var infofile = ttp + '/' + v.name + '.prop.js';
 
                 // 説明文読み込み
                 if(NX.fs.exists(mdfile)) {
@@ -301,6 +307,10 @@ var genApiNode = function(rootPath, targetPath, deploy, outputDir) {
                 if(NX.fs.exists(infofile)) {
                     info = NX.fs.readFileSync(infofile, 'utf8');
                     info = NX.decode(info);
+                }
+
+                if(v.extended && info.extendedShow === false) {
+                    return;
                 }
 
                 o.children.push({
@@ -332,6 +342,10 @@ var genApiNode = function(rootPath, targetPath, deploy, outputDir) {
                 // 継承クラスへのリンクは未実装
                 var propDefined = clsName;
                 propDefined = fullNs;
+
+                if(v.extended) {
+                    propDefined = v.cls;
+                }
 
                 htmls.propList += NX.sprintf([
                     '<tr class="prop-row %1$s">',
