@@ -95,8 +95,11 @@ getKeyを実装するか、コンストラクタのkeyFnを指定した場合は
   </td>
   <td class="sig">
     <a id="NX.util.MixedCollection-clear"></a>
-    <b>clear</b>(未定義 allowFunctions, 未定義 keyFn) : void
-    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul><li>  allowFunctions:未定義  <ul>    <li>          </li>  </ul></li><li>  keyFn:未定義  <ul>    <li>          </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  void  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+    <b>clear</b>() : void
+    <div class="mdesc"><p>すべてのアイテムを取り除きます。</p>
+
+<p><div class="long">
+完了した時点でclearイベントを発火します。</p><div class="params"><strong>戻り値:</strong><ul>  <li>  void  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
   </td>
   <td class="msource">
     NX.util.MixedCollection
@@ -119,8 +122,8 @@ getKeyを実装するか、コンストラクタのkeyFnを指定した場合は
   </td>
   <td class="sig">
     <a id="NX.util.MixedCollection-clone"></a>
-    <b>clone</b>(未定義 allowFunctions, 未定義 keyFn) : void
-    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul><li>  allowFunctions:未定義  <ul>    <li>          </li>  </ul></li><li>  keyFn:未定義  <ul>    <li>          </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  void  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+    <b>clone</b>() : MixedCollection
+    <div class="mdesc"><p>コレクションのクローンを別インスタンスで新たに生成します。</p><div class="long"><div class="params"><strong>戻り値:</strong><ul>  <li>  MixedCollection  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
   </td>
   <td class="msource">
     NX.util.MixedCollection
