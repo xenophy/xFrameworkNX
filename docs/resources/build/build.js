@@ -329,6 +329,7 @@ var genApiNode = function(rootPath, targetPath, deploy, outputDir) {
 
                 // 継承クラスへのリンクは未実装
                 var propDefined = clsName;
+                propDefined = fullNs;
 
                 htmls.propList += NX.sprintf([
                     '<tr class="prop-row %1$s">',
