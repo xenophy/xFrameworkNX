@@ -466,6 +466,7 @@ var genApiNode = function(rootPath, targetPath, deploy, outputDir) {
                 paramList += '<strong>パラメータ:</strong>';
                 paramList += '<ul>';
 
+                var pc = 0;
                 NX.iterate(params, function(key, v) {
 
                     paramList += '<li>';
@@ -488,9 +489,16 @@ var genApiNode = function(rootPath, targetPath, deploy, outputDir) {
                     paramList += '  </ul>';
                     paramList += '</li>';
 
+                    pc++;
+
                 });
 
                 paramList += '</ul>';
+
+                if(pc === 0) {
+                    paramList = '';
+                    paramList += '<div class="params">';
+                }
 
                 var mdfile = tp + '/' + v.name + '/' + 'return.mdown';
                 var desc = '';

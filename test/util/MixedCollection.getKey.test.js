@@ -12,21 +12,17 @@ require('NX');
 var assert = require('assert');
 
 // }}}
-// {{{ NX.util.FileSystem Class Tests
+// {{{ NX.util.MixedCollection Class Tests
 
 module.exports = {
 
-    // {{{ test pathinfo#standard
+    // {{{ test getKey#standard
 
-    'test pathinfo#standard': function() {
+    'test getKey#standard': function() {
 
-        var ret;
+        var mc = new NX.util.MixedCollection();
 
-        ret = NX.fs.pathinfo('/www/htdocs/index.html', 1);
-        assert.equal(ret, '/www/htdocs');
-
-        ret = NX.fs.pathinfo('/www/htdocs/index.html', 'PATHINFO_BASENAME');
-        assert.equal(ret, 'index.html');
+        assert.equal(mc.getKey({ id: 'id1' }), 'id1');
 
     }
 
