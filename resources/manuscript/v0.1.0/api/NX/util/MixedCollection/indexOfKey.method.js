@@ -1,4 +1,4 @@
 {
-    "param" : ["allowFunctions", "keyFn"],
-    "return": "void"
+    "param" : ["key"],
+    "return": "Number"
 }

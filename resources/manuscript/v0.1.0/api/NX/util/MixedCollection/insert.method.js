@@ -1,4 +1,4 @@
 {
-    "param" : ["allowFunctions", "keyFn"],
-    "return": "void"
+    "param" : ["index", "key", "o"],
+    "return": "Object"
 }

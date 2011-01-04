@@ -1,4 +1,4 @@
 {
-    "param" : ["allowFunctions", "keyFn"],
-    "return": "void"
+    "param" : ["property", "value", "anyMatch", "caseSensitive"],
+    "return": "MixedCollection"
 }

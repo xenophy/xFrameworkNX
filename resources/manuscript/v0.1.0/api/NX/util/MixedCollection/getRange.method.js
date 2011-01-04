@@ -1,4 +1,4 @@
 {
-    "param" : ["allowFunctions", "keyFn"],
-    "return": "void"
+    "param" : ["startIndex", "endIndex"],
+    "return": "Array"
 }

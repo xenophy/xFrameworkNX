@@ -134,8 +134,8 @@ getKeyを実装するか、コンストラクタのkeyFnを指定した場合は
   </td>
   <td class="sig">
     <a id="NX.util.MixedCollection-contains"></a>
-    <b>contains</b>(未定義 allowFunctions, 未定義 keyFn) : void
-    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul><li>  allowFunctions:未定義  <ul>    <li>          </li>  </ul></li><li>  keyFn:未定義  <ul>    <li>          </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  void  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+    <b>contains</b>(Object o) : Boolean
+    <div class="mdesc"><p>引数で指定されたオブジェクトを持っている場合trueを返します。</p><div class="long"><div class="params"><strong>パラメータ:</strong><ul><li>  o:Object  <ul>    <li>      <p>コレクション内に存在するか検索するオブジェクト</p>    </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  Boolean  <ul>    <li>    <p>引数で指定されたオブジェクトを持っている場合true</p>    </li>  </ul>  </li></ul></div></div></div>
   </td>
   <td class="msource">
     NX.util.MixedCollection
@@ -146,20 +146,8 @@ getKeyを実装するか、コンストラクタのkeyFnを指定した場合は
   </td>
   <td class="sig">
     <a id="NX.util.MixedCollection-containsKey"></a>
-    <b>containsKey</b>(未定義 allowFunctions, 未定義 keyFn) : void
-    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul><li>  allowFunctions:未定義  <ul>    <li>          </li>  </ul></li><li>  keyFn:未定義  <ul>    <li>          </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  void  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
-  </td>
-  <td class="msource">
-    NX.util.MixedCollection
-  </td>
-</tr><tr class="method-row inherited expandable">
-  <td class="micon">
-    <a href="#expand" class="exi">&nbsp;</a>
-  </td>
-  <td class="sig">
-    <a id="NX.util.MixedCollection-createValueMatcher"></a>
-    <b>createValueMatcher</b>(未定義 allowFunctions, 未定義 keyFn) : void
-    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul><li>  allowFunctions:未定義  <ul>    <li>          </li>  </ul></li><li>  keyFn:未定義  <ul>    <li>          </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  void  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+    <b>containsKey</b>(String key) : Boolean
+    <div class="mdesc"><p>引数に設定されたキーのアイテムがコレクション内に存在する場合、trueを返します。</p><div class="long"><div class="params"><strong>パラメータ:</strong><ul><li>  key:String  <ul>    <li>      <p>コレクション内を検索するキー</p>    </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  Boolean  <ul>    <li>    <p>引数に設定されたキーのアイテムがコレクション内に存在する場合、true</p>    </li>  </ul>  </li></ul></div></div></div>
   </td>
   <td class="msource">
     NX.util.MixedCollection
@@ -170,8 +158,26 @@ getKeyを実装するか、コンストラクタのkeyFnを指定した場合は
   </td>
   <td class="sig">
     <a id="NX.util.MixedCollection-each"></a>
-    <b>each</b>(未定義 allowFunctions, 未定義 keyFn) : void
-    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul><li>  allowFunctions:未定義  <ul>    <li>          </li>  </ul></li><li>  keyFn:未定義  <ul>    <li>          </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  void  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+    <b>each</b>(Function fn, [Object scope]) : void
+    <div class="mdesc"><p>コレクション中のアイテムを一つずつ引数とした指定された関数を実行します。</p>
+
+<p><div class="long">
+<br />
+関数の引数は次の通り :</p>
+
+<p><strong>item : Mixed</strong>
+該当のアイテムオブジェクト</p>
+
+<p><strong>index : Number</strong>
+アイテムインデックス</p>
+
+<p><strong>length : Number</strong>
+総アイテム数</p>
+
+<p><br />
+関数は真偽値を返してください。</p>
+
+<p>関数が false を返すと、繰り返しを中断します。</p><div class="params"><strong>パラメータ:</strong><ul><li>  fn:Function  <ul>    <li>      <p>繰り返し時、実行される関数</p>    </li>  </ul></li><li>  scope:Object  <ul>    <li> (オプション) <p>関数内のスコープオブジェクト</p>    </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  void  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
   </td>
   <td class="msource">
     NX.util.MixedCollection
@@ -182,8 +188,8 @@ getKeyを実装するか、コンストラクタのkeyFnを指定した場合は
   </td>
   <td class="sig">
     <a id="NX.util.MixedCollection-eachKey"></a>
-    <b>eachKey</b>(未定義 allowFunctions, 未定義 keyFn) : void
-    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul><li>  allowFunctions:未定義  <ul>    <li>          </li>  </ul></li><li>  keyFn:未定義  <ul>    <li>          </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  void  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+    <b>eachKey</b>(Function fn, [Object scope]) : void
+    <div class="mdesc"><p>コレクション中のアイテムを一つずつ引数とした指定された関数を実行します。</p><div class="long"><div class="params"><strong>パラメータ:</strong><ul><li>  fn:Function  <ul>    <li>      <p>繰り返し時、実行される関数</p>    </li>  </ul></li><li>  scope:Object  <ul>    <li> (オプション) <p>関数内のスコープオブジェクト</p>    </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  void  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
   </td>
   <td class="msource">
     NX.util.MixedCollection
@@ -210,8 +216,8 @@ getKeyを実装するか、コンストラクタのkeyFnを指定した場合は
   </td>
   <td class="sig">
     <a id="NX.util.MixedCollection-filter"></a>
-    <b>filter</b>(未定義 allowFunctions, 未定義 keyFn) : void
-    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul><li>  allowFunctions:未定義  <ul>    <li>          </li>  </ul></li><li>  keyFn:未定義  <ul>    <li>          </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  void  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+    <b>filter</b>(String property, String/RegExp value, [Boolean anyMatch], [Boolean caseSensitive]) : MixedCollection
+    <div class="mdesc"><p>指定したプロパティで、コレクション中のオブジェクトをフィルタリングし、新たなコレクションを返します。</p><div class="long"><div class="params"><strong>パラメータ:</strong><ul><li>  property:String  <ul>    <li>      <p>プロパティ</p>    </li>  </ul></li><li>  value:String/RegExp  <ul>    <li>      <p>プロパティの値に先頭一致すべき文字列か、プロパティに対してテストを行う正規表現</p>    </li>  </ul></li><li>  anyMatch:Boolean  <ul>    <li> (オプション) <p>文字列のどの部分でもマッチするならtrue、そうでなければ開始部分</p>    </li>  </ul></li><li>  caseSensitive:Boolean  <ul>    <li> (オプション) <p>大文字小文字を区別して比較するならtrue(初期値 false)</p>    </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  MixedCollection  <ul>    <li>    <p>フィルタリングされた新たなコレクション</p>    </li>  </ul>  </li></ul></div></div></div>
   </td>
   <td class="msource">
     NX.util.MixedCollection
@@ -222,8 +228,19 @@ getKeyを実装するか、コンストラクタのkeyFnを指定した場合は
   </td>
   <td class="sig">
     <a id="NX.util.MixedCollection-filterBy"></a>
-    <b>filterBy</b>(未定義 allowFunctions, 未定義 keyFn) : void
-    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul><li>  allowFunctions:未定義  <ul>    <li>          </li>  </ul></li><li>  keyFn:未定義  <ul>    <li>          </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  void  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+    <b>filterBy</b>(Function fn, [Object scope]) : MixedCollection
+    <div class="mdesc"><p>任意の関数でフィルタリングし、新たなコレクションを返します。</p>
+
+<p><div class="long">
+引数として渡された関数は、コレクション中のオブジェクト毎に呼ばれます。
+もし、関数がtrueを返せばその値が含まれ、そうでなければ除外されます。</p><div class="params"><strong>パラメータ:</strong><ul><li>  fn:Function  <ul>    <li>      <p>コールバック関数。</p>
+
+<p><br />
+関数は引数:</p>
+
+<p><strong>o</strong> : 評価するオブジェクト</p>
+
+<p><strong>k</strong> : 評価するキー</p>    </li>  </ul></li><li>  scope:Object  <ul>    <li> (オプション) <p>関数内のスコープオブジェクト</p>    </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  MixedCollection  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
   </td>
   <td class="msource">
     NX.util.MixedCollection
@@ -233,9 +250,9 @@ getKeyを実装するか、コンストラクタのkeyFnを指定した場合は
     <a href="#expand" class="exi">&nbsp;</a>
   </td>
   <td class="sig">
-    <a id="NX.util.MixedCollection-findBy"></a>
-    <b>findBy</b>(未定義 allowFunctions, 未定義 keyFn) : void
-    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul><li>  allowFunctions:未定義  <ul>    <li>          </li>  </ul></li><li>  keyFn:未定義  <ul>    <li>          </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  void  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+    <a id="NX.util.MixedCollection-find"></a>
+    <b>find</b>(Function fn, [Object scope]) : Object
+    <div class="mdesc"><p>引数に設定した関数の戻り値がtrueのアイテムで、最初のアイテムを返します。</p><div class="long"><div class="params"><strong>パラメータ:</strong><ul><li>  fn:Function  <ul>    <li>      <p>アイテム毎に実行する選択関数</p>    </li>  </ul></li><li>  scope:Object  <ul>    <li> (オプション) <p>関数内のスコープオブジェクト</p>    </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  Object  <ul>    <li>    <p>引数に設定した関数の戻り値がtrueのアイテムで、最初のアイテム</p>    </li>  </ul>  </li></ul></div></div></div>
   </td>
   <td class="msource">
     NX.util.MixedCollection
@@ -246,8 +263,8 @@ getKeyを実装するか、コンストラクタのkeyFnを指定した場合は
   </td>
   <td class="sig">
     <a id="NX.util.MixedCollection-findIndex"></a>
-    <b>findIndex</b>(未定義 allowFunctions, 未定義 keyFn) : void
-    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul><li>  allowFunctions:未定義  <ul>    <li>          </li>  </ul></li><li>  keyFn:未定義  <ul>    <li>          </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  void  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+    <b>findIndex</b>(String property, String/RegExp value, [Number start], [Boolean anyMatch], [Boolean caseSensitive]) : Number
+    <div class="mdesc"><p>指定したプロパティ値によるコレクション中から、最初にマッチしたオブジェクトのインデックスを見つけます。</p><div class="long"><div class="params"><strong>パラメータ:</strong><ul><li>  property:String  <ul>    <li>      <p>プロパティ</p>    </li>  </ul></li><li>  value:String/RegExp  <ul>    <li>      <p>プロパティの値に先頭一致すべき文字列か、プロパティに対してテストを行う正規表現</p>    </li>  </ul></li><li>  start:Number  <ul>    <li> (オプション) <p>検索を始めるインデックス (初期値 0)</p>    </li>  </ul></li><li>  anyMatch:Boolean  <ul>    <li> (オプション) <p>文字列のどの部分でもマッチするならtrue、そうでなければ開始部分</p>    </li>  </ul></li><li>  caseSensitive:Boolean  <ul>    <li> (オプション) <p>大文字小文字を区別して比較するならtrue(初期値 false)</p>    </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  Number  <ul>    <li>    <p>マッチしたインデックスか、-1</p>    </li>  </ul>  </li></ul></div></div></div>
   </td>
   <td class="msource">
     NX.util.MixedCollection
@@ -259,7 +276,10 @@ getKeyを実装するか、コンストラクタのkeyFnを指定した場合は
   <td class="sig">
     <a id="NX.util.MixedCollection-findIndexBy"></a>
     <b>findIndexBy</b>(未定義 allowFunctions, 未定義 keyFn) : void
-    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul><li>  allowFunctions:未定義  <ul>    <li>          </li>  </ul></li><li>  keyFn:未定義  <ul>    <li>          </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  void  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+    <div class="mdesc"><p>任意の関数によるコレクション中から、最初にマッチしたオブジェクトのインデックスを見つけます。</p>
+
+<p><div class="long">
+もし、関数がtrueを返せば、マッチしたと見なします。</p><div class="params"><strong>パラメータ:</strong><ul><li>  allowFunctions:未定義  <ul>    <li>          </li>  </ul></li><li>  keyFn:未定義  <ul>    <li>          </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  void  <ul>    <li>    <p>マッチしたインデックスか、-1</p>    </li>  </ul>  </li></ul></div></div></div>
   </td>
   <td class="msource">
     NX.util.MixedCollection
@@ -282,8 +302,8 @@ getKeyを実装するか、コンストラクタのkeyFnを指定した場合は
   </td>
   <td class="sig">
     <a id="NX.util.MixedCollection-first"></a>
-    <b>first</b>(未定義 allowFunctions, 未定義 keyFn) : void
-    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul><li>  allowFunctions:未定義  <ul>    <li>          </li>  </ul></li><li>  keyFn:未定義  <ul>    <li>          </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  void  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+    <b>first</b>() : Object
+    <div class="mdesc"><p>コレクション中の最初のアイテムを返します。</p><div class="long"><div class="params"><strong>戻り値:</strong><ul>  <li>  Object  <ul>    <li>    <p>コレクション中の最初のアイテム</p>    </li>  </ul>  </li></ul></div></div></div>
   </td>
   <td class="msource">
     NX.util.MixedCollection
@@ -294,32 +314,12 @@ getKeyを実装するか、コンストラクタのkeyFnを指定した場合は
   </td>
   <td class="sig">
     <a id="NX.util.MixedCollection-get"></a>
-    <b>get</b>(未定義 allowFunctions, 未定義 keyFn) : void
-    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul><li>  allowFunctions:未定義  <ul>    <li>          </li>  </ul></li><li>  keyFn:未定義  <ul>    <li>          </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  void  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
-  </td>
-  <td class="msource">
-    NX.util.MixedCollection
-  </td>
-</tr><tr class="method-row inherited expandable">
-  <td class="micon">
-    <a href="#expand" class="exi">&nbsp;</a>
-  </td>
-  <td class="sig">
-    <a id="NX.util.MixedCollection-getAt"></a>
-    <b>getAt</b>(未定義 allowFunctions, 未定義 keyFn) : void
-    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul><li>  allowFunctions:未定義  <ul>    <li>          </li>  </ul></li><li>  keyFn:未定義  <ul>    <li>          </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  void  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
-  </td>
-  <td class="msource">
-    NX.util.MixedCollection
-  </td>
-</tr><tr class="method-row inherited expandable">
-  <td class="micon">
-    <a href="#expand" class="exi">&nbsp;</a>
-  </td>
-  <td class="sig">
-    <a id="NX.util.MixedCollection-getByKey"></a>
-    <b>getByKey</b>(未定義 allowFunctions, 未定義 keyFn) : void
-    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul><li>  allowFunctions:未定義  <ul>    <li>          </li>  </ul></li><li>  keyFn:未定義  <ul>    <li>          </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  void  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+    <b>get</b>(String/Number key) : Object
+    <div class="mdesc"><p>引数で指定したキー、またはインデックスのアイテムを返します。</p>
+
+<p><div class="long">
+このメソッドは、item()を呼び出します。
+まず、keyを呼び出し、itemAtでアイテムを取得することと同じ動作をします。</p><div class="params"><strong>パラメータ:</strong><ul><li>  key:String/Number  <ul>    <li>      <p>キー、またはインデックス</p>    </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  Object  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
   </td>
   <td class="msource">
     NX.util.MixedCollection
@@ -330,8 +330,8 @@ getKeyを実装するか、コンストラクタのkeyFnを指定した場合は
   </td>
   <td class="sig">
     <a id="NX.util.MixedCollection-getCount"></a>
-    <b>getCount</b>(未定義 allowFunctions, 未定義 keyFn) : void
-    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul><li>  allowFunctions:未定義  <ul>    <li>          </li>  </ul></li><li>  keyFn:未定義  <ul>    <li>          </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  void  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+    <b>getCount</b>() : Number
+    <div class="mdesc"><p>コレクション内のアイテム数を返します。</p><div class="long"><div class="params"><strong>戻り値:</strong><ul>  <li>  Number  <ul>    <li>    <p>コレクション内のアイテム数</p>    </li>  </ul>  </li></ul></div></div></div>
   </td>
   <td class="msource">
     NX.util.MixedCollection
@@ -342,8 +342,30 @@ getKeyを実装するか、コンストラクタのkeyFnを指定した場合は
   </td>
   <td class="sig">
     <a id="NX.util.MixedCollection-getKey"></a>
-    <b>getKey</b>(未定義 allowFunctions, 未定義 keyFn) : void
-    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul><li>  allowFunctions:未定義  <ul>    <li>          </li>  </ul></li><li>  keyFn:未定義  <ul>    <li>          </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  void  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+    <b>getKey</b>(Object item) : String
+    <div class="mdesc"><p>MixedCollectionには、キーを取得する一般的な方法があります。
+デフォルトはitem.idを返します。</p>
+
+<p><div class="long">
+しかし、次の例のように、設定次第では異なった値を返すことも可能です。</p>
+
+<pre><code>var mc = new NX.util.MixedCollection();
+mc.add(someEl.dom.id, someEl);
+mc.add(otherEl.dom.id, otherEl);
+
+var mc = new NX.util.MixedCollection();
+mc.getKey = function(el){
+    return el.dom.id;
+};
+mc.add(someEl);
+mc.add(otherEl);
+
+var mc = new NX.util.MixedCollection(false, function(el){
+    return el.dom.id;
+});
+mc.add(someEl);
+mc.add(otherEl);
+</code></pre><div class="params"><strong>パラメータ:</strong><ul><li>  item:Object  <ul>    <li>      <p>キーを見つけるためのアイテム</p>    </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  String  <ul>    <li>    <p>キー</p>    </li>  </ul>  </li></ul></div></div></div>
   </td>
   <td class="msource">
     NX.util.MixedCollection
@@ -354,8 +376,20 @@ getKeyを実装するか、コンストラクタのkeyFnを指定した場合は
   </td>
   <td class="sig">
     <a id="NX.util.MixedCollection-getRange"></a>
-    <b>getRange</b>(未定義 allowFunctions, 未定義 keyFn) : void
-    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul><li>  allowFunctions:未定義  <ul>    <li>          </li>  </ul></li><li>  keyFn:未定義  <ul>    <li>          </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  void  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+    <b>getRange</b>([Number startIndex], [Number endIndex]) : Array
+    <div class="mdesc"><p>コレクション中のインデックス範囲を指定して、一部のアイテムを返します。</p><div class="long"><div class="params"><strong>パラメータ:</strong><ul><li>  startIndex:Number  <ul>    <li> (オプション) <p>初期値:0</p>    </li>  </ul></li><li>  endIndex:Number  <ul>    <li> (オプション) <p>初期値:最後のアイテムインデックス</p>    </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  Array  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+  </td>
+  <td class="msource">
+    NX.util.MixedCollection
+  </td>
+</tr><tr class="method-row inherited expandable">
+  <td class="micon">
+    <a href="#expand" class="exi">&nbsp;</a>
+  </td>
+  <td class="sig">
+    <a id="NX.util.MixedCollection-indexOf"></a>
+    <b>indexOf</b>(Object o) : Number
+    <div class="mdesc"><p>引数として渡されたオブジェクトのコレクション内でのインデックスを返します。</p><div class="long"><div class="params"><strong>パラメータ:</strong><ul><li>  o:Object  <ul>    <li>      <p>インデックスを取得するため検索を行うオブジェクト</p>    </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  Number  <ul>    <li>    <p>アイテムのインデックス、見つからなかったときは-1を返します。</p>    </li>  </ul>  </li></ul></div></div></div>
   </td>
   <td class="msource">
     NX.util.MixedCollection
@@ -366,8 +400,8 @@ getKeyを実装するか、コンストラクタのkeyFnを指定した場合は
   </td>
   <td class="sig">
     <a id="NX.util.MixedCollection-indexOfKey"></a>
-    <b>indexOfKey</b>(未定義 allowFunctions, 未定義 keyFn) : void
-    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul><li>  allowFunctions:未定義  <ul>    <li>          </li>  </ul></li><li>  keyFn:未定義  <ul>    <li>          </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  void  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+    <b>indexOfKey</b>(String key) : Number
+    <div class="mdesc"><p>引数として渡されたキーのコレクション内でのインデックスを返します。</p><div class="long"><div class="params"><strong>パラメータ:</strong><ul><li>  key:String  <ul>    <li>      <p>インデックスを探すキー</p>    </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  Number  <ul>    <li>    <p>キーのインデックス</p>    </li>  </ul>  </li></ul></div></div></div>
   </td>
   <td class="msource">
     NX.util.MixedCollection
@@ -378,8 +412,23 @@ getKeyを実装するか、コンストラクタのkeyFnを指定した場合は
   </td>
   <td class="sig">
     <a id="NX.util.MixedCollection-insert"></a>
-    <b>insert</b>(未定義 allowFunctions, 未定義 keyFn) : void
-    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul><li>  allowFunctions:未定義  <ul>    <li>          </li>  </ul></li><li>  keyFn:未定義  <ul>    <li>          </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  void  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+    <b>insert</b>(Number index, String key, [Object o]) : Object
+    <div class="mdesc"><p>コレクション内の指定したインデックスにアイテムを挿入します。</p>
+
+<p><div class="long">
+完了した時にaddイベントが発生します。</p><div class="params"><strong>パラメータ:</strong><ul><li>  index:Number  <ul>    <li>      <p>アイテムを挿入するインデックス</p>    </li>  </ul></li><li>  key:String  <ul>    <li>      <p>アイテムに対応するキーか、アイテム</p>    </li>  </ul></li><li>  o:Object  <ul>    <li> (オプション) <p>二番目のパラメータがキーの場合は、新しいアイテム</p>    </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  Object  <ul>    <li>    <p>挿入されたアイテム</p>    </li>  </ul>  </li></ul></div></div></div>
+  </td>
+  <td class="msource">
+    NX.util.MixedCollection
+  </td>
+</tr><tr class="method-row inherited expandable">
+  <td class="micon">
+    <a href="#expand" class="exi">&nbsp;</a>
+  </td>
+  <td class="sig">
+    <a id="NX.util.MixedCollection-item"></a>
+    <b>item</b>() : undefined
+    <div class="mdesc"><div class="long"><div class="params"><strong>戻り値:</strong><ul>  <li>  undefined  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
   </td>
   <td class="msource">
     NX.util.MixedCollection

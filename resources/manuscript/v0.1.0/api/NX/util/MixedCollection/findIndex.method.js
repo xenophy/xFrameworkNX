@@ -1,4 +1,4 @@
 {
-    "param" : ["allowFunctions", "keyFn"],
-    "return": "void"
+    "param" : ["property", "value", "start", "anyMatch", "caseSensitive"],
+    "return": "Number"
 }
