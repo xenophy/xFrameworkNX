@@ -27,6 +27,13 @@ module.exports = {
         assert.equal(obs.events['event1'], true);
         assert.equal(obs.events['event2'], true);
 
+        obs.addEvents({
+            'event3': true,
+            'event4': false
+        });
+
+        assert.equal(obs.events['event3'], true);
+        assert.equal(obs.events['event4'], false);
     },
 
     // }}}
@@ -77,6 +84,28 @@ module.exports = {
 
         beforeExit(function(){
             assert.equal(ret, 1);
+        });
+
+    },
+
+    // }}}
+    // {{{ test removeListener
+
+    'test removeListener': function(beforeExit) {
+
+        var ret = null;
+        var obs = new NX.util.Observable();
+        var ev = {
+            event1 : function() {
+                ret = 'fired';
+            }
+        };
+
+        obs.on(ev);
+        obs.un(ev);
+
+        beforeExit(function(){
+            assert.equal(ret, null);
         });
 
     },
@@ -201,6 +230,180 @@ module.exports = {
         obs.fireEvent('event1');
 
         assert.equal(ret, 'fired');
+    },
+
+    // }}}
+    // {{{ test enableBubble stop
+
+    'test enableBubble stop': function(beforeExit) {
+
+        var ret;
+
+        var org = new NX.util.Observable();
+        org.addEvents('event1');
+
+        org.on('event1', function() {
+            ret = 'org fired';
+        });
+
+        var obs = new NX.util.Observable();
+        obs.addEvents('event1');
+        obs.getBubbleTarget = function() {
+            return org;
+        };
+
+        obs.on('event1', function() {
+            ret = 'obs fired';
+            return false;
+        });
+
+        obs.enableBubble('event1');
+
+        obs.fireEvent('event1');
+
+        assert.equal(ret, 'obs fired');
+    },
+
+    // }}}
+    // {{{ test bubbleEvents
+
+    'test bubbleEvents': function(beforeExit) {
+
+        var ret = null;
+        var org = new NX.util.Observable();
+        org.on('event1', function() {
+            ret = 'fired';
+        });
+
+        var obs = new NX.util.Observable({
+            bubbleEvents : ['event1']
+        });
+        obs.getBubbleTarget = function() {
+            return org;
+        };
+
+        obs.fireEvent('event1');
+
+        assert.equal(ret, 'fired');
+
+    },
+
+    // }}}
+    // {{{ test listeners
+
+    'test listeners': function() {
+
+        var ret1, ret2;
+
+        var obs = new NX.util.Observable({
+            listeners: {
+                'event1': function() {
+                    ret1 = 'fired';
+                },
+                'event2': function() {
+                    ret2 = 'fired';
+                }
+            }
+        });
+
+        obs.fireEvent('event1');
+        obs.fireEvent('event2');
+
+        assert.equal(ret1, 'fired');
+        assert.equal(ret2, 'fired');
+
+    },
+
+    // }}}
+    // {{{ test fireEvent stop
+
+    'test fireEvent stop': function(beforeExit) {
+
+        var ret;
+        var obs = new NX.util.Observable();
+
+        obs.addEvents('event1');
+
+        obs.addListener('event1', function() {
+            ret = 'fired1';
+        });
+
+        obs.addListener('event1', function() {
+            ret = 'fired2';
+            return false;
+        });
+
+        obs.addListener('event1', function() {
+            ret = 'fired3';
+        });
+
+        obs.fireEvent('event1');
+
+        assert.equal(ret, 'fired2');
+
+    },
+
+    // }}}
+    // {{{ test Observable.capture
+
+    'test Observable.capture': function(beforeExit) {
+
+        var ret1, ret2;
+        var obs = new NX.util.Observable({
+            listeners : {
+                'event1' : function() {
+                },
+                'event2' : function(a,b,c) {
+                }
+            }
+        });
+
+        NX.util.Observable.capture(obs, function(event) {
+            if(event == 'event1') {
+                ret1 = 'fired';
+            } else if(event == 'event2') {
+                ret2 = 'fired';
+            }
+        });
+
+        obs.fireEvent('event1');
+        obs.fireEvent('event2');
+        assert.equal(ret1, 'fired');
+        assert.equal(ret2, 'fired');
+
+        ret1 = null;
+        ret2 = null;
+
+        NX.util.Observable.releaseCapture(obs);
+
+        obs.fireEvent('event1');
+        obs.fireEvent('event2');
+        assert.equal(ret1, null);
+        assert.equal(ret2, null);
+
+    },
+
+    // }}}
+    // {{{ test Observable.observe
+
+    'test Observable.observe': function(beforeExit) {
+
+        var o = {};
+        var ret1, ret2;
+
+        NX.util.Observable.observe(o, {
+            'event1': function() {
+                ret1 = 'fired';
+            },
+            'event2': function() {
+                ret2 = 'fired';
+            }
+        });
+
+        o.fireEvent('event1');
+        o.fireEvent('event2');
+        assert.equal(ret1, 'fired');
+        assert.equal(ret2, 'fired');
 
     }
 
