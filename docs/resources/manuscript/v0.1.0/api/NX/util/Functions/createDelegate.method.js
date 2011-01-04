@@ -1,4 +1,4 @@
 {
-    "param" : ["obj", "args", "appendArgs"],
+    "param" : ["fn", "obj", "args", "appendArgs"],
     "return": "Function"
 }

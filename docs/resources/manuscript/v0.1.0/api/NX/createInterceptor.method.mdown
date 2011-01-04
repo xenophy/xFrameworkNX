@@ -1,3 +1,5 @@
+NX.util.Functions.createInterceptorのエイリアス
+
 引数に設定する関数の戻り値が、trueの場合のみ設定した関数を実行することができます。
 
 <div class="long">

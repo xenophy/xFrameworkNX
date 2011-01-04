@@ -1,3 +1,5 @@
+NX.util.Functions.createSequenceのエイリアス
+
 元の関数を呼び出した後に、任意の処理を追加して呼び出します。
 
 <div class="long">

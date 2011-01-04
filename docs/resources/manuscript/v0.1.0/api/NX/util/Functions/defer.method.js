@@ -1,4 +1,4 @@
 {
-    "param" : ["millis", "obj", "args", "appendArgs"],
+    "param" : ["fn", "millis", "obj", "args", "appendArgs"],
     "return": "Number"
 }

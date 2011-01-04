@@ -1,3 +1,5 @@
+NX.util.Functions.createDelegateのエイリアス
+
 配列に指定された関数をコールバック関数として登録します。
 
 <div class="long">
