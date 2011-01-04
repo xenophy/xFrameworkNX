@@ -193,7 +193,7 @@ var genApiNode = function(rootPath, targetPath, deploy, outputDir) {
                             prop = prop.substr('@prop '.length);
                             cls._prop.push({
                                 name: prop,
-                                expanded: false
+                                extended: false
                             });
                         });
                     }
@@ -205,7 +205,7 @@ var genApiNode = function(rootPath, targetPath, deploy, outputDir) {
                             method = method.substr('@method '.length);
                             cls._method.push({
                                 name: method,
-                                expanded: false
+                                extended: false
                             });
                         });
                     }
@@ -231,14 +231,16 @@ var genApiNode = function(rootPath, targetPath, deploy, outputDir) {
         NX.each(parentCls._prop, function(prop) {
             clsData._prop.push({
                 name: prop.name,
-                expanded: true
+                cls: clsData._parentClsName,
+                extended: true
             });
         });
 
         NX.each(parentCls._method, function(method) {
             clsData._method.push({
                 name: method.name,
-                expanded: true
+                cls: clsData._parentClsName,
+                extended: true
             });
         });
 
@@ -362,8 +364,14 @@ var genApiNode = function(rootPath, targetPath, deploy, outputDir) {
             // メソッド一覧取得
             NX.each(clsData._method, function(v) {
 
-                var mdfile = tp + '/' + v.name + '.method.mdown';
-                var infofile = tp + '/' + v.name + '.method.js';
+                var ttp = tp;
+
+                if(v.extended) {
+                    ttp = path.normalize(targetFullPath + v.cls.replace(/\./g, "/"));
+                }
+
+                var mdfile = ttp + '/' + v.name + '.method.mdown';
+                var infofile = ttp + '/' + v.name + '.method.js';
 
                 // 説明文読み込み
                 if(NX.fs.exists(mdfile)) {
@@ -376,9 +384,14 @@ var genApiNode = function(rootPath, targetPath, deploy, outputDir) {
                     type: '未定義'
                 };
 
+
                 if(NX.fs.exists(infofile)) {
                     info = NX.fs.readFileSync(infofile, 'utf8');
                     info = NX.decode(info);
+                }
+
+                if(v.extended && info.extendedShow === false) {
+                    return;
                 }
 
                 // パラメータ情報取得
@@ -534,6 +547,10 @@ var genApiNode = function(rootPath, targetPath, deploy, outputDir) {
                 // 継承クラスへのリンクは未実装
                 var methodDefined = clsName;
                 methodDefined = fullNs;
+
+                if(v.extended) {
+                    methodDefined = v.cls;
+                }
 
                 htmls.methodList += NX.sprintf([
                     '<tr class="method-row %1$s expandable">',

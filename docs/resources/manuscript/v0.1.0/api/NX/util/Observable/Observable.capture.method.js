@@ -1,4 +1,5 @@
 {
     "param" : ["o", "fn", "scope"],
-    "return": "void"
+    "return": "void",
+    "extendedShow": false
 }

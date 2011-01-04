@@ -1,76 +1,8 @@
 <div class="api-doc"><div class="cls">
   <h1>NX.util.MixedCollection クラス</h1>
-  <div class="desc"></div>
+  <div class="desc"><p>数値のインデックスとキーとそれらを操作する時のイベント発生させ管理するクラスです。</p></div>
 </div>
-<a id="NX.util.MixedCollection-props"></a>
-<h2>プロパティ</h2>
-<table cellspacing="0" class="member-table">
-<tr>
-  <th colspan="2" class="sig-header caption">プロパティ</th>
-  <th class="sig-header defined">定義クラス</th>
-</tr>
-<tr class="prop-row inherited">
-  <td class="micon">
-    <a href="#expand" class="exi">&nbsp;</a>
-  </td>
-  <td class="sig">
-    <a id="NX.util.MixedCollection-allowFunctions"></a>
-    <b>allowFunctions</b> : 未定義
-    
-  </td>
-  <td class="msource">
-    NX.util.MixedCollection
-  </td>
-</tr><tr class="prop-row inherited">
-  <td class="micon">
-    <a href="#expand" class="exi">&nbsp;</a>
-  </td>
-  <td class="sig">
-    <a id="NX.util.MixedCollection-items"></a>
-    <b>items</b> : 未定義
-    
-  </td>
-  <td class="msource">
-    NX.util.MixedCollection
-  </td>
-</tr><tr class="prop-row inherited">
-  <td class="micon">
-    <a href="#expand" class="exi">&nbsp;</a>
-  </td>
-  <td class="sig">
-    <a id="NX.util.MixedCollection-keys"></a>
-    <b>keys</b> : 未定義
-    
-  </td>
-  <td class="msource">
-    NX.util.MixedCollection
-  </td>
-</tr><tr class="prop-row inherited">
-  <td class="micon">
-    <a href="#expand" class="exi">&nbsp;</a>
-  </td>
-  <td class="sig">
-    <a id="NX.util.MixedCollection-length"></a>
-    <b>length</b> : 未定義
-    
-  </td>
-  <td class="msource">
-    NX.util.MixedCollection
-  </td>
-</tr><tr class="prop-row inherited">
-  <td class="micon">
-    <a href="#expand" class="exi">&nbsp;</a>
-  </td>
-  <td class="sig">
-    <a id="NX.util.MixedCollection-map"></a>
-    <b>map</b> : 未定義
-    
-  </td>
-  <td class="msource">
-    NX.util.MixedCollection
-  </td>
-</tr>
-</table><a id="NX.util.MixedCollection-methods"></a>
+<a id="NX.util.MixedCollection-methods"></a>
 <h2>メソッド</h2>
 <table cellspacing="0" class="member-table">
 <tr>
@@ -83,8 +15,10 @@
   </td>
   <td class="sig">
     <a id="NX.util.MixedCollection-MixedCollection"></a>
-    <b>MixedCollection</b>() : undefined
-    <div class="mdesc"><div class="long"><div class="params"><strong>戻り値:</strong><ul>  <li>  undefined  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+    <b>MixedCollection</b>([Boolean allowFunctions], [Function keyFn]) : void
+    <div class="mdesc"><p>コンストラクタ</p><div class="long"><div class="params"><strong>パラメータ:</strong><ul><li>  allowFunctions:Boolean  <ul>    <li> (オプション) <p>trueの場合、addAllメソッドで関数オブジェクトを追加可能にします。(初期値 false)</p>    </li>  </ul></li><li>  keyFn:Function  <ul>    <li> (オプション) <p>getKeyとして呼び出される関数を設定します。
+アイテム内のパラメータを戻り値として返却しキーとすることができる関数です。
+この関数は、アイテム内のキーに取り出そうとしたキーが存在しない場合に適用されます。</p>    </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  void  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
   </td>
   <td class="msource">
     NX.util.MixedCollection
@@ -95,8 +29,13 @@
   </td>
   <td class="sig">
     <a id="NX.util.MixedCollection-add"></a>
-    <b>add</b>() : undefined
-    <div class="mdesc"><div class="long"><div class="params"><strong>戻り値:</strong><ul>  <li>  undefined  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+    <b>add</b>(String key, Mixed value o) : Object
+    <div class="mdesc"><p>アイテムを追加します。</p>
+
+<p><div class="long">
+完了した時点でaddイベントを発火します。</p><div class="params"><strong>パラメータ:</strong><ul><li>  key:String  <ul>    <li>      <p>キー
+オブジェクトのidキーを、内部のidとして利用します。
+getKeyを実装するか、コンストラクタのkeyFnを指定した場合は、そちらを利用します。</p>    </li>  </ul></li><li>  o:Mixed value  <ul>    <li>      <p>追加するアイテム</p>    </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  Object  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
   </td>
   <td class="msource">
     NX.util.MixedCollection
@@ -107,11 +46,48 @@
   </td>
   <td class="sig">
     <a id="NX.util.MixedCollection-addAll"></a>
-    <b>addAll</b>() : undefined
-    <div class="mdesc"><div class="long"><div class="params"><strong>戻り値:</strong><ul>  <li>  undefined  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+    <b>addAll</b>(Object/Array objs) : void
+    <div class="mdesc"><p>複数のアイテムを一括で追加します。</p>
+
+<p><div class="long">
+一つ一つのアイテムの追加が完了した時点でaddイベントを発火します。</p><div class="params"><strong>パラメータ:</strong><ul><li>  objs:Object/Array  <ul>    <li>      <p>配列、もしくはオブジェクトのすべての要素を追加します。</p>    </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  void  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
   </td>
   <td class="msource">
     NX.util.MixedCollection
+  </td>
+</tr><tr class="method-row extended expandable">
+  <td class="micon">
+    <a href="#expand" class="exi">&nbsp;</a>
+  </td>
+  <td class="sig">
+    <a id="NX.util.MixedCollection-addEvents"></a>
+    <b>addEvents</b>(未定義 object) : void
+    <div class="mdesc"><p>イベントを定義します。</p>
+
+<p><div class="long">
+自分自身でオリジナルのイベント名を定義する場合に使用します。
+定義することで、fireEventによるイベント発火が可能です。</p>
+
+<p>イベントは一度に複数定義することができます。</p><div class="params"><strong>パラメータ:</strong><ul><li>  object:未定義  <ul>    <li>          </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  void  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+  </td>
+  <td class="msource">
+    NX.util.Observable
+  </td>
+</tr><tr class="method-row extended expandable">
+  <td class="micon">
+    <a href="#expand" class="exi">&nbsp;</a>
+  </td>
+  <td class="sig">
+    <a id="NX.util.MixedCollection-addListener"></a>
+    <b>addListener</b>(未定義 eventName, 未定義 handler, 未定義 scope, 未定義 options) : void
+    <div class="mdesc"><p>このオブジェクトにイベントハンドラを設定します。</p>
+
+<p><div class="long">
+第１引数のイベント名のイベントが発火した場合、引数の関数が実行されます。
+一度に複数のハンドラを加えることが可能です 。</p><div class="params"><strong>パラメータ:</strong><ul><li>  eventName:未定義  <ul>    <li>          </li>  </ul></li><li>  handler:未定義  <ul>    <li>          </li>  </ul></li><li>  scope:未定義  <ul>    <li>          </li>  </ul></li><li>  options:未定義  <ul>    <li>          </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  void  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+  </td>
+  <td class="msource">
+    NX.util.Observable
   </td>
 </tr><tr class="method-row inherited expandable">
   <td class="micon">
@@ -119,11 +95,23 @@
   </td>
   <td class="sig">
     <a id="NX.util.MixedCollection-clear"></a>
-    <b>clear</b>() : undefined
-    <div class="mdesc"><div class="long"><div class="params"><strong>戻り値:</strong><ul>  <li>  undefined  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+    <b>clear</b>(未定義 allowFunctions, 未定義 keyFn) : void
+    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul><li>  allowFunctions:未定義  <ul>    <li>          </li>  </ul></li><li>  keyFn:未定義  <ul>    <li>          </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  void  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
   </td>
   <td class="msource">
     NX.util.MixedCollection
+  </td>
+</tr><tr class="method-row extended expandable">
+  <td class="micon">
+    <a href="#expand" class="exi">&nbsp;</a>
+  </td>
+  <td class="sig">
+    <a id="NX.util.MixedCollection-clearListeners"></a>
+    <b>clearListeners</b>() : void
+    <div class="mdesc"><p>このオブジェクトから、イベントリスナーを全て削除します。</p><div class="long"><div class="params"><strong>戻り値:</strong><ul>  <li>  void  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+  </td>
+  <td class="msource">
+    NX.util.Observable
   </td>
 </tr><tr class="method-row inherited expandable">
   <td class="micon">
@@ -131,8 +119,8 @@
   </td>
   <td class="sig">
     <a id="NX.util.MixedCollection-clone"></a>
-    <b>clone</b>() : undefined
-    <div class="mdesc"><div class="long"><div class="params"><strong>戻り値:</strong><ul>  <li>  undefined  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+    <b>clone</b>(未定義 allowFunctions, 未定義 keyFn) : void
+    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul><li>  allowFunctions:未定義  <ul>    <li>          </li>  </ul></li><li>  keyFn:未定義  <ul>    <li>          </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  void  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
   </td>
   <td class="msource">
     NX.util.MixedCollection
@@ -143,8 +131,8 @@
   </td>
   <td class="sig">
     <a id="NX.util.MixedCollection-contains"></a>
-    <b>contains</b>() : undefined
-    <div class="mdesc"><div class="long"><div class="params"><strong>戻り値:</strong><ul>  <li>  undefined  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+    <b>contains</b>(未定義 allowFunctions, 未定義 keyFn) : void
+    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul><li>  allowFunctions:未定義  <ul>    <li>          </li>  </ul></li><li>  keyFn:未定義  <ul>    <li>          </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  void  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
   </td>
   <td class="msource">
     NX.util.MixedCollection
@@ -155,8 +143,8 @@
   </td>
   <td class="sig">
     <a id="NX.util.MixedCollection-containsKey"></a>
-    <b>containsKey</b>() : undefined
-    <div class="mdesc"><div class="long"><div class="params"><strong>戻り値:</strong><ul>  <li>  undefined  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+    <b>containsKey</b>(未定義 allowFunctions, 未定義 keyFn) : void
+    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul><li>  allowFunctions:未定義  <ul>    <li>          </li>  </ul></li><li>  keyFn:未定義  <ul>    <li>          </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  void  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
   </td>
   <td class="msource">
     NX.util.MixedCollection
@@ -167,8 +155,8 @@
   </td>
   <td class="sig">
     <a id="NX.util.MixedCollection-createValueMatcher"></a>
-    <b>createValueMatcher</b>() : undefined
-    <div class="mdesc"><div class="long"><div class="params"><strong>戻り値:</strong><ul>  <li>  undefined  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+    <b>createValueMatcher</b>(未定義 allowFunctions, 未定義 keyFn) : void
+    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul><li>  allowFunctions:未定義  <ul>    <li>          </li>  </ul></li><li>  keyFn:未定義  <ul>    <li>          </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  void  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
   </td>
   <td class="msource">
     NX.util.MixedCollection
@@ -179,8 +167,8 @@
   </td>
   <td class="sig">
     <a id="NX.util.MixedCollection-each"></a>
-    <b>each</b>() : undefined
-    <div class="mdesc"><div class="long"><div class="params"><strong>戻り値:</strong><ul>  <li>  undefined  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+    <b>each</b>(未定義 allowFunctions, 未定義 keyFn) : void
+    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul><li>  allowFunctions:未定義  <ul>    <li>          </li>  </ul></li><li>  keyFn:未定義  <ul>    <li>          </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  void  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
   </td>
   <td class="msource">
     NX.util.MixedCollection
@@ -191,11 +179,27 @@
   </td>
   <td class="sig">
     <a id="NX.util.MixedCollection-eachKey"></a>
-    <b>eachKey</b>() : undefined
-    <div class="mdesc"><div class="long"><div class="params"><strong>戻り値:</strong><ul>  <li>  undefined  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+    <b>eachKey</b>(未定義 allowFunctions, 未定義 keyFn) : void
+    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul><li>  allowFunctions:未定義  <ul>    <li>          </li>  </ul></li><li>  keyFn:未定義  <ul>    <li>          </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  void  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
   </td>
   <td class="msource">
     NX.util.MixedCollection
+  </td>
+</tr><tr class="method-row extended expandable">
+  <td class="micon">
+    <a href="#expand" class="exi">&nbsp;</a>
+  </td>
+  <td class="sig">
+    <a id="NX.util.MixedCollection-enableBubble"></a>
+    <b>enableBubble</b>(未定義 events) : void
+    <div class="mdesc"><p>イベントのバブリングを有効にします。</p>
+
+<p><div class="long">
+コンテナに内包されている一番子供のコンテナに設定することで、親コンテナへイベントがリレーします。
+イベントがfalseになった時点でバブリングが停止します。</p><div class="params"><strong>パラメータ:</strong><ul><li>  events:未定義  <ul>    <li>          </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  void  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+  </td>
+  <td class="msource">
+    NX.util.Observable
   </td>
 </tr><tr class="method-row inherited expandable">
   <td class="micon">
@@ -203,8 +207,8 @@
   </td>
   <td class="sig">
     <a id="NX.util.MixedCollection-filter"></a>
-    <b>filter</b>() : undefined
-    <div class="mdesc"><div class="long"><div class="params"><strong>戻り値:</strong><ul>  <li>  undefined  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+    <b>filter</b>(未定義 allowFunctions, 未定義 keyFn) : void
+    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul><li>  allowFunctions:未定義  <ul>    <li>          </li>  </ul></li><li>  keyFn:未定義  <ul>    <li>          </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  void  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
   </td>
   <td class="msource">
     NX.util.MixedCollection
@@ -215,8 +219,8 @@
   </td>
   <td class="sig">
     <a id="NX.util.MixedCollection-filterBy"></a>
-    <b>filterBy</b>() : undefined
-    <div class="mdesc"><div class="long"><div class="params"><strong>戻り値:</strong><ul>  <li>  undefined  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+    <b>filterBy</b>(未定義 allowFunctions, 未定義 keyFn) : void
+    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul><li>  allowFunctions:未定義  <ul>    <li>          </li>  </ul></li><li>  keyFn:未定義  <ul>    <li>          </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  void  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
   </td>
   <td class="msource">
     NX.util.MixedCollection
@@ -227,8 +231,8 @@
   </td>
   <td class="sig">
     <a id="NX.util.MixedCollection-findBy"></a>
-    <b>findBy</b>() : undefined
-    <div class="mdesc"><div class="long"><div class="params"><strong>戻り値:</strong><ul>  <li>  undefined  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+    <b>findBy</b>(未定義 allowFunctions, 未定義 keyFn) : void
+    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul><li>  allowFunctions:未定義  <ul>    <li>          </li>  </ul></li><li>  keyFn:未定義  <ul>    <li>          </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  void  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
   </td>
   <td class="msource">
     NX.util.MixedCollection
@@ -239,8 +243,8 @@
   </td>
   <td class="sig">
     <a id="NX.util.MixedCollection-findIndex"></a>
-    <b>findIndex</b>() : undefined
-    <div class="mdesc"><div class="long"><div class="params"><strong>戻り値:</strong><ul>  <li>  undefined  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+    <b>findIndex</b>(未定義 allowFunctions, 未定義 keyFn) : void
+    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul><li>  allowFunctions:未定義  <ul>    <li>          </li>  </ul></li><li>  keyFn:未定義  <ul>    <li>          </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  void  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
   </td>
   <td class="msource">
     NX.util.MixedCollection
@@ -251,11 +255,23 @@
   </td>
   <td class="sig">
     <a id="NX.util.MixedCollection-findIndexBy"></a>
-    <b>findIndexBy</b>() : undefined
-    <div class="mdesc"><div class="long"><div class="params"><strong>戻り値:</strong><ul>  <li>  undefined  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+    <b>findIndexBy</b>(未定義 allowFunctions, 未定義 keyFn) : void
+    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul><li>  allowFunctions:未定義  <ul>    <li>          </li>  </ul></li><li>  keyFn:未定義  <ul>    <li>          </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  void  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
   </td>
   <td class="msource">
     NX.util.MixedCollection
+  </td>
+</tr><tr class="method-row extended expandable">
+  <td class="micon">
+    <a href="#expand" class="exi">&nbsp;</a>
+  </td>
+  <td class="sig">
+    <a id="NX.util.MixedCollection-fireEvent"></a>
+    <b>fireEvent</b>(未定義 eventName, 未定義 args) : Boolean
+    <div class="mdesc"><p>イベントを発火させます。</p><div class="long"><div class="params"><strong>パラメータ:</strong><ul><li>  eventName:未定義  <ul>    <li>          </li>  </ul></li><li>  args:未定義  <ul>    <li>          </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  Boolean  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+  </td>
+  <td class="msource">
+    NX.util.Observable
   </td>
 </tr><tr class="method-row inherited expandable">
   <td class="micon">
@@ -263,8 +279,8 @@
   </td>
   <td class="sig">
     <a id="NX.util.MixedCollection-first"></a>
-    <b>first</b>() : undefined
-    <div class="mdesc"><div class="long"><div class="params"><strong>戻り値:</strong><ul>  <li>  undefined  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+    <b>first</b>(未定義 allowFunctions, 未定義 keyFn) : void
+    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul><li>  allowFunctions:未定義  <ul>    <li>          </li>  </ul></li><li>  keyFn:未定義  <ul>    <li>          </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  void  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
   </td>
   <td class="msource">
     NX.util.MixedCollection
@@ -275,8 +291,8 @@
   </td>
   <td class="sig">
     <a id="NX.util.MixedCollection-get"></a>
-    <b>get</b>() : undefined
-    <div class="mdesc"><div class="long"><div class="params"><strong>戻り値:</strong><ul>  <li>  undefined  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+    <b>get</b>(未定義 allowFunctions, 未定義 keyFn) : void
+    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul><li>  allowFunctions:未定義  <ul>    <li>          </li>  </ul></li><li>  keyFn:未定義  <ul>    <li>          </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  void  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
   </td>
   <td class="msource">
     NX.util.MixedCollection
@@ -287,8 +303,8 @@
   </td>
   <td class="sig">
     <a id="NX.util.MixedCollection-getAt"></a>
-    <b>getAt</b>() : undefined
-    <div class="mdesc"><div class="long"><div class="params"><strong>戻り値:</strong><ul>  <li>  undefined  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+    <b>getAt</b>(未定義 allowFunctions, 未定義 keyFn) : void
+    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul><li>  allowFunctions:未定義  <ul>    <li>          </li>  </ul></li><li>  keyFn:未定義  <ul>    <li>          </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  void  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
   </td>
   <td class="msource">
     NX.util.MixedCollection
@@ -299,8 +315,8 @@
   </td>
   <td class="sig">
     <a id="NX.util.MixedCollection-getByKey"></a>
-    <b>getByKey</b>() : undefined
-    <div class="mdesc"><div class="long"><div class="params"><strong>戻り値:</strong><ul>  <li>  undefined  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+    <b>getByKey</b>(未定義 allowFunctions, 未定義 keyFn) : void
+    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul><li>  allowFunctions:未定義  <ul>    <li>          </li>  </ul></li><li>  keyFn:未定義  <ul>    <li>          </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  void  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
   </td>
   <td class="msource">
     NX.util.MixedCollection
@@ -311,8 +327,8 @@
   </td>
   <td class="sig">
     <a id="NX.util.MixedCollection-getCount"></a>
-    <b>getCount</b>() : undefined
-    <div class="mdesc"><div class="long"><div class="params"><strong>戻り値:</strong><ul>  <li>  undefined  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+    <b>getCount</b>(未定義 allowFunctions, 未定義 keyFn) : void
+    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul><li>  allowFunctions:未定義  <ul>    <li>          </li>  </ul></li><li>  keyFn:未定義  <ul>    <li>          </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  void  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
   </td>
   <td class="msource">
     NX.util.MixedCollection
@@ -323,8 +339,8 @@
   </td>
   <td class="sig">
     <a id="NX.util.MixedCollection-getKey"></a>
-    <b>getKey</b>() : undefined
-    <div class="mdesc"><div class="long"><div class="params"><strong>戻り値:</strong><ul>  <li>  undefined  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+    <b>getKey</b>(未定義 allowFunctions, 未定義 keyFn) : void
+    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul><li>  allowFunctions:未定義  <ul>    <li>          </li>  </ul></li><li>  keyFn:未定義  <ul>    <li>          </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  void  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
   </td>
   <td class="msource">
     NX.util.MixedCollection
@@ -335,8 +351,8 @@
   </td>
   <td class="sig">
     <a id="NX.util.MixedCollection-getRange"></a>
-    <b>getRange</b>() : undefined
-    <div class="mdesc"><div class="long"><div class="params"><strong>戻り値:</strong><ul>  <li>  undefined  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+    <b>getRange</b>(未定義 allowFunctions, 未定義 keyFn) : void
+    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul><li>  allowFunctions:未定義  <ul>    <li>          </li>  </ul></li><li>  keyFn:未定義  <ul>    <li>          </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  void  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
   </td>
   <td class="msource">
     NX.util.MixedCollection
@@ -347,8 +363,8 @@
   </td>
   <td class="sig">
     <a id="NX.util.MixedCollection-indexOfKey"></a>
-    <b>indexOfKey</b>() : undefined
-    <div class="mdesc"><div class="long"><div class="params"><strong>戻り値:</strong><ul>  <li>  undefined  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+    <b>indexOfKey</b>(未定義 allowFunctions, 未定義 keyFn) : void
+    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul><li>  allowFunctions:未定義  <ul>    <li>          </li>  </ul></li><li>  keyFn:未定義  <ul>    <li>          </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  void  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
   </td>
   <td class="msource">
     NX.util.MixedCollection
@@ -359,8 +375,8 @@
   </td>
   <td class="sig">
     <a id="NX.util.MixedCollection-insert"></a>
-    <b>insert</b>() : undefined
-    <div class="mdesc"><div class="long"><div class="params"><strong>戻り値:</strong><ul>  <li>  undefined  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+    <b>insert</b>(未定義 allowFunctions, 未定義 keyFn) : void
+    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul><li>  allowFunctions:未定義  <ul>    <li>          </li>  </ul></li><li>  keyFn:未定義  <ul>    <li>          </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  void  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
   </td>
   <td class="msource">
     NX.util.MixedCollection
@@ -371,11 +387,40 @@
   </td>
   <td class="sig">
     <a id="NX.util.MixedCollection-last"></a>
-    <b>last</b>() : undefined
-    <div class="mdesc"><div class="long"><div class="params"><strong>戻り値:</strong><ul>  <li>  undefined  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+    <b>last</b>(未定義 allowFunctions, 未定義 keyFn) : void
+    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul><li>  allowFunctions:未定義  <ul>    <li>          </li>  </ul></li><li>  keyFn:未定義  <ul>    <li>          </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  void  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
   </td>
   <td class="msource">
     NX.util.MixedCollection
+  </td>
+</tr><tr class="method-row extended expandable">
+  <td class="micon">
+    <a href="#expand" class="exi">&nbsp;</a>
+  </td>
+  <td class="sig">
+    <a id="NX.util.MixedCollection-on"></a>
+    <b>on</b>(未定義 eventName, 未定義 handler, 未定義 scope, 未定義 options) : void
+    <div class="mdesc"><p>(addListenerのエイリアス)
+このオブジェクトにイベントハンドラを設定します。</p>
+
+<p><div class="long">
+第１引数のイベント名のイベントが発火した場合、引数の関数が実行されます。
+一度に複数のハンドラを加えることが可能です 。</p><div class="params"><strong>パラメータ:</strong><ul><li>  eventName:未定義  <ul>    <li>          </li>  </ul></li><li>  handler:未定義  <ul>    <li>          </li>  </ul></li><li>  scope:未定義  <ul>    <li>          </li>  </ul></li><li>  options:未定義  <ul>    <li>          </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  void  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+  </td>
+  <td class="msource">
+    NX.util.Observable
+  </td>
+</tr><tr class="method-row extended expandable">
+  <td class="micon">
+    <a href="#expand" class="exi">&nbsp;</a>
+  </td>
+  <td class="sig">
+    <a id="NX.util.MixedCollection-relayEvents"></a>
+    <b>relayEvents</b>(未定義 o, 未定義 events) : void
+    <div class="mdesc"><p>イベントをリレーします。</p><div class="long"><div class="params"><strong>パラメータ:</strong><ul><li>  o:未定義  <ul>    <li>          </li>  </ul></li><li>  events:未定義  <ul>    <li>          </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  void  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+  </td>
+  <td class="msource">
+    NX.util.Observable
   </td>
 </tr><tr class="method-row inherited expandable">
   <td class="micon">
@@ -383,8 +428,8 @@
   </td>
   <td class="sig">
     <a id="NX.util.MixedCollection-remove"></a>
-    <b>remove</b>() : undefined
-    <div class="mdesc"><div class="long"><div class="params"><strong>戻り値:</strong><ul>  <li>  undefined  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+    <b>remove</b>(未定義 allowFunctions, 未定義 keyFn) : void
+    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul><li>  allowFunctions:未定義  <ul>    <li>          </li>  </ul></li><li>  keyFn:未定義  <ul>    <li>          </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  void  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
   </td>
   <td class="msource">
     NX.util.MixedCollection
@@ -395,8 +440,8 @@
   </td>
   <td class="sig">
     <a id="NX.util.MixedCollection-removeAll"></a>
-    <b>removeAll</b>() : undefined
-    <div class="mdesc"><div class="long"><div class="params"><strong>戻り値:</strong><ul>  <li>  undefined  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+    <b>removeAll</b>(未定義 allowFunctions, 未定義 keyFn) : void
+    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul><li>  allowFunctions:未定義  <ul>    <li>          </li>  </ul></li><li>  keyFn:未定義  <ul>    <li>          </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  void  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
   </td>
   <td class="msource">
     NX.util.MixedCollection
@@ -407,8 +452,8 @@
   </td>
   <td class="sig">
     <a id="NX.util.MixedCollection-removeAt"></a>
-    <b>removeAt</b>() : undefined
-    <div class="mdesc"><div class="long"><div class="params"><strong>戻り値:</strong><ul>  <li>  undefined  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+    <b>removeAt</b>(未定義 allowFunctions, 未定義 keyFn) : void
+    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul><li>  allowFunctions:未定義  <ul>    <li>          </li>  </ul></li><li>  keyFn:未定義  <ul>    <li>          </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  void  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
   </td>
   <td class="msource">
     NX.util.MixedCollection
@@ -419,11 +464,23 @@
   </td>
   <td class="sig">
     <a id="NX.util.MixedCollection-removeByKey"></a>
-    <b>removeByKey</b>() : undefined
-    <div class="mdesc"><div class="long"><div class="params"><strong>戻り値:</strong><ul>  <li>  undefined  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+    <b>removeByKey</b>(未定義 allowFunctions, 未定義 keyFn) : void
+    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul><li>  allowFunctions:未定義  <ul>    <li>          </li>  </ul></li><li>  keyFn:未定義  <ul>    <li>          </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  void  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
   </td>
   <td class="msource">
     NX.util.MixedCollection
+  </td>
+</tr><tr class="method-row extended expandable">
+  <td class="micon">
+    <a href="#expand" class="exi">&nbsp;</a>
+  </td>
+  <td class="sig">
+    <a id="NX.util.MixedCollection-removeListener"></a>
+    <b>removeListener</b>(未定義 eventName, 未定義 handler, 未定義 scope) : void
+    <div class="mdesc"><p>このオブジェクトから、指定したイベントハンドラを削除します。</p><div class="long"><div class="params"><strong>パラメータ:</strong><ul><li>  eventName:未定義  <ul>    <li>          </li>  </ul></li><li>  handler:未定義  <ul>    <li>          </li>  </ul></li><li>  scope:未定義  <ul>    <li>          </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  void  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+  </td>
+  <td class="msource">
+    NX.util.Observable
   </td>
 </tr><tr class="method-row inherited expandable">
   <td class="micon">
@@ -431,8 +488,8 @@
   </td>
   <td class="sig">
     <a id="NX.util.MixedCollection-reorder"></a>
-    <b>reorder</b>() : undefined
-    <div class="mdesc"><div class="long"><div class="params"><strong>戻り値:</strong><ul>  <li>  undefined  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+    <b>reorder</b>(未定義 allowFunctions, 未定義 keyFn) : void
+    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul><li>  allowFunctions:未定義  <ul>    <li>          </li>  </ul></li><li>  keyFn:未定義  <ul>    <li>          </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  void  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
   </td>
   <td class="msource">
     NX.util.MixedCollection
@@ -443,11 +500,26 @@
   </td>
   <td class="sig">
     <a id="NX.util.MixedCollection-replace"></a>
-    <b>replace</b>() : undefined
-    <div class="mdesc"><div class="long"><div class="params"><strong>戻り値:</strong><ul>  <li>  undefined  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+    <b>replace</b>(未定義 allowFunctions, 未定義 keyFn) : void
+    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul><li>  allowFunctions:未定義  <ul>    <li>          </li>  </ul></li><li>  keyFn:未定義  <ul>    <li>          </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  void  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
   </td>
   <td class="msource">
     NX.util.MixedCollection
+  </td>
+</tr><tr class="method-row extended expandable">
+  <td class="micon">
+    <a href="#expand" class="exi">&nbsp;</a>
+  </td>
+  <td class="sig">
+    <a id="NX.util.MixedCollection-resumeEvents"></a>
+    <b>resumeEvents</b>() : void
+    <div class="mdesc"><p>イベントの発生を再開します。</p>
+
+<p><div class="long">
+もし、suspendEventsの引数でqueueSuspendedをtrueとした場合、イベント停止時に発火したイベントのハンドラは再会時に次々と実行されます。</p><div class="params"><strong>戻り値:</strong><ul>  <li>  void  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+  </td>
+  <td class="msource">
+    NX.util.Observable
   </td>
 </tr><tr class="method-row inherited expandable">
   <td class="micon">
@@ -455,8 +527,8 @@
   </td>
   <td class="sig">
     <a id="NX.util.MixedCollection-sort"></a>
-    <b>sort</b>() : undefined
-    <div class="mdesc"><div class="long"><div class="params"><strong>戻り値:</strong><ul>  <li>  undefined  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+    <b>sort</b>(未定義 allowFunctions, 未定義 keyFn) : void
+    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul><li>  allowFunctions:未定義  <ul>    <li>          </li>  </ul></li><li>  keyFn:未定義  <ul>    <li>          </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  void  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
   </td>
   <td class="msource">
     NX.util.MixedCollection
@@ -467,8 +539,8 @@
   </td>
   <td class="sig">
     <a id="NX.util.MixedCollection-sortBy"></a>
-    <b>sortBy</b>() : undefined
-    <div class="mdesc"><div class="long"><div class="params"><strong>戻り値:</strong><ul>  <li>  undefined  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+    <b>sortBy</b>(未定義 allowFunctions, 未定義 keyFn) : void
+    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul><li>  allowFunctions:未定義  <ul>    <li>          </li>  </ul></li><li>  keyFn:未定義  <ul>    <li>          </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  void  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
   </td>
   <td class="msource">
     NX.util.MixedCollection
@@ -479,11 +551,39 @@
   </td>
   <td class="sig">
     <a id="NX.util.MixedCollection-sortByKey"></a>
-    <b>sortByKey</b>() : undefined
-    <div class="mdesc"><div class="long"><div class="params"><strong>戻り値:</strong><ul>  <li>  undefined  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+    <b>sortByKey</b>(未定義 allowFunctions, 未定義 keyFn) : void
+    <div class="mdesc"><div class="long"><div class="params"><strong>パラメータ:</strong><ul><li>  allowFunctions:未定義  <ul>    <li>          </li>  </ul></li><li>  keyFn:未定義  <ul>    <li>          </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  void  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
   </td>
   <td class="msource">
     NX.util.MixedCollection
+  </td>
+</tr><tr class="method-row extended expandable">
+  <td class="micon">
+    <a href="#expand" class="exi">&nbsp;</a>
+  </td>
+  <td class="sig">
+    <a id="NX.util.MixedCollection-suspendEvents"></a>
+    <b>suspendEvents</b>(未定義 queueSuspended) : void
+    <div class="mdesc"><p>イベントの発生を停止します。</p>
+
+<p><div class="long">
+(参照:resumeEvents)</p><div class="params"><strong>パラメータ:</strong><ul><li>  queueSuspended:未定義  <ul>    <li>          </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  void  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+  </td>
+  <td class="msource">
+    NX.util.Observable
+  </td>
+</tr><tr class="method-row extended expandable">
+  <td class="micon">
+    <a href="#expand" class="exi">&nbsp;</a>
+  </td>
+  <td class="sig">
+    <a id="NX.util.MixedCollection-un"></a>
+    <b>un</b>(未定義 eventName, 未定義 handler, 未定義 scope) : void
+    <div class="mdesc"><p>(removeListenerのエイリアス)
+このオブジェクトから、指定したイベントハンドラを削除します。</p><div class="long"><div class="params"><strong>パラメータ:</strong><ul><li>  eventName:未定義  <ul>    <li>          </li>  </ul></li><li>  handler:未定義  <ul>    <li>          </li>  </ul></li><li>  scope:未定義  <ul>    <li>          </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  void  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+  </td>
+  <td class="msource">
+    NX.util.Observable
   </td>
 </tr>
 </table></div>
