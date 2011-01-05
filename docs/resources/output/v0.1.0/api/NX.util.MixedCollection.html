@@ -247,8 +247,8 @@ getKeyを実装するか、コンストラクタのkeyFnを指定した場合は
   </td>
   <td class="sig">
     <a id="NX.util.MixedCollection-filter"></a>
-    <b>filter</b>(String property, String/RegExp value, [Boolean anyMatch], [Boolean caseSensitive]) : MixedCollection
-    <div class="mdesc"><p>指定したプロパティで、コレクション中のオブジェクトをフィルタリングし、新たなコレクションを返します。</p><div class="long"><div class="params"><strong>パラメータ:</strong><ul><li>  property:String  <ul>    <li>      <p>プロパティ</p>    </li>  </ul></li><li>  value:String/RegExp  <ul>    <li>      <p>プロパティの値に先頭一致すべき文字列か、プロパティに対してテストを行う正規表現</p>    </li>  </ul></li><li>  anyMatch:Boolean  <ul>    <li> (オプション) <p>文字列のどの部分でもマッチするならtrue、そうでなければ開始部分</p>    </li>  </ul></li><li>  caseSensitive:Boolean  <ul>    <li> (オプション) <p>大文字小文字を区別して比較するならtrue(初期値 false)</p>    </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  MixedCollection  <ul>    <li>    <p>フィルタリングされた新たなコレクション</p>    </li>  </ul>  </li></ul></div></div></div>
+    <b>filter</b>(String property, String/RegExp value, [Boolean anyMatch], [Boolean caseSensitive], [Boolean exactMatch]) : MixedCollection
+    <div class="mdesc"><p>指定したプロパティで、コレクション中のオブジェクトをフィルタリングし、新たなコレクションを返します。</p><div class="long"><div class="params"><strong>パラメータ:</strong><ul><li>  property:String  <ul>    <li>      <p>プロパティ</p>    </li>  </ul></li><li>  value:String/RegExp  <ul>    <li>      <p>プロパティの値に先頭一致すべき文字列か、プロパティに対してテストを行う正規表現</p>    </li>  </ul></li><li>  anyMatch:Boolean  <ul>    <li> (オプション) <p>文字列のどの部分でもマッチするならtrue、そうでなければ開始部分</p>    </li>  </ul></li><li>  caseSensitive:Boolean  <ul>    <li> (オプション) <p>大文字小文字を区別して比較するならtrue(初期値 false)</p>    </li>  </ul></li><li>  exactMatch:Boolean  <ul>    <li> (オプション) <p>厳格に末尾までチェックする場合はtrueを指定します。</p>    </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  MixedCollection  <ul>    <li>    <p>フィルタリングされた新たなコレクション</p>    </li>  </ul>  </li></ul></div></div></div>
   </td>
   <td class="msource">
     NX.util.MixedCollection
@@ -294,8 +294,8 @@ getKeyを実装するか、コンストラクタのkeyFnを指定した場合は
   </td>
   <td class="sig">
     <a id="NX.util.MixedCollection-findIndex"></a>
-    <b>findIndex</b>(String property, String/RegExp value, [Number start], [Boolean anyMatch], [Boolean caseSensitive]) : Number
-    <div class="mdesc"><p>指定したプロパティ値によるコレクション中から、最初にマッチしたオブジェクトのインデックスを見つけます。</p><div class="long"><div class="params"><strong>パラメータ:</strong><ul><li>  property:String  <ul>    <li>      <p>プロパティ</p>    </li>  </ul></li><li>  value:String/RegExp  <ul>    <li>      <p>プロパティの値に先頭一致すべき文字列か、プロパティに対してテストを行う正規表現</p>    </li>  </ul></li><li>  start:Number  <ul>    <li> (オプション) <p>検索を始めるインデックス (初期値 0)</p>    </li>  </ul></li><li>  anyMatch:Boolean  <ul>    <li> (オプション) <p>文字列のどの部分でもマッチするならtrue、そうでなければ開始部分</p>    </li>  </ul></li><li>  caseSensitive:Boolean  <ul>    <li> (オプション) <p>大文字小文字を区別して比較するならtrue(初期値 false)</p>    </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  Number  <ul>    <li>    <p>マッチしたインデックスか、-1</p>    </li>  </ul>  </li></ul></div></div></div>
+    <b>findIndex</b>(String property, String/RegExp value, [Number start], [Boolean anyMatch], [Boolean caseSensitive], [Boolean exactMatch]) : Number
+    <div class="mdesc"><p>指定したプロパティ値によるコレクション中から、最初にマッチしたオブジェクトのインデックスを見つけます。</p><div class="long"><div class="params"><strong>パラメータ:</strong><ul><li>  property:String  <ul>    <li>      <p>プロパティ</p>    </li>  </ul></li><li>  value:String/RegExp  <ul>    <li>      <p>プロパティの値に先頭一致すべき文字列か、プロパティに対してテストを行う正規表現</p>    </li>  </ul></li><li>  start:Number  <ul>    <li> (オプション) <p>検索を始めるインデックス (初期値 0)</p>    </li>  </ul></li><li>  anyMatch:Boolean  <ul>    <li> (オプション) <p>文字列のどの部分でもマッチするならtrue、そうでなければ開始部分</p>    </li>  </ul></li><li>  caseSensitive:Boolean  <ul>    <li> (オプション) <p>大文字小文字を区別して比較するならtrue(初期値 false)</p>    </li>  </ul></li><li>  exactMatch:Boolean  <ul>    <li> (オプション) <p>厳格に末尾までチェックする場合はtrueを指定します。</p>    </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  Number  <ul>    <li>    <p>マッチしたインデックスか、-1</p>    </li>  </ul>  </li></ul></div></div></div>
   </td>
   <td class="msource">
     NX.util.MixedCollection
@@ -490,8 +490,8 @@ mc.add(otherEl);
   </td>
   <td class="sig">
     <a id="NX.util.MixedCollection-keySort"></a>
-    <b>keySort</b>(String direction, Function fn) : void
-    <div class="mdesc"><p>コレクション内をキーでソートします。</p><div class="long"><div class="params"><strong>パラメータ:</strong><ul><li>  direction:String  <ul>    <li>      <p>'ASC' または 'DESC' (初期値:'ASC')</p>    </li>  </ul></li><li>  fn:Function  <ul>    <li>      <p>比較関数</p>
+    <b>keySort</b>([String direction], [Function fn]) : void
+    <div class="mdesc"><p>コレクション内をキーでソートします。</p><div class="long"><div class="params"><strong>パラメータ:</strong><ul><li>  direction:String  <ul>    <li> (オプション) <p>'ASC' または 'DESC' (初期値:'ASC')</p>    </li>  </ul></li><li>  fn:Function  <ul>    <li> (オプション) <p>比較関数</p>
 
 <p>未指定の場合、自動的にキー文字列でソートします。</p>    </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  void  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
   </td>
@@ -673,8 +673,8 @@ mc.add(otherEl);
   </td>
   <td class="sig">
     <a id="NX.util.MixedCollection-sort"></a>
-    <b>sort</b>([String direction], Function fn) : void
-    <div class="mdesc"><p>引数で渡された比較関数でコレクションをソートします。</p><div class="long"><div class="params"><strong>パラメータ:</strong><ul><li>  direction:String  <ul>    <li> (オプション) <p>"ASC" または、 "DESC"</p>    </li>  </ul></li><li>  fn:Function  <ul>    <li>      <p>比較関数</p>    </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  void  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
+    <b>sort</b>([String direction], [Function fn]) : void
+    <div class="mdesc"><p>引数で渡された比較関数でコレクションをソートします。</p><div class="long"><div class="params"><strong>パラメータ:</strong><ul><li>  direction:String  <ul>    <li> (オプション) <p>"ASC" または、 "DESC"</p>    </li>  </ul></li><li>  fn:Function  <ul>    <li> (オプション) <p>比較関数</p>    </li>  </ul></li></ul><strong>戻り値:</strong><ul>  <li>  void  <ul>    <li>        </li>  </ul>  </li></ul></div></div></div>
   </td>
   <td class="msource">
     NX.util.MixedCollection

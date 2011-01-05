@@ -1,4 +1,4 @@
 {
-    "param" : ["property", "value", "anyMatch", "caseSensitive"],
+    "param" : ["property", "value", "anyMatch", "caseSensitive", "exactMatch"],
     "return": "MixedCollection"
 }
