@@ -412,8 +412,8 @@ var genApiNode = function(rootPath, targetPath, deploy, outputDir) {
                 var params = {};
                 NX.each(info.param, function(pn) {
 
-                    var mdfile = tp + '/' + v.name + '/' + pn + '.mdown';
-                    var infofile = tp + '/' + v.name + '/' + pn + '.js';
+                    var mdfile = ttp + '/' + v.name + '/' + pn + '.mdown';
+                    var infofile = ttp + '/' + v.name + '/' + pn + '.js';
 
                     var type = '';
                     var desc = '';

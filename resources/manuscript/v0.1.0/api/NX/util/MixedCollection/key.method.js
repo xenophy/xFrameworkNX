@@ -1,4 +1,4 @@
 {
-    "param" : [],
+    "param" : ["key"],
     "return": "Object"
 }
