@@ -1,3 +1,4 @@
 {
-    "type" : "String"
+    "type" : "String",
+    "option" : true
 }

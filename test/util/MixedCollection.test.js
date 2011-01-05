@@ -288,9 +288,298 @@ module.exports = {
 
         assert.equal(mc.itemAt(2), 'value3');
 
+    },
+
+    // }}}
+    // {{{ test key/contains#standerd
+
+    'test key/contains#standerd': function() {
+
+        var mc = new NX.util.MixedCollection();
+
+        mc.addAll({
+            'key1': 'value1',
+            'key2': 'value2',
+            'key3': 'value3'
+        });
+
+        assert.equal(mc.key('key2'), 'value2');
+
+        var o = {foo: 'bar'};
+        var f = function() {};
+        mc.add(o);
+
+        assert.equal(mc.contains(o), true);
+        assert.equal(mc.contains(f), false);
+
+        assert.equal(mc.containsKey('key3'), true);
+        assert.equal(mc.containsKey('key4'), false);
+
+
+    },
+
+    // }}}
+    // {{{ test clear#standerd
+
+    'test clear#standerd': function() {
+
+        var mc = new NX.util.MixedCollection();
+
+        mc.addAll({
+            'key1': 'value1',
+            'key2': 'value2',
+            'key3': 'value3'
+        });
+
+        mc.clear();
+
+        assert.equal(mc.key('key1'), null);
+        assert.equal(mc.key('key2'), null);
+        assert.equal(mc.key('key3'), null);
+
+    },
+
+    // }}}
+    // {{{ test first/last#standerd
+
+    'test first/last#standerd': function() {
+
+        var mc = new NX.util.MixedCollection();
+
+        mc.addAll({
+            'key1': 'value1',
+            'key2': 'value2',
+            'key3': 'value3'
+        });
+
+        assert.equal(mc.first(), 'value1');
+        assert.equal(mc.last(), 'value3');
+    },
+
+    // }}}
+    // {{{ test reorder#standerd
+
+    'test reorder#standerd': function() {
+
+        var mc = new NX.util.MixedCollection();
+
+        mc.addAll({
+            'key1': 'value1',
+            'key2': 'value2',
+            'key3': 'value3'
+        });
+
+        mc.reorder({
+            1: 2,
+            2: 0
+        })
+
+        assert.equal(mc.items[0], 'value3');
+        assert.equal(mc.items[1], 'value1');
+        assert.equal(mc.items[2], 'value2');
+    },
+
+    // }}}
+    // {{{ test sort#standerd
+
+    'test sort#standerd': function() {
+
+        var mc = new NX.util.MixedCollection();
+
+        mc.addAll(3, 1, 4, 5, 2);
+        mc.sort();
+
+        assert.equal(mc.itemAt(0), 1);
+        assert.equal(mc.itemAt(1), 2);
+        assert.equal(mc.itemAt(2), 3);
+        assert.equal(mc.itemAt(3), 4);
+        assert.equal(mc.itemAt(4), 5);
+
+        var mc = new NX.util.MixedCollection();
+
+        mc.addAll(3, 1, 4, 5, 2);
+        mc.sort('desc');
+
+        assert.equal(mc.itemAt(0), 5);
+        assert.equal(mc.itemAt(1), 4);
+        assert.equal(mc.itemAt(2), 3);
+        assert.equal(mc.itemAt(3), 2);
+        assert.equal(mc.itemAt(4), 1);
+
+        mc.clear();
+
+        mc.addAll(3, 1, 1, 4, 5, 2);
+        mc.sort('desc');
+
+        assert.equal(mc.itemAt(0), 5);
+        assert.equal(mc.itemAt(1), 4);
+        assert.equal(mc.itemAt(2), 3);
+        assert.equal(mc.itemAt(3), 2);
+        assert.equal(mc.itemAt(4), 1);
+        assert.equal(mc.itemAt(5), 1);
+
+    },
+
+    // }}}
+    // {{{ test keySort#standerd
+
+    'test keySort#standerd': function() {
+
+        var mc = new NX.util.MixedCollection();
+
+        mc.addAll({
+            'key1': 'value1',
+            'key3': 'value3',
+            'key2': 'value2'
+        });
+
+        mc.keySort();
+
+        assert.equal(mc.items[0], 'value1');
+        assert.equal(mc.items[1], 'value2');
+        assert.equal(mc.items[2], 'value3');
+
+        mc.keySort('DESC');
+
+        assert.equal(mc.items[0], 'value3');
+        assert.equal(mc.items[1], 'value2');
+        assert.equal(mc.items[2], 'value1');
+
+    },
+
+    // }}}
+    // {{{ test getRange#standerd
+
+    'test getRange#standerd': function() {
+
+        var mc = new NX.util.MixedCollection();
+
+        var ret = mc.getRange(1,3);
+
+        assert.equal(ret.length, 0);
+
+        mc.addAll({
+            'key1': 'value1',
+            'key2': 'value2',
+            'key3': 'value3',
+            'key4': 'value4',
+            'key5': 'value5'
+        });
+
+        var ret = mc.getRange(1,3);
+
+        assert.equal(ret[0], 'value2');
+        assert.equal(ret[1], 'value3');
+        assert.equal(ret[2], 'value4');
+
+        var ret = mc.getRange(3, 1);
+
+        assert.equal(ret[0], 'value4');
+        assert.equal(ret[1], 'value3');
+        assert.equal(ret[2], 'value2');
+    },
+
+    // }}}
+    // {{{ test filter#standerd
+
+    'test filter#standerd': function() {
+
+        var mc = new NX.util.MixedCollection();
+
+        mc.addAll({
+            'key1': 'value1',
+            'key2': 'value2',
+            'key3': 'value3',
+            'key4': 'value4',
+            'key5': 'value5',
+            'key6': 'data1',
+            'key7': 'data2',
+            'key8': 'data3'
+        });
+
+        var cmc = mc.filterBy(function(item) {
+            var re = /^data/;
+            return re.test(item);
+        });
+
+        assert.equal(cmc.items[0], 'data1');
+        assert.equal(cmc.items[1], 'data2');
+        assert.equal(cmc.items[2], 'data3');
+
+        var mc = new NX.util.MixedCollection();
+
+        mc.addAll([{
+            id: '001', v: 'data1'
+        },{
+            id: '002', v: 'data2'
+        },{
+            id: '102', v: 'data102'
+        }]);
+
+        var cmc = mc.filter('id', /^00/);
+
+        assert.equal(cmc.items[0].v, 'data1');
+        assert.equal(cmc.items[1].v, 'data2');
+
+        var cmc = mc.filter('id');
+
+        assert.equal(cmc.items[0].v, 'data1');
+        assert.equal(cmc.items[1].v, 'data2');
+        assert.equal(cmc.items[2].v, 'data102');
+    },
+
+    // }}}
+    // {{{ test findIndex#standerd
+
+    'test findIndex#standerd': function() {
+
+        var mc = new NX.util.MixedCollection();
+
+        mc.addAll([{
+            id: '001', v: 'data1'
+        },{
+            id: '002', v: 'data2'
+        },{
+            id: '102', v: 'data102'
+        }]);
+
+        var index = mc.findIndex('id', /^10/);
+
+        assert.equal(index, 2);
+
+        var index = mc.findIndex('id');
+
+        assert.equal(index, -1);
+
+        var index = mc.findIndexBy(function(item) {
+            var re = /^data2$/;
+            return re.test(item.v);
+        });
+
+        assert.equal(index, 1);
+
+        var index = mc.findIndexBy(function(item) {
+            var re = /^data201$/;
+            return re.test(item.v);
+        });
+
+        assert.equal(index, -1);
+
+        var index = mc.findIndex('id', '102');
+
+        assert.equal(index, 2);
+
+        var index = mc.findIndex('id', '01', 0, true);
+
+        assert.equal(index, 0);
+
+        var index = mc.findIndex('id', '102', 0, false, true, true);
+
+        assert.equal(index, 2);
     }
 
     // }}}
+
 
 };
 

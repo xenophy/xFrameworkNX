@@ -1,3 +1,4 @@
 {
-    "type" : "Function"
+    "type" : "Function",
+    "option" : true
 }
