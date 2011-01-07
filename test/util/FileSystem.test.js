@@ -93,6 +93,72 @@ module.exports = {
 
         assert.equal(NX.fs.existsSync('./testcase.txt'), false);
 
+    },
+
+    // }}}
+    // {{{ test isReadable#standard
+
+    'test isReadable#standard': function(beforeExit) {
+
+        var deferredRet = null;
+        var callbackRet = null;
+
+        NX.fs.isReadable('./testcase.txt')
+        .next(function(readable) {
+            deferredRet = readable;
+        });
+
+        NX.fs.isReadable('./testcase.txt', function(readable) {
+            callbackRet = readable;
+        })
+
+        beforeExit(function(){
+            assert.equal(deferredRet, false);
+            assert.equal(callbackRet, false);
+        });
+
+    },
+
+    // }}}
+    // {{{ test isReadableSync#standard
+
+    'test isReadableSync#standard': function(beforeExit) {
+
+        assert.equal(NX.fs.isReadableSync('./testcase.txt'), false);
+
+    },
+
+    // }}}
+    // {{{ test isWritable#standard
+
+    'test isWritable#standard': function(beforeExit) {
+
+        var deferredRet = null;
+        var callbackRet = null;
+
+        NX.fs.isWritable('./testcase.txt')
+        .next(function(writable) {
+            deferredRet = writable;
+        });
+
+        NX.fs.isWritable('./testcase.txt', function(writable) {
+            callbackRet = writable;
+        })
+
+        beforeExit(function(){
+            assert.equal(deferredRet, false);
+            assert.equal(callbackRet, false);
+        });
+
+    },
+
+    // }}}
+    // {{{ test isWritableSync#standard
+
+    'test isWritableSync#standard': function(beforeExit) {
+
+        assert.equal(NX.fs.isWritableSync('./testcase.txt'), false);
+
     }
 
     // }}}
