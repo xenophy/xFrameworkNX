@@ -20,6 +20,7 @@ module.exports = {
 
     'test next#standard': function() {
 
+        /*
         NX.fs
         .rename('/Users/kotsutsumikazuhiro/test.txt', '/Users/kotsutsumikazuhiro/test2.txt').next(function() {
         })
@@ -28,6 +29,7 @@ module.exports = {
         .error(function() {
             console.log(arguments);
         });
+        */
 
         /*
         .next(function() {

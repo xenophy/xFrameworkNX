@@ -159,6 +159,37 @@ module.exports = {
 
         assert.equal(NX.fs.isWritableSync('./testcase.txt'), false);
 
+    },
+
+    // }}}
+    // {{{ test touch#standard
+
+    'test touch#standard': function(beforeExit) {
+
+        var ret = null;
+
+        NX.fs.touch('./tc-touch.txt',function() {
+            ret = NX.fs.existsSync('./tc-touch.txt');
+            assert.equal(ret, true);
+            NX.fs.unlinkSync('./tc-touch.txt');
+        });
+
+    },
+
+    // }}}
+    // {{{ test touch deferred#standard
+
+    'test touch deferred#standard': function(beforeExit) {
+
+        var ret;
+
+        NX.fs.touch('./tc-touch-deferred.txt')
+        .next(function() {
+            ret = NX.fs.existsSync('./tc-touch-deferred.txt');
+            assert.equal(ret, true);
+            NX.fs.unlinkSync('./tc-touch-deferred.txt');
+        });
+
     }
 
     // }}}
