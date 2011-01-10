@@ -25,6 +25,25 @@ NX.http.View = NX.extend(NX.AbstractView, {
     },
 
     // }}}
+    // {{{ forbidden
+
+    /**
+     * @method forbidden
+     */
+    function forbidden(res) {
+
+        var body = 'Forbidden';
+
+        res.writeHead(403, {
+            'Content-Type': 'text/plain',
+            'Content-Length': body.length
+        });
+
+        res.end(body);
+
+    }
+
+    // }}}
     // {{{ render
 
     render : function() {
