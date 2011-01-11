@@ -14,6 +14,7 @@ module.exports = NX.extend(NX.Module, {
 
     foo : function() {
 
+        console.log('mod3 foo called');
 
     }
 
