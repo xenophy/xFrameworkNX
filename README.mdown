@@ -1,5 +1,7 @@
 # xFramework NX
 
 
+## 利用する外部モジュール
 
-
+* [https://github.com/senchalabs/connect]
+* [https://github.com/felixge/node-mysql]
