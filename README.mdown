@@ -1,7 +1,5 @@
 # xFramework NX
 
+このプロジェクトは、Next JSとして再開されました。
+[[https://github.com/xenophy/NextJS]]
 
-## 利用する外部モジュール
-
-* [[[https://github.com/senchalabs/connect]]]
-* [[[https://github.com/felixge/node-mysql]]]
